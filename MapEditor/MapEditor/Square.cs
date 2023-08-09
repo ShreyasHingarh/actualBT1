@@ -8,10 +8,10 @@ namespace MapEditor
 {
     public enum Draw
     {
-        Eraser,
-        Start,
-        End,
-        Path
+        Eraser = 0,
+        Start = 1,
+        End = 2,
+        Path = 3
     }
     public class Square
     {
