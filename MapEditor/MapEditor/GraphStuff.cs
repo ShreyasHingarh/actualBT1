@@ -43,7 +43,7 @@ namespace MapEditor
             Value = value;
         }
     }
-    internal class GraphStuff
+    public class GraphStuff
     {
         public List<Vertex> vertices;
         public List<Edge> edges;

@@ -13,13 +13,25 @@ namespace MapEditor
         End = 2,
         Path = 3
     }
+    public class Position
+    {
+        public int X;
+        public int Y;
+        public Position(int x,int y)
+        {
+            X = x;
+            Y = y;
+        }
+    }
     public class Square
     {
+        public Position location;
         public bool IsWall;
         public PictureBox Picture;
         public Draw Type;
-        public Square() 
+        public Square(int x, int y) 
         {
+            location = new Position(x,y);
             IsWall = false;
             Picture = new PictureBox();
             Type = Draw.Eraser;
