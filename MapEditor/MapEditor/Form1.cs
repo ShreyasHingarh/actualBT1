@@ -14,12 +14,13 @@ namespace MapEditor
         public Square[,] Grasses;
         public Image ImageToDraw;
         public List<byte> ImageValues;
+        public Square Start;
+        public Square End;
         public int SizeFactor = 30;
         public int ScreenSize = 810;
         bool HaveDrawnStart;
         bool HaveDrawnEnd;
-
-
+        AStar Graph;
         Draw TypeOfOneToDraw;
         public Form1()
         {
@@ -28,6 +29,7 @@ namespace MapEditor
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Graph = new AStar();
 
             ImageValues = new List<byte>();
             HaveDrawnStart = false;
@@ -56,6 +58,14 @@ namespace MapEditor
             }
             ImageToDraw = Resources.Grass;
             TypeOfOneToDraw = Draw.Eraser;
+            //AddAllVertices
+            for (int i = 0; i < Grasses.GetLength(1); i++)
+            {
+                for (int z = 0; z < Grasses.GetLength(0); z++)
+                {
+                    Graph.AddVertex(Grasses[i, z]);
+                }
+            }
         }
 
         private void Eraser_Click(object sender, EventArgs e)
@@ -66,7 +76,9 @@ namespace MapEditor
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            ImageValues = JsonConvert.DeserializeObject<List<byte>>(File.ReadAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\MapEditor\MapEditor\TextFile1.txt"));
+            //\\GMRDC1\Folder Redirection\shreyas.hingarh\Documents\Github\ActualBT1\MapEditor\MapEditor\TextFile1.txt
+            //C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\MapEditor\MapEditor\TextFile1.txt
+            ImageValues = JsonConvert.DeserializeObject<List<byte>>(File.ReadAllText(@"\\GMRDC1\Folder Redirection\shreyas.hingarh\Documents\Github\ActualBT1\MapEditor\MapEditor\TextFile1.txt"));
             int index = 0;
             foreach(var item in Grasses)
             {
@@ -74,15 +86,23 @@ namespace MapEditor
                 {
                     case 0:
                         item.Picture.Image = Resources.Grass;
+                        item.Type = Draw.Eraser;
                         break;
                     case 1:
                         item.Picture.Image = Resources.Startx;
+                        item.Type = Draw.Start;
+                        HaveDrawnStart = true;
+                        Start = item;
                         break;
                     case 2:
                         item.Picture.Image = Resources.Endx;
+                        item.Type = Draw.End;
+                        HaveDrawnEnd = true;
+                        End = item;
                         break;
                     case 3:
                         item.Picture.Image = Resources.Path;
+                        item.Type = Draw.Path;
                         break;
                 }
                 index++;
@@ -91,7 +111,6 @@ namespace MapEditor
 
         private void Save_Click(object sender, EventArgs e)
         {
-            List<byte> temp = ImageValues;
             ImageValues.Clear();
             foreach(var item in Grasses)
             {
@@ -114,7 +133,7 @@ namespace MapEditor
                 }
             }
             string x = JsonConvert.SerializeObject(ImageValues);
-            File.WriteAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\MapEditor\MapEditor\TextFile1.txt", x);
+            File.WriteAllText(@"\\GMRDC1\Folder Redirection\shreyas.hingarh\Documents\Github\ActualBT1\MapEditor\MapEditor\TextFile1.txt", x);
         }
 
         private void StartPath_Click(object sender, EventArgs e)
@@ -172,10 +191,12 @@ namespace MapEditor
                     case Draw.Eraser:
                         if (Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Type == Draw.Start)
                         {
+                            Start = null;
                             HaveDrawnStart = false;
                         }
                         if (Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Type == Draw.End)
                         {
+                            End = null;
                             HaveDrawnEnd = false;
                         }
                         break;
@@ -183,9 +204,9 @@ namespace MapEditor
                         if (HaveDrawnStart) return;
                         if (!HaveDrawnStart)
                         {
+                            Start = Grasses[temp.Y / SizeFactor, temp.X / SizeFactor];
                             HaveDrawnStart = true;
                             Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Picture.Image = ImageToDraw;
-                            Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Picture.Size = ImageToDraw.Size;
                             Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Type = Draw.Start;
                             return;
                         }
@@ -194,9 +215,9 @@ namespace MapEditor
                         if (HaveDrawnEnd) return;
                         if (!HaveDrawnEnd)
                         {
+                            End = Grasses[temp.Y / SizeFactor, temp.X / SizeFactor];
                             HaveDrawnEnd = true;
                             Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Picture.Image = ImageToDraw;
-                            Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Picture.Size = ImageToDraw.Size;
                             Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Type = Draw.End;
                             return;
                         }
@@ -204,20 +225,75 @@ namespace MapEditor
                 }
                 if ((Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Type == Draw.End || Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Type == Draw.Start) && TypeOfOneToDraw == Draw.Path) return;
                 Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Picture.Image = ImageToDraw;
-                Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Picture.Size = ImageToDraw.Size;
                 Grasses[temp.Y / SizeFactor, temp.X / SizeFactor].Type = TypeOfOneToDraw;
             }
         }
-
+        public void Checks(ref Square curNeighbor, ref List<Square> walls, ref Stack<Square> stack, ref List<Square> HaveAlreadyVisited)
+        {
+            if(!HaveAlreadyVisited.Contains(curNeighbor))
+            {
+                if (curNeighbor.Type == Draw.Eraser && !walls.Contains(curNeighbor))
+                {
+                    curNeighbor.IsWall = true;
+                    walls.Add(curNeighbor);
+                }
+                else if(curNeighbor.Type != Draw.Eraser)
+                {
+                    stack.Push(curNeighbor);
+                }
+            }
+        }
+        public List<Square> GetWalls()
+        {
+            List<Square> HaveAlreadyVisited= new List<Square>();
+            List<Square> walls = new List<Square>();
+            if (Start == null || End == null) return null;
+            int iX = Start.Picture.Location.X/SizeFactor;
+            int iY = Start.Picture.Location.Y/SizeFactor;
+            int size = Grasses.GetLength(0);
+            Stack<Square> stack = new Stack<Square>();
+            stack.Push(Start);
+            Square Current = Start;
+            while(stack.Count != 0)
+            {
+                Current = stack.Pop();
+                HaveAlreadyVisited.Add(Current);
+                iX = Current.Picture.Location.X/SizeFactor;
+                iY = Current.Picture.Location.Y/ SizeFactor;
+                if((iX + 1) < size)
+                {
+                    Checks(ref Grasses[iY, iX + 1], ref walls, ref stack, ref HaveAlreadyVisited);//right
+                }
+                if((iX - 1) >= 0)
+                {
+                    Checks(ref Grasses[iY, iX - 1], ref walls, ref stack, ref HaveAlreadyVisited);//left
+                }
+                if((iY + 1) < size)
+                {
+                    Checks(ref Grasses[iY + 1, iX], ref walls, ref stack, ref HaveAlreadyVisited);//bottom
+                }
+                if((iY - 1) >= 0)
+                {
+                    Checks(ref Grasses[iY - 1, iX], ref walls, ref stack, ref HaveAlreadyVisited);//top
+                }
+            }
+            return walls;
+        }
         private void StartSearch_Click(object sender, EventArgs e)
         {
+            List<Square> walls = GetWalls();
+            if (walls.Count == 0) return;
 
+            // do the search
+            // draw the results somehow
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             HaveDrawnStart = false;
             HaveDrawnEnd = false;
+            Start = null;
+            End = null;
             int x = 0;
             int y = 0;
             for (int i = 0; i < Grasses.GetLength(1); i++)

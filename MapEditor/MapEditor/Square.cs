@@ -15,10 +15,12 @@ namespace MapEditor
     }
     public class Square
     {
+        public bool IsWall;
         public PictureBox Picture;
         public Draw Type;
         public Square() 
         {
+            IsWall = false;
             Picture = new PictureBox();
             Type = Draw.Eraser;
         }
