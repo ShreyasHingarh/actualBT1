@@ -66,6 +66,8 @@ namespace MapEditor
                     Graph.AddVertex(Grasses[i, z]);
                 }
             }
+            //AddAllEdges
+
         }
 
         private void Eraser_Click(object sender, EventArgs e)
@@ -284,6 +286,7 @@ namespace MapEditor
             List<Square> walls = GetWalls();
             if (walls.Count == 0) return;
 
+            List<Square> Path = Graph.AStar(Start, End);
             // do the search
             // draw the results somehow
         }
