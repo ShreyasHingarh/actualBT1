@@ -309,5 +309,6 @@ namespace MapEditor
             TypeOfOneToDraw = Draw.Eraser;
 
         }
+
     }
 }
