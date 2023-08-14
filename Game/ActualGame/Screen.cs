@@ -19,14 +19,15 @@ namespace ActualGame
         public Screen(int ScreenSize, int ImageSize,ContentManager Content)
         {
             Map = new ScreenSquare[ScreenSize/ImageSize, ScreenSize / ImageSize];
-            List<int> ints = (List<int>)JsonConvert.DeserializeObject(File.ReadAllText(@"\\GMRDC1\Folder Redirection\shreyas.hingarh\Documents\Github\ActualBT1\MapEditor\MapEditor\Background.txt"));
+            int[] ints = JsonConvert.DeserializeObject<int[]>(File.ReadAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Background.txt"));
             int x = 0;
             int y = 0;
             int ImageIndex = 0;
             for(int i = 0; i < Map.GetLength(1);i++)
             {
-                Sprite Current;
-                Texture2D image = Content.Load<Texture2D>("Grass.png");
+                //C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\ActualGame\Content\Grass.png
+                //"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\ActualGame\Content\Grass.png"
+                Texture2D image = Content.Load<Texture2D>("Grass");
                 TypeOfImage type = TypeOfImage.Grass;
                 for (int z = 0;z < Map.GetLength(0);z++)
                 {
@@ -34,22 +35,22 @@ namespace ActualGame
                     {
                         case 0://eraser
                             type = TypeOfImage.Grass; 
-                            image = Content.Load<Texture2D>("Grass.png");
+                            image = Content.Load<Texture2D>("Grass");
                             break;
                         case 1://start
                             type = TypeOfImage.Start;
-                            image = Content.Load<Texture2D>("Path.png");
+                            image = Content.Load<Texture2D>("Startx");
                             break;
                         case 2://end
                             type = TypeOfImage.End;
-                            image = Content.Load<Texture2D>("Path.png");
+                            image = Content.Load<Texture2D>("Endx");
                             break;
                         case 3://path
                             type = TypeOfImage.Path;
-                            image = Content.Load<Texture2D>("Path.png");
+                            image = Content.Load<Texture2D>("Path");
                             break;
                     }
-                    Current = new Sprite(Color.White, new Vector2(x,y),image,0,Vector2.Zero,Vector2.One);
+                    Sprite Current = new Sprite(Color.White, new Vector2(x,y),image,0,Vector2.Zero,Vector2.One);
                     Map[i, z] = new ScreenSquare(Current,type,new Vector2(z,i));
                     x += ImageSize;
                     ImageIndex++;

@@ -42,7 +42,7 @@ namespace MapEditor
             {
                 for (int z = 0; z < Grasses.GetLength(0); z++)
                 {
-                    Grasses[i, z] = new Vertex(new Square(z,i));
+                    Grasses[i, z] = new Vertex(new Square(z, i));
                     Grasses[i, z].Value.Picture.Image = Resources.Grass;
                     Grasses[i, z].Value.Picture.Location = new Point(x, y);
                     Grasses[i, z].Value.Picture.Size = new Size(Resources.Grass.Width, Resources.Grass.Height);
@@ -70,9 +70,9 @@ namespace MapEditor
         {
             //\\GMRDC1\Folder Redirection\shreyas.hingarh\Documents\Github\ActualBT1\MapEditor\MapEditor\TextFile1.txt
             //C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\MapEditor\MapEditor\TextFile1.txt
-            ImageValues = JsonConvert.DeserializeObject<List<byte>>(File.ReadAllText(@"\\GMRDC1\Folder Redirection\shreyas.hingarh\Documents\Github\ActualBT1\MapEditor\MapEditor\Background.txt"));
+            ImageValues = JsonConvert.DeserializeObject<List<byte>>(File.ReadAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Background.txt"));
             int index = 0;
-            foreach(var item in Grasses)
+            foreach (var item in Grasses)
             {
                 switch (ImageValues[index])
                 {
@@ -104,7 +104,7 @@ namespace MapEditor
         private void Save_Click(object sender, EventArgs e)
         {
             ImageValues.Clear();
-            foreach(var item in Grasses)
+            foreach (var item in Grasses)
             {
                 switch (item.Value.Type)
                 {
@@ -125,7 +125,7 @@ namespace MapEditor
                 }
             }
             string x = JsonConvert.SerializeObject(ImageValues);
-            File.WriteAllText(@"\\GMRDC1\Folder Redirection\shreyas.hingarh\Documents\Github\ActualBT1\MapEditor\MapEditor\Background.txt", x);
+            File.WriteAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Background.txt", x);
         }
 
         private void StartPath_Click(object sender, EventArgs e)
@@ -222,14 +222,14 @@ namespace MapEditor
         }
         public void Checks(ref Vertex curNeighbor, ref List<Vertex> walls, ref Stack<Vertex> stack, ref List<Vertex> HaveAlreadyVisited)
         {
-            if(!HaveAlreadyVisited.Contains(curNeighbor))
+            if (!HaveAlreadyVisited.Contains(curNeighbor))
             {
                 if (curNeighbor.Value.Type == Draw.Eraser && !walls.Contains(curNeighbor))
                 {
                     curNeighbor.IsWall = true;
                     walls.Add(curNeighbor);
                 }
-                else if(curNeighbor.Value.Type != Draw.Eraser)
+                else if (curNeighbor.Value.Type != Draw.Eraser)
                 {
                     stack.Push(curNeighbor);
                 }
@@ -237,34 +237,34 @@ namespace MapEditor
         }
         public void SetWalls()
         {
-            List<Vertex> HaveAlreadyVisited= new List<Vertex>();
+            List<Vertex> HaveAlreadyVisited = new List<Vertex>();
             List<Vertex> walls = new List<Vertex>();
             if (Start == null || End == null) return;
-            int iX = Start.Value.Picture.Location.X/SizeFactor;
-            int iY = Start.Value.Picture.Location.Y/SizeFactor;
+            int iX = Start.Value.Picture.Location.X / SizeFactor;
+            int iY = Start.Value.Picture.Location.Y / SizeFactor;
             int size = Grasses.GetLength(0);
             Stack<Vertex> stack = new Stack<Vertex>();
             stack.Push(Start);
             Vertex Current = Start;
-            while(stack.Count != 0)
+            while (stack.Count != 0)
             {
                 Current = stack.Pop();
                 HaveAlreadyVisited.Add(Current);
-                iX = Current.Value.Picture.Location.X/SizeFactor;
-                iY = Current.Value.Picture.Location.Y/ SizeFactor;
-                if((iX + 1) < size)
+                iX = Current.Value.Picture.Location.X / SizeFactor;
+                iY = Current.Value.Picture.Location.Y / SizeFactor;
+                if ((iX + 1) < size)
                 {
                     Checks(ref Grasses[iY, iX + 1], ref walls, ref stack, ref HaveAlreadyVisited);//right
                 }
-                if((iX - 1) >= 0)
+                if ((iX - 1) >= 0)
                 {
                     Checks(ref Grasses[iY, iX - 1], ref walls, ref stack, ref HaveAlreadyVisited);//left
                 }
-                if((iY + 1) < size)
+                if ((iY + 1) < size)
                 {
                     Checks(ref Grasses[iY + 1, iX], ref walls, ref stack, ref HaveAlreadyVisited);//bottom
                 }
-                if((iY - 1) >= 0)
+                if ((iY - 1) >= 0)
                 {
                     Checks(ref Grasses[iY - 1, iX], ref walls, ref stack, ref HaveAlreadyVisited);//top
                 }
@@ -275,14 +275,14 @@ namespace MapEditor
         {
             SetWalls();
             List<Vertex> Path = buildGraph.Graph.AStarThing(Start, End);
-            List<Position> positionsOfPath = new List<Position>(); 
-            foreach(var item in Path)
+            List<Position> positionsOfPath = new List<Position>();
+            foreach (var item in Path)
             {
                 positionsOfPath.Add(item.Value.location);
             }
             string x = JsonConvert.SerializeObject(positionsOfPath);
-            File.WriteAllText(@"\\GMRDC1\Folder Redirection\shreyas.hingarh\Documents\Github\ActualBT1\MapEditor\MapEditor\Path.txt", string.Empty);
-            File.WriteAllText(@"\\GMRDC1\Folder Redirection\shreyas.hingarh\Documents\Github\ActualBT1\MapEditor\MapEditor\Path.txt", x);
+            File.WriteAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Path.txt", string.Empty);
+            File.WriteAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Path.txt", x);
         }
 
         private void button1_Click(object sender, EventArgs e)

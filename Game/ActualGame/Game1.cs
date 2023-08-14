@@ -15,13 +15,12 @@ namespace ActualGame
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            screen = new Screen(810,30, Content);
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            graphics.PreferredBackBufferWidth = 1010;
+            graphics.PreferredBackBufferWidth = 1210;
             graphics.PreferredBackBufferHeight = 810;
             graphics.ApplyChanges();
             base.Initialize();
@@ -30,7 +29,7 @@ namespace ActualGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            screen = new Screen(810, 30, Content);
             // TODO: use this.Content to load your game content here
         }
 

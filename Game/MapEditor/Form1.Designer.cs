@@ -28,136 +28,153 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.PathPicture = new System.Windows.Forms.PictureBox();
-            this.StartPath = new System.Windows.Forms.PictureBox();
-            this.EndPath = new System.Windows.Forms.PictureBox();
-            this.Save = new System.Windows.Forms.Button();
-            this.LoadButton = new System.Windows.Forms.Button();
-            this.Eraser = new System.Windows.Forms.Button();
-            this.Update = new System.Windows.Forms.Timer(this.components);
-            this.StartSearch = new System.Windows.Forms.Button();
-            this.TheScreen = new System.Windows.Forms.PictureBox();
-            this.Clear = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.PathPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StartPath)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EndPath)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TheScreen)).BeginInit();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            PathPicture = new PictureBox();
+            StartPath = new PictureBox();
+            EndPath = new PictureBox();
+            Save = new Button();
+            LoadButton = new Button();
+            Eraser = new Button();
+            Update = new System.Windows.Forms.Timer(components);
+            StartSearch = new Button();
+            TheScreen = new PictureBox();
+            Clear = new Button();
+            ((System.ComponentModel.ISupportInitialize)PathPicture).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)StartPath).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)EndPath).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)TheScreen).BeginInit();
+            SuspendLayout();
             // 
             // PathPicture
             // 
-            this.PathPicture.Image = global::MapEditor.Properties.Resources.Path;
-            this.PathPicture.Location = new System.Drawing.Point(930, 645);
-            this.PathPicture.Name = "PathPicture";
-            this.PathPicture.Size = new System.Drawing.Size(30, 30);
-            this.PathPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.PathPicture.TabIndex = 0;
-            this.PathPicture.TabStop = false;
+            PathPicture.Image = Properties.Resources.Path;
+            PathPicture.Location = new Point(1063, 860);
+            PathPicture.Margin = new Padding(3, 4, 3, 4);
+            PathPicture.Name = "PathPicture";
+            PathPicture.Size = new Size(30, 30);
+            PathPicture.SizeMode = PictureBoxSizeMode.AutoSize;
+            PathPicture.TabIndex = 0;
+            PathPicture.TabStop = false;
+            PathPicture.Click += PathPicture_Click;
             // 
             // StartPath
             // 
-            this.StartPath.Image = global::MapEditor.Properties.Resources.Startx;
-            this.StartPath.Location = new System.Drawing.Point(930, 599);
-            this.StartPath.Name = "StartPath";
-            this.StartPath.Size = new System.Drawing.Size(30, 30);
-            this.StartPath.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.StartPath.TabIndex = 1;
-            this.StartPath.TabStop = false;
+            StartPath.Image = Properties.Resources.Startx;
+            StartPath.Location = new Point(1063, 799);
+            StartPath.Margin = new Padding(3, 4, 3, 4);
+            StartPath.Name = "StartPath";
+            StartPath.Size = new Size(30, 30);
+            StartPath.SizeMode = PictureBoxSizeMode.AutoSize;
+            StartPath.TabIndex = 1;
+            StartPath.TabStop = false;
+            StartPath.Click += StartPath_Click;
             // 
             // EndPath
             // 
-            this.EndPath.Image = global::MapEditor.Properties.Resources.Endx;
-            this.EndPath.Location = new System.Drawing.Point(930, 705);
-            this.EndPath.Name = "EndPath";
-            this.EndPath.Size = new System.Drawing.Size(30, 30);
-            this.EndPath.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.EndPath.TabIndex = 2;
-            this.EndPath.TabStop = false;
+            EndPath.Image = Properties.Resources.Endx;
+            EndPath.Location = new Point(1063, 940);
+            EndPath.Margin = new Padding(3, 4, 3, 4);
+            EndPath.Name = "EndPath";
+            EndPath.Size = new Size(30, 30);
+            EndPath.SizeMode = PictureBoxSizeMode.AutoSize;
+            EndPath.TabIndex = 2;
+            EndPath.TabStop = false;
+            EndPath.Click += EndPath_Click;
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(907, 552);
-            this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(75, 23);
-            this.Save.TabIndex = 3;
-            this.Save.Text = "SaveToFile";
-            this.Save.UseVisualStyleBackColor = true;
+            Save.Location = new Point(1037, 736);
+            Save.Margin = new Padding(3, 4, 3, 4);
+            Save.Name = "Save";
+            Save.Size = new Size(86, 31);
+            Save.TabIndex = 3;
+            Save.Text = "SaveToFile";
+            Save.UseVisualStyleBackColor = true;
+            Save.Click += Save_Click;
             // 
             // LoadButton
             // 
-            this.LoadButton.Location = new System.Drawing.Point(880, 513);
-            this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(102, 23);
-            this.LoadButton.TabIndex = 4;
-            this.LoadButton.Text = "LoadFromFile";
-            this.LoadButton.UseVisualStyleBackColor = true;
+            LoadButton.Location = new Point(1006, 684);
+            LoadButton.Margin = new Padding(3, 4, 3, 4);
+            LoadButton.Name = "LoadButton";
+            LoadButton.Size = new Size(117, 31);
+            LoadButton.TabIndex = 4;
+            LoadButton.Text = "LoadFromFile";
+            LoadButton.UseVisualStyleBackColor = true;
+            LoadButton.Click += LoadButton_Click;
             // 
             // Eraser
             // 
-            this.Eraser.Location = new System.Drawing.Point(907, 472);
-            this.Eraser.Name = "Eraser";
-            this.Eraser.Size = new System.Drawing.Size(75, 23);
-            this.Eraser.TabIndex = 5;
-            this.Eraser.Text = "Eraser";
-            this.Eraser.UseVisualStyleBackColor = true;
+            Eraser.Location = new Point(1037, 629);
+            Eraser.Margin = new Padding(3, 4, 3, 4);
+            Eraser.Name = "Eraser";
+            Eraser.Size = new Size(86, 31);
+            Eraser.TabIndex = 5;
+            Eraser.Text = "Eraser";
+            Eraser.UseVisualStyleBackColor = true;
+            Eraser.Click += Eraser_Click;
             // 
             // Update
             // 
-            this.Update.Enabled = true;
-            this.Update.Interval = 10;
+            Update.Enabled = true;
+            Update.Interval = 10;
+            Update.Tick += Update_Tick;
             // 
             // StartSearch
             // 
-            this.StartSearch.Location = new System.Drawing.Point(890, 431);
-            this.StartSearch.Name = "StartSearch";
-            this.StartSearch.Size = new System.Drawing.Size(92, 23);
-            this.StartSearch.TabIndex = 6;
-            this.StartSearch.Text = "StartSearch";
-            this.StartSearch.UseVisualStyleBackColor = true;
+            StartSearch.Location = new Point(1017, 575);
+            StartSearch.Margin = new Padding(3, 4, 3, 4);
+            StartSearch.Name = "StartSearch";
+            StartSearch.Size = new Size(105, 31);
+            StartSearch.TabIndex = 6;
+            StartSearch.Text = "StartSearch";
+            StartSearch.UseVisualStyleBackColor = true;
+            StartSearch.Click += StartSearch_Click;
             // 
             // TheScreen
             // 
-            this.TheScreen.Location = new System.Drawing.Point(0, 0);
-            this.TheScreen.Name = "TheScreen";
-            this.TheScreen.Size = new System.Drawing.Size(810, 810);
-            this.TheScreen.TabIndex = 7;
-            this.TheScreen.TabStop = false;
-            this.TheScreen.Visible = false;
+            TheScreen.Location = new Point(0, 0);
+            TheScreen.Margin = new Padding(3, 4, 3, 4);
+            TheScreen.Name = "TheScreen";
+            TheScreen.Size = new Size(926, 1080);
+            TheScreen.TabIndex = 7;
+            TheScreen.TabStop = false;
+            TheScreen.Visible = false;
             // 
             // Clear
             // 
-            this.Clear.Location = new System.Drawing.Point(900, 391);
-            this.Clear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Clear.Name = "Clear";
-            this.Clear.Size = new System.Drawing.Size(82, 22);
-            this.Clear.TabIndex = 8;
-            this.Clear.Text = "Clear";
-            this.Clear.UseVisualStyleBackColor = true;
+            Clear.Location = new Point(1029, 521);
+            Clear.Name = "Clear";
+            Clear.Size = new Size(94, 29);
+            Clear.TabIndex = 8;
+            Clear.Text = "Clear";
+            Clear.UseVisualStyleBackColor = true;
+            Clear.Click += button1_Click;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(994, 811);
-            this.Controls.Add(this.Clear);
-            this.Controls.Add(this.TheScreen);
-            this.Controls.Add(this.StartSearch);
-            this.Controls.Add(this.Eraser);
-            this.Controls.Add(this.LoadButton);
-            this.Controls.Add(this.Save);
-            this.Controls.Add(this.EndPath);
-            this.Controls.Add(this.StartPath);
-            this.Controls.Add(this.PathPicture);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.PathPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StartPath)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EndPath)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TheScreen)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1136, 1055);
+            Controls.Add(Clear);
+            Controls.Add(TheScreen);
+            Controls.Add(StartSearch);
+            Controls.Add(Eraser);
+            Controls.Add(LoadButton);
+            Controls.Add(Save);
+            Controls.Add(EndPath);
+            Controls.Add(StartPath);
+            Controls.Add(PathPicture);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "Form1";
+            Text = "Form1";
+            Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)PathPicture).EndInit();
+            ((System.ComponentModel.ISupportInitialize)StartPath).EndInit();
+            ((System.ComponentModel.ISupportInitialize)EndPath).EndInit();
+            ((System.ComponentModel.ISupportInitialize)TheScreen).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
