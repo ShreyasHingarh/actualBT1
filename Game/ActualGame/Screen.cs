@@ -16,6 +16,8 @@ namespace ActualGame
     internal class Screen 
     {
         public ScreenSquare[,] Map;
+        public ScreenSquare Start;
+        public ScreenSquare End;
         public Screen(int ScreenSize, int ImageSize,ContentManager Content)
         {
             Map = new ScreenSquare[ScreenSize/ImageSize, ScreenSize / ImageSize];
@@ -23,6 +25,8 @@ namespace ActualGame
             int x = 0;
             int y = 0;
             int ImageIndex = 0;
+            bool hasWentToStart = false;
+            bool hasWentToEnd = false;
             for(int i = 0; i < Map.GetLength(1);i++)
             {
                 //C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\ActualGame\Content\Grass.png
@@ -39,11 +43,13 @@ namespace ActualGame
                             break;
                         case 1://start
                             type = TypeOfImage.Start;
-                            image = Content.Load<Texture2D>("Startx");
+                            image = Content.Load<Texture2D>("Path");
+                            hasWentToStart = true;
                             break;
                         case 2://end
                             type = TypeOfImage.End;
-                            image = Content.Load<Texture2D>("Endx");
+                            image = Content.Load<Texture2D>("Path");
+                            hasWentToEnd = true;
                             break;
                         case 3://path
                             type = TypeOfImage.Path;
@@ -52,6 +58,16 @@ namespace ActualGame
                     }
                     Sprite Current = new Sprite(Color.White, new Vector2(x,y),image,0,Vector2.Zero,Vector2.One);
                     Map[i, z] = new ScreenSquare(Current,type,new Vector2(z,i));
+                    if (hasWentToStart)
+                    {
+                        Start = Map[i, z];
+                        hasWentToStart = false;
+                    }
+                    if(hasWentToEnd)
+                    {
+                        End = Map[i, z];
+                        hasWentToEnd = false;
+                    }
                     x += ImageSize;
                     ImageIndex++;
                 }

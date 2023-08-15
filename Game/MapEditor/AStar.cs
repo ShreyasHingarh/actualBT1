@@ -74,11 +74,13 @@ namespace MapEditor
             }
             List<Vertex> vertices = new List<Vertex>();
             Current = end;
-            while(Current.Founder != null)
+            while (Current.Founder != null)
             {
                 vertices.Add(Current);
                 Current = Current.Founder;
             }
+            vertices.Add(start);
+            vertices.Add(start.Neighbors[2].EndingPoint);
             return vertices;
         }
     }

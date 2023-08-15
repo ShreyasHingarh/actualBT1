@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using System.Collections.Generic;
 
 namespace ActualGame
 {
@@ -10,6 +11,9 @@ namespace ActualGame
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         Screen screen;
+        AllEnemies allEnemies;
+        int sizeOfSquare = 30;
+        int offSet = 4;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -29,7 +33,8 @@ namespace ActualGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            screen = new Screen(810, 30, Content);
+            screen = new Screen(GraphicsDevice.Viewport.Height, sizeOfSquare, Content);
+            allEnemies = new AllEnemies(screen.Start,offSet,Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -39,7 +44,7 @@ namespace ActualGame
                 Exit();
 
             // TODO: Add your update logic here
-
+            allEnemies.UpdateAllZombies(sizeOfSquare,offSet);
             base.Update(gameTime);
         }
 
@@ -47,7 +52,8 @@ namespace ActualGame
         {
             spriteBatch.Begin();
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            screen.DrawScreen(spriteBatch);    
+            screen.DrawScreen(spriteBatch);
+            allEnemies.DrawAllZombies(spriteBatch);
             base.Draw(gameTime);
             spriteBatch.End();
         }
