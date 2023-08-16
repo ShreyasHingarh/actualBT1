@@ -20,12 +20,13 @@ namespace ActualGame
         static Dictionary<int, Color> LevelToTintColor = new Dictionary<int, Color>()
         {
             { 0,Color.White },
-            { 1,Color.Red },
+            { 1,Color.DarkGreen },
             { 2,Color.Blue },
             { 3,Color.Orange },
         };
         float LerpAmount;
-        float LerpIncrement;
+        public int Level;
+        public float LerpIncrement;
         Position[] Location;
         public int Health;
         int currentPosition;
@@ -33,6 +34,7 @@ namespace ActualGame
         public Zombie(int level, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale,int health, Position[] locations,Rectangle? sourceRec = null) 
             : base(LevelToTintColor.GetValueOrDefault(level), position, image, rotation, origin, scale, sourceRec)
         {
+            Level = level;
             HasLerpedOnce = false;
             Location = locations.Reverse().ToArray();
             Health = health;

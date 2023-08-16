@@ -26,9 +26,11 @@ namespace ActualGame
     }
     internal class AllEnemies
     {
-        List<Zombie> Zombies = new List<Zombie>();
+        public int Lives;
+        public List<Zombie> Zombies = new List<Zombie>();
         public AllEnemies(ScreenSquare Start,int offSet,ContentManager Content)
         {
+            Lives = 100;
             Position[] path = JsonConvert.DeserializeObject<Position[]>(File.ReadAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Path.txt"));
             Zombies = new List<Zombie>()
             {
@@ -38,33 +40,40 @@ namespace ActualGame
 
                 new Zombie(1, new Vector2(Start.Sprite.Position.X * Start.Sprite.Image.Width + offSet, Start.Sprite.Position.Y * Start.Sprite.Image.Width + offSet),
                 Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
-                , Vector2.One, 10, path),
+                , Vector2.One, 20, path),
                 
                 new Zombie(2, new Vector2(Start.Sprite.Position.X * Start.Sprite.Image.Width + offSet, Start.Sprite.Position.Y * Start.Sprite.Image.Width + offSet),
                 Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
-                , Vector2.One, 10, path),
+                , Vector2.One, 30, path),
                 
                 new Zombie(3, new Vector2(Start.Sprite.Position.X * Start.Sprite.Image.Width + offSet, Start.Sprite.Position.Y * Start.Sprite.Image.Width + offSet),
                 Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
-                , Vector2.One, 10, path)
+                , Vector2.One, 40, path)
             };
         }
         public void UpdateAllZombies(int SizeOfSquare, int offset)
         {
             // logic for removing and adding zombies 
+            if (Zombies.Count == 0) return;
             Zombie Prev = Zombies[0];
             int index = 0;
-            foreach (var item in Zombies)
+            for(int i = 0;i < Zombies.Count;i++)
             {
                 if (index != 0 && !Prev.HasLerpedOnce) continue;
 
-                item.MoveEnemyAlongPathOnce(SizeOfSquare, offset);
+                if(!Zombies[i].MoveEnemyAlongPathOnce(SizeOfSquare, offset))//Only handles when the zombies go off screen no killing involved
+                {
+                    Zombies.Remove(Zombies[i]);
+                    Lives--;
+                    if (Zombies.Count == 0) break;// would switch to next level
+                }
                 Prev = Zombies[index];
                 index++;
             }    
         }
-        public void DrawAllZombies(SpriteBatch sprite)
+        public void DrawAllZombies(SpriteBatch sprite,ContentManager Content)
         {
+            sprite.DrawString(Content.Load<SpriteFont>("File"),$"{Lives}",new Vector2(900,100),Color.Black);
             foreach(var item in Zombies)
             {
                 item.Draw(sprite);

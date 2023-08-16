@@ -53,7 +53,7 @@ namespace ActualGame
             spriteBatch.Begin();
             GraphicsDevice.Clear(Color.CornflowerBlue);
             screen.DrawScreen(spriteBatch);
-            allEnemies.DrawAllZombies(spriteBatch);
+            allEnemies.DrawAllZombies(spriteBatch,Content);
             base.Draw(gameTime);
             spriteBatch.End();
         }
