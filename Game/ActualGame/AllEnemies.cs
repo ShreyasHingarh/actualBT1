@@ -23,6 +23,11 @@ namespace ActualGame
             X = x;
             Y = y;
         }
+        public Position(Vector2 thing)
+        {
+            X = (int)thing.X;
+            Y = (int)thing.Y;
+        }
     }
     internal class AllEnemies
     {
@@ -51,25 +56,26 @@ namespace ActualGame
                 , Vector2.One, 40, path)
             };
         }
-        public void UpdateAllZombies(int SizeOfSquare, int offset)
+        public bool UpdateAllZombies(int SizeOfSquare, int offset,Screen screen)
         {
             // logic for removing and adding zombies 
-            if (Zombies.Count == 0) return;
+            if (Zombies.Count == 0) return true;
             Zombie Prev = Zombies[0];
             int index = 0;
             for(int i = 0;i < Zombies.Count;i++)
             {
                 if (index != 0 && !Prev.HasLerpedOnce) continue;
 
-                if(!Zombies[i].MoveEnemyAlongPathOnce(SizeOfSquare, offset))//Only handles when the zombies go off screen no killing involved
+                if(!Zombies[i].MoveEnemyAlongPathOnce(SizeOfSquare, offset,screen))//Only handles when the zombies go off screen no killing involved
                 {
                     Zombies.Remove(Zombies[i]);
                     Lives--;
-                    if (Zombies.Count == 0) break;// would switch to next level
+                    if (Zombies.Count == 0) return true;//switch to next level
                 }
                 Prev = Zombies[index];
                 index++;
-            }    
+            }
+            return false;
         }
         public void DrawAllZombies(SpriteBatch sprite,ContentManager Content)
         {

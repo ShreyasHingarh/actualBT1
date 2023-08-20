@@ -14,6 +14,7 @@ namespace ActualGame
         AllEnemies allEnemies;
         int sizeOfSquare = 30;
         int offSet = 4;
+        //Plan: finish DartMonkey, CreateSideMenu, FinishUpLvl1 (Adjust Health), AddAllOtherMonkeys, Make next 30 levels, Add a win and lose screen
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -44,7 +45,7 @@ namespace ActualGame
                 Exit();
 
             // TODO: Add your update logic here
-            allEnemies.UpdateAllZombies(sizeOfSquare,offSet);
+            allEnemies.UpdateAllZombies(sizeOfSquare,offSet, screen);
             base.Update(gameTime);
         }
 

@@ -18,10 +18,13 @@ namespace ActualGame
     internal class ScreenSquare
     {
         public TypeOfImage Type;
-        public Vector2 GridLocation;
+        public Position GridLocation;
         public Sprite Sprite;
-        public ScreenSquare(Sprite sprite,TypeOfImage type, Vector2 location)
+        public bool DoesContainZombie;
+        public Zombie OneContained;
+        public ScreenSquare(Sprite sprite,TypeOfImage type, Position location)
         {
+            DoesContainZombie = false;
             Type = type;
             GridLocation = location;
             Sprite = sprite;

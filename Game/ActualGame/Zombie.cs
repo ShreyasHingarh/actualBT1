@@ -13,10 +13,6 @@ namespace ActualGame
 {
     internal class Zombie : Sprite
     {
-        /*
-         Color.White = lvl 1;
-           
-         */
         static Dictionary<int, Color> LevelToTintColor = new Dictionary<int, Color>()
         {
             { 0,Color.White },
@@ -27,34 +23,42 @@ namespace ActualGame
         float LerpAmount;
         public int Level;
         public float LerpIncrement;
-        Position[] Location;
+
+        Position[] Path;
         public int Health;
         int currentPosition;
         public bool HasLerpedOnce;
+        Vector2 PreviousPosition;
         public Zombie(int level, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale,int health, Position[] locations,Rectangle? sourceRec = null) 
             : base(LevelToTintColor.GetValueOrDefault(level), position, image, rotation, origin, scale, sourceRec)
         {
             Level = level;
             HasLerpedOnce = false;
-            Location = locations.Reverse().ToArray();
+            Path = locations.Reverse().ToArray();
             Health = health;
             currentPosition = 0;
             LerpAmount = 0f;
             LerpIncrement = 0.02f;
+            PreviousPosition = Position;
         }
-        public bool MoveEnemyAlongPathOnce(int SizeOfSquare, int offSet)
+        public bool MoveEnemyAlongPathOnce(int SizeOfSquare, int offSet, Screen screen)
         {
-            if (currentPosition + 1 == Location.Length) return false;
-            Position NextSquare = Location[currentPosition+1];
+            if (currentPosition + 1 == Path.Length) return false;
+            Position NextSquare = Path[currentPosition+1];
             if (LerpAmount < 1f)
             {
-                Position = Vector2.Lerp(Position, new Vector2(NextSquare.X * SizeOfSquare + offSet, NextSquare.Y * SizeOfSquare + offSet), LerpAmount);
+                Position = Vector2.Lerp(PreviousPosition, new Vector2(NextSquare.X * SizeOfSquare + offSet, NextSquare.Y * SizeOfSquare + offSet), LerpAmount);
                 LerpAmount += LerpIncrement;
                 return true;
             }
+            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].DoesContainZombie = false;
+            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].OneContained = null;
             currentPosition += 1;
+            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].DoesContainZombie = true;
+            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].OneContained = this;
             LerpAmount = 0f;
             HasLerpedOnce = true;
+            PreviousPosition = Position;
             return true;
         }
     }

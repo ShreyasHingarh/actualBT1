@@ -22,10 +22,11 @@ namespace ActualGame
             Enemies = new AllEnemies(Start,offSet,Content);
             Monkeys = new AllMonkeys();
         }
-        public void UpdateLvlScreen(int SizeOfSquare)
+        public void UpdateLvlScreen(int SizeOfSquare,Screen screen)
         {
             // handle adding removing, and upgrading monkeys and adding and removing enenmies
-            Enemies.UpdateAllZombies(SizeOfSquare,OffSet);
+            Enemies.UpdateAllZombies(SizeOfSquare,OffSet, screen);
+            Monkeys.UpdateAllMonkeys(screen);
         }
     }
 }
