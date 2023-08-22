@@ -11,9 +11,10 @@ namespace ActualGame
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         Screen screen;
-        AllEnemies allEnemies;
+        Level1 LevelOne;
         int sizeOfSquare = 30;
         int offSet = 4;
+        bool HasPressedSpace = false;
         //Plan: finish DartMonkey, CreateSideMenu, FinishUpLvl1 (Adjust Health), AddAllOtherMonkeys, Make next 30 levels, Add a win and lose screen
         public Game1()
         {
@@ -35,7 +36,7 @@ namespace ActualGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             screen = new Screen(GraphicsDevice.Viewport.Height, sizeOfSquare, Content);
-            allEnemies = new AllEnemies(screen.Start,offSet,Content);
+            LevelOne = new Level1(screen.Start,offSet,Content,500,screen);
             // TODO: use this.Content to load your game content here
         }
 
@@ -43,9 +44,25 @@ namespace ActualGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            if(Keyboard.GetState().IsKeyDown(Keys.Space) && !HasPressedSpace)
+            {
+                foreach(var item in LevelOne.Enemies.Zombies)
+                {
+                    item.LerpIncrement = 0.005f;
+                }
+                HasPressedSpace = true;
+            }
+            else if(HasPressedSpace)
+            {
+                foreach (var item in LevelOne.Enemies.Zombies)
+                {
+                    item.LerpIncrement = 0.005f;
+                }
+                HasPressedSpace = false;
 
+            }
             // TODO: Add your update logic here
-            allEnemies.UpdateAllZombies(sizeOfSquare,offSet, screen);
+            LevelOne.UpdateLvlScreen(sizeOfSquare, screen);
             base.Update(gameTime);
         }
 
@@ -54,7 +71,7 @@ namespace ActualGame
             spriteBatch.Begin();
             GraphicsDevice.Clear(Color.CornflowerBlue);
             screen.DrawScreen(spriteBatch);
-            allEnemies.DrawAllZombies(spriteBatch,Content);
+            LevelOne.DrawLvlScreen(spriteBatch, Content);
             base.Draw(gameTime);
             spriteBatch.End();
         }

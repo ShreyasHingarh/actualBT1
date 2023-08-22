@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace ActualGame
             switch (type)
             {
                 case TypeOfMonkey.DartMonk:
-                    Monkeys.Add(new TypesOfMonkeys.Dart(Position,Content,Origin,screen,4,GridPosition,5,50,1500,50,50,3));
+                    Monkeys.Add(new TypesOfMonkeys.Dart(Position,Content,Origin,screen,20,GridPosition,5,50,500,50,50,3));
                     break;
                 case TypeOfMonkey.SpikeMonk:
                     break;
@@ -38,9 +39,17 @@ namespace ActualGame
             {
                 foreach(var square in item.RangeSquares)
                 {
+                    square.Sprite.Tint = Color.Red;
                     if (!square.DoesContainZombie) continue;
-                    item.Update(square.OneContained);
+                    item.Update(ref square.OneContained);
                 }
+            }
+        }
+        public void DrawAllMonkeys(SpriteBatch spriteB,ContentManager Content)
+        {
+            foreach(var item in Monkeys)
+            {
+                item.Draw(spriteB, Content);
             }
         }
     }

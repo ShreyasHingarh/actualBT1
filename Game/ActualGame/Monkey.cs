@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 using System;
 using System.Collections.Generic;
@@ -37,19 +38,19 @@ namespace ActualGame
             Position CurrentPos = GridPosition;
             //Gets Top Left
             int indexX = 0;
-            while (indexX <= RangeSize && CurrentPos.X >= 0)
+            while (indexX < RangeSize && CurrentPos.X > 0)
             {
                 CurrentPos.X--;
                 indexX++;
             }
             int indexY = 0;
-            while (indexY <= RangeSize && CurrentPos.Y > 0)
+            while (indexY < RangeSize && CurrentPos.Y > 0)
             {
                 CurrentPos.Y--;
                 indexY++;
             }
-            indexX += RangeSize;
-            indexY += RangeSize;
+            indexX += RangeSize+1;
+            indexY += RangeSize+1;
             int originalX = CurrentPos.X;
             for (int i = 0; i < indexY; i++)
             {
@@ -64,7 +65,7 @@ namespace ActualGame
                 if (CurrentPos.Y == screen.Map.GetLength(1)) break;
             }
         }
-        public abstract bool Update(Zombie Zombie);
-        public abstract void Draw(SpriteBatch sprite);
+        public abstract bool Update(ref Zombie Zombie);
+        public abstract void Draw(SpriteBatch sprite,ContentManager Content);
     }
 }

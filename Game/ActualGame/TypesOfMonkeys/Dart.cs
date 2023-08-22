@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,21 +34,22 @@ namespace ActualGame.TypesOfMonkeys
             int baseDamage,int baseDamageUpgradeCost,int baseCooldown,int baseCooldownUpgradeCost,int baseRangeCost,int MaxLvl) 
             : base(screen,TypeOfMonkey.DartMonk,Grid,baseRange)
         {
-            Bullet = new Sprite(Color.White, Position, Content.Load<Texture2D>("Bullet"),0,Origin,Vector2.One) ;
+            Bullet = new Sprite(Color.White, Position, Content.Load<Texture2D>("Dart"),0,Origin,Vector2.One) ;
             ShouldFire = false;
             MaxUpgradeLvl = MaxLvl;
             FiringTimer = new Stopwatch();
-            sprite = new Sprite(Color.White,Position,Content.Load<Texture2D>("DartMonkey"),0,Origin,Vector2.One);
+            sprite = new Sprite(Color.White,Position,Content.Load<Texture2D>("Monkey"),0,Origin,Vector2.One);
             DamageAndCostAndLvl = (baseDamage, baseDamageUpgradeCost,0);
             CooldownAndCostAndLvl = (baseCooldown, baseCooldownUpgradeCost,0);
             IncreaseRangeCostAndLvl = (baseRangeCost,0);
             LerpAmount = 0;
-            LerpIncrement = 0.25f;
+            LerpIncrement = 0.2f;
             FiringTimer.Start();
         }
         
-        public override void Draw(SpriteBatch spriteb)
+        public override void Draw(SpriteBatch spriteb,ContentManager Content)
         {
+            spriteb.DrawString(Content.Load<SpriteFont>("File"), $"{sprite.Rotation }", new Vector2(1000, 100), Color.Black);
             if (ShouldFire)
             {
                 if(LerpAmount < 1)
@@ -91,19 +93,19 @@ namespace ActualGame.TypesOfMonkeys
             RangeSize++;
             Position CurrentPos = GridPosition;
             int indexX = 0;
-            while (indexX <= RangeSize && CurrentPos.X >= 0)
+            while (indexX < RangeSize && CurrentPos.X >= 0)
             {
                 CurrentPos.X--;        
                 indexX++;
             }
             int indexY = 0;
-            while (indexY <= RangeSize && CurrentPos.Y > 0)
+            while (indexY < RangeSize && CurrentPos.Y > 0)
             {
                 CurrentPos.Y--;
                 indexY++;
             }
-            indexX += RangeSize;
-            indexY += RangeSize;
+            indexX += RangeSize + 1;
+            indexY += RangeSize + 1;
             int originalX = CurrentPos.X;
             for (int i = 0; i < indexY; i++)
             {
@@ -120,13 +122,46 @@ namespace ActualGame.TypesOfMonkeys
             }
             return true;
         }
-        public override bool Update(Zombie zombie)
+        private double GetHypot(Vector2 posOne,Vector2 posTwo)
         {
+            return Math.Sqrt(Math.Pow(posTwo.X - posOne.X, 2) + Math.Pow(posTwo.Y - posOne.Y, 2));
+        }
+        public override bool Update(ref Zombie zombie)
+        {
+            if (zombie.Position.Y > sprite.Position.Y)
+            {
+                double Hypot = GetHypot(sprite.Position, zombie.Position);
+                if (zombie.Position.X > sprite.Position.X)
+                {
+                    sprite.Rotation = (float)Math.Sinh((zombie.Position.Y - sprite.Position.Y) / Hypot);
+                }
+                else
+                {
+                    sprite.Rotation = (float)(Math.Sinh((zombie.Position.Y - sprite.Position.Y) / Hypot));
+                }
+                //if (zombie.Position.X > sprite.Position.X)
+                //{
+                //    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X)));
+                //}
+                //else
+                //{
+                //    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X) * Math.PI / 2) + Math.PI);
+                //}
+            }
+            else
+            {
+                if (zombie.Position.X > sprite.Position.X)
+                {
+                    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X)));
+                }
+                else
+                {
+                    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X)) - Math.PI);
+                }
+            }
             if (FiringTimer.ElapsedMilliseconds < CooldownAndCostAndLvl.Item1) return false;
-            double x = (zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X);
             Target = zombie.Position;
-            zombie.Health -= DamageAndCostAndLvl.Item1;
-            sprite.Rotation = (float)Math.Tanh(x);
+            //zombie.Health -= DamageAndCostAndLvl.Item1;
             Bullet.Rotation = sprite.Rotation;
             FiringTimer.Restart();
             ShouldFire = true;
