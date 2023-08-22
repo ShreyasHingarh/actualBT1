@@ -122,31 +122,18 @@ namespace ActualGame.TypesOfMonkeys
             }
             return true;
         }
-        private double GetHypot(Vector2 posOne,Vector2 posTwo)
-        {
-            return Math.Sqrt(Math.Pow(posTwo.X - posOne.X, 2) + Math.Pow(posTwo.Y - posOne.Y, 2));
-        }
         public override bool Update(ref Zombie zombie)
         {
             if (zombie.Position.Y > sprite.Position.Y)
             {
-                double Hypot = GetHypot(sprite.Position, zombie.Position);
                 if (zombie.Position.X > sprite.Position.X)
                 {
-                    sprite.Rotation = (float)Math.Sinh((zombie.Position.Y - sprite.Position.Y) / Hypot);
+                    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X)));
                 }
                 else
                 {
-                    sprite.Rotation = (float)(Math.Sinh((zombie.Position.Y - sprite.Position.Y) / Hypot));
+                    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X) * Math.PI / 2) + Math.PI);
                 }
-                //if (zombie.Position.X > sprite.Position.X)
-                //{
-                //    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X)));
-                //}
-                //else
-                //{
-                //    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X) * Math.PI / 2) + Math.PI);
-                //}
             }
             else
             {
