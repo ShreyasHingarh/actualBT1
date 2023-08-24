@@ -44,23 +44,7 @@ namespace ActualGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if(Keyboard.GetState().IsKeyDown(Keys.Space) && !HasPressedSpace)
-            {
-                foreach(var item in LevelOne.Enemies.Zombies)
-                {
-                    item.LerpIncrement = 0.005f;
-                }
-                HasPressedSpace = true;
-            }
-            else if(HasPressedSpace)
-            {
-                foreach (var item in LevelOne.Enemies.Zombies)
-                {
-                    item.LerpIncrement = 0.005f;
-                }
-                HasPressedSpace = false;
-
-            }
+            
             // TODO: Add your update logic here
             LevelOne.UpdateLvlScreen(sizeOfSquare, screen);
             base.Update(gameTime);

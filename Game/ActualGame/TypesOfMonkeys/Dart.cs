@@ -60,6 +60,7 @@ namespace ActualGame.TypesOfMonkeys
                 }
                 else
                 {
+                    Bullet.Position = sprite.Position;
                     LerpAmount = 0;
                     ShouldFire = false;
                 }
@@ -124,31 +125,10 @@ namespace ActualGame.TypesOfMonkeys
         }
         public override bool Update(ref Zombie zombie)
         {
-            if (zombie.Position.Y > sprite.Position.Y)
-            {
-                if (zombie.Position.X > sprite.Position.X)
-                {
-                    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X)));
-                }
-                else
-                {
-                    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X) * Math.PI / 2) + Math.PI);
-                }
-            }
-            else
-            {
-                if (zombie.Position.X > sprite.Position.X)
-                {
-                    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X)));
-                }
-                else
-                {
-                    sprite.Rotation = (float)(Math.Tanh((zombie.Position.Y - sprite.Position.Y) / (zombie.Position.X - sprite.Position.X)) - Math.PI);
-                }
-            }
-            if (FiringTimer.ElapsedMilliseconds < CooldownAndCostAndLvl.Item1) return false;
+            sprite.Rotation = (float)(Math.Atan2(zombie.Position.Y - sprite.Position.Y, zombie.Position.X - sprite.Position.X));
+            if (zombie == null || FiringTimer.ElapsedMilliseconds < CooldownAndCostAndLvl.Item1) return false;
             Target = zombie.Position;
-            //zombie.Health -= DamageAndCostAndLvl.Item1;
+            zombie.Health -= DamageAndCostAndLvl.Item1;
             Bullet.Rotation = sprite.Rotation;
             FiringTimer.Restart();
             ShouldFire = true;

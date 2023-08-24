@@ -20,26 +20,39 @@ namespace ActualGame
             { 2,Color.Blue },
             { 3,Color.Orange },
         };
+        public Dictionary<int, int> LevelToHealth = new Dictionary<int, int>()
+        {
+            {0, 5},
+            {1, 5},
+            {2, 10},
+            {3, 10}
+        };
         float LerpAmount;
         public int Level;
         public float LerpIncrement;
 
-        Position[] Path;
+        public Position[] Path;
         public int Health;
-        int currentPosition;
+        public int currentPosition;
         public bool HasLerpedOnce;
         Vector2 PreviousPosition;
-        public Zombie(int level, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale,int health, Position[] locations,Rectangle? sourceRec = null) 
-            : base(LevelToTintColor.GetValueOrDefault(level), position, image, rotation, origin, scale, sourceRec)
+        public Zombie(int level, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale, Position[] locations,Rectangle? sourceRec = null) 
+            : base(LevelToTintColor[level], position, image, rotation, origin, scale, sourceRec)
         {
             Level = level;
             HasLerpedOnce = false;
             Path = locations.Reverse().ToArray();
-            Health = health;
+            Health = LevelToHealth[level];
             currentPosition = 0;
             LerpAmount = 0f;
             LerpIncrement = 0.02f;
             PreviousPosition = Position;
+        }
+        public void UpdateLevel()
+        {
+            Level--;
+            Tint = LevelToTintColor[Level];
+            Health = LevelToHealth[Level];
         }
         public bool MoveEnemyAlongPathOnce(int SizeOfSquare, int offSet, Screen screen)
         {

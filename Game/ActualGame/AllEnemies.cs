@@ -34,30 +34,14 @@ namespace ActualGame
         {
             Lives = 100;
             path = JsonConvert.DeserializeObject<Position[]>(File.ReadAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Path.txt"));
-            Zombies = new List<Zombie>()
-            {
-                new Zombie(0, new Vector2(Start.Sprite.Position.X * Start.Sprite.Image.Width + offSet, Start.Sprite.Position.Y * Start.Sprite.Image.Width + offSet),
-                Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
-                , Vector2.One, 5, path),
-
-                //new Zombie(1, new Vector2(Start.Sprite.Position.X * Start.Sprite.Image.Width + offSet, Start.Sprite.Position.Y * Start.Sprite.Image.Width + offSet),
-                //Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
-                //, Vector2.One, 5, path),
-                
-                //new Zombie(2, new Vector2(Start.Sprite.Position.X * Start.Sprite.Image.Width + offSet, Start.Sprite.Position.Y * Start.Sprite.Image.Width + offSet),
-                //Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
-                //, Vector2.One, 5, path),
-                
-                //new Zombie(3, new Vector2(Start.Sprite.Position.X * Start.Sprite.Image.Width + offSet, Start.Sprite.Position.Y * Start.Sprite.Image.Width + offSet),
-                //Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
-                //, Vector2.One, 5, path)
-            };
+            Zombies = new List<Zombie>();
+            AddAZombie(2, Start, offSet, Content);
         }
-        public void AddAZombie(int health,int Level, ScreenSquare Start, int offSet, ContentManager Content)
+        public void AddAZombie(int Level, ScreenSquare Start, int offSet, ContentManager Content)
         {
             Zombies.Add(new Zombie(Level, new Vector2(Start.Sprite.Position.X * Start.Sprite.Image.Width + offSet, Start.Sprite.Position.Y * Start.Sprite.Image.Width + offSet),
                 Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
-                , Vector2.One, health, path));
+                , Vector2.One, path));
         }
         public bool UpdateAllZombies(int SizeOfSquare, int offset,Screen screen)
         {
@@ -70,7 +54,16 @@ namespace ActualGame
             {
                 if (Zombies[i].Health <= 0)
                 {
-                    Zombies.RemoveAt(i);
+                    if (Zombies[i].Level == 0)
+                    {
+                        screen.Map[Zombies[i].Path[Zombies[i].currentPosition].Y, Zombies[i].Path[Zombies[i].currentPosition].X].OneContained = null;
+                        screen.Map[Zombies[i].Path[Zombies[i].currentPosition].Y, Zombies[i].Path[Zombies[i].currentPosition].X].DoesContainZombie = false;
+                        Zombies.RemoveAt(i);
+                    }
+                    else
+                    {
+                        Zombies[i].UpdateLevel();
+                    }
                     continue;
                 }
                 if (index != 0 && !Prev.HasLerpedOnce) continue;

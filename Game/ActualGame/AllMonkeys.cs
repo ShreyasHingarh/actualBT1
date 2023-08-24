@@ -23,7 +23,7 @@ namespace ActualGame
             switch (type)
             {
                 case TypeOfMonkey.DartMonk:
-                    Monkeys.Add(new TypesOfMonkeys.Dart(Position,Content,Origin,screen,20,GridPosition,5,50,500,50,50,3));
+                    Monkeys.Add(new TypesOfMonkeys.Dart(Position,Content,Origin,screen,4,GridPosition,5,50,1500,50,50,3));
                     break;
                 case TypeOfMonkey.SpikeMonk:
                     break;
