@@ -31,7 +31,7 @@ namespace ActualGame
         Position[] path;
         public AllEnemies(ScreenSquare Start,int offSet,ContentManager Content)
         {
-            path = JsonConvert.DeserializeObject<Position[]>(File.ReadAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Path.txt"));
+            path = JsonConvert.DeserializeObject<Position[]>(File.ReadAllText(@"..\..\..\..\MapEditor\Path.txt"));
             Zombies = new List<Zombie>();
             AddAZombie(2, Start, offSet, Content);
         }

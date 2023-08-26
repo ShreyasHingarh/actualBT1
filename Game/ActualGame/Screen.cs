@@ -21,7 +21,7 @@ namespace ActualGame
         public Screen(int ScreenSize, int ImageSize,ContentManager Content)
         {
             Map = new ScreenSquare[ScreenSize/ImageSize, ScreenSize / ImageSize];
-            int[] ints = JsonConvert.DeserializeObject<int[]>(File.ReadAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Background.txt"));
+            int[] ints = JsonConvert.DeserializeObject<int[]>(File.ReadAllText(@"..\..\..\..\MapEditor\Background.txt"));
             int x = 0;
             int y = 0;
             int ImageIndex = 0;

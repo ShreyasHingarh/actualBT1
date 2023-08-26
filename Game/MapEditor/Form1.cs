@@ -70,7 +70,7 @@ namespace MapEditor
         {
             //\\GMRDC1\Folder Redirection\shreyas.hingarh\Documents\Github\ActualBT1\MapEditor\MapEditor\TextFile1.txt
             //C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\MapEditor\MapEditor\TextFile1.txt
-            ImageValues = JsonConvert.DeserializeObject<List<byte>>(File.ReadAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Background.txt"));
+            ImageValues = JsonConvert.DeserializeObject<List<byte>>(File.ReadAllText(@"..\..\..\..\MapEditor\Background.txt"));
             int index = 0;
             foreach (var item in Grasses)
             {
