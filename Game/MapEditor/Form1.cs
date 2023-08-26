@@ -125,7 +125,7 @@ namespace MapEditor
                 }
             }
             string x = JsonConvert.SerializeObject(ImageValues);
-            File.WriteAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Background.txt", x);
+            File.WriteAllText(@"..\..\..\..\MapEditor\Background.txt", x);
         }
 
         private void StartPath_Click(object sender, EventArgs e)
@@ -281,8 +281,8 @@ namespace MapEditor
                 positionsOfPath.Add(item.Value.location);
             }
             string x = JsonConvert.SerializeObject(positionsOfPath);
-            File.WriteAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Path.txt", string.Empty);
-            File.WriteAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Path.txt", x);
+            File.WriteAllText(@"..\..\..\..\MapEditor\Path.txt", string.Empty);
+            File.WriteAllText(@"..\..\..\..\MapEditor\Path.txt", x);
         }
 
         private void button1_Click(object sender, EventArgs e)
