@@ -47,9 +47,8 @@ namespace ActualGame.TypesOfMonkeys
             FiringTimer.Start();
         }
         
-        public override void Draw(SpriteBatch spriteb,ContentManager Content)
+        public override void Draw(SpriteBatch spriteb)
         {
-            spriteb.DrawString(Content.Load<SpriteFont>("File"), $"{sprite.Rotation }", new Vector2(1000, 100), Color.Black);
             if (ShouldFire)
             {
                 if(LerpAmount < 1)

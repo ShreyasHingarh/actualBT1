@@ -15,7 +15,7 @@ namespace ActualGame
         int sizeOfSquare = 30;
         int offSet = 4;
         bool HasPressedSpace = false;
-        //Plan: finish DartMonkey, CreateSideMenu, FinishUpLvl1 (Adjust Health), AddAllOtherMonkeys, Make next 30 levels, Add a win and lose screen
+        //Plan: CreateSideMenu, FinishUpLvl1 (Adjust Health), AddAllOtherMonkeys, Make next 30 levels, Add a win and lose screen
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -53,7 +53,7 @@ namespace ActualGame
         protected override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.BlanchedAlmond);
             screen.DrawScreen(spriteBatch);
             LevelOne.DrawLvlScreen(spriteBatch, Content);
             base.Draw(gameTime);

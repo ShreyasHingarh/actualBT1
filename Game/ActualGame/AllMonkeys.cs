@@ -45,11 +45,11 @@ namespace ActualGame
                 }
             }
         }
-        public void DrawAllMonkeys(SpriteBatch spriteB,ContentManager Content)
+        public void DrawAllMonkeys(SpriteBatch spriteB)
         {
             foreach(var item in Monkeys)
             {
-                item.Draw(spriteB, Content);
+                item.Draw(spriteB);
             }
         }
     }

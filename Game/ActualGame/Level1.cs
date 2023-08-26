@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,11 +18,11 @@ namespace ActualGame
     {
         public AllEnemies Enemies;
         public AllMonkeys Monkeys;
-        int Cash;
         int OffSet;
+        public SideScreen SideScreen;
         public Level1(ScreenSquare Start,int offSet, ContentManager Content, int cash,Screen screen)
         {
-            Cash = cash;
+            SideScreen = new SideScreen(100,cash,1);
             OffSet = offSet;
             Enemies = new AllEnemies(Start,offSet,Content);
             Monkeys = new AllMonkeys();
@@ -31,15 +32,17 @@ namespace ActualGame
         {
             // handle adding removing, and upgrading monkeys and adding and removing enenmies
             Monkeys.UpdateAllMonkeys(screen);
-            if (Enemies.UpdateAllZombies(SizeOfSquare,OffSet, screen))
+            if (Enemies.UpdateAllZombies(SizeOfSquare,OffSet, screen,SideScreen))
             {
 
             }
         }
         public void DrawLvlScreen(SpriteBatch spriteBatch,ContentManager Content)
         {
-            Enemies.DrawAllZombies(spriteBatch, Content);
-            Monkeys.DrawAllMonkeys(spriteBatch,Content);
+            SideScreen.Draw(spriteBatch,Content);
+            Enemies.DrawAllZombies(spriteBatch);
+            Monkeys.DrawAllMonkeys(spriteBatch);
+            
         }
     }
 }

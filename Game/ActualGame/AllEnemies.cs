@@ -25,14 +25,12 @@ namespace ActualGame
             Y = y;
         }
     }
-    internal class AllEnemies
+    internal class AllEnemies 
     {
-        public int Lives;
         public List<Zombie> Zombies = new List<Zombie>();
         Position[] path;
         public AllEnemies(ScreenSquare Start,int offSet,ContentManager Content)
         {
-            Lives = 100;
             path = JsonConvert.DeserializeObject<Position[]>(File.ReadAllText(@"C:\Users\shrey\OneDrive\Documents\GitHub\Github\BT1\Game\MapEditor\Path.txt"));
             Zombies = new List<Zombie>();
             AddAZombie(2, Start, offSet, Content);
@@ -43,7 +41,7 @@ namespace ActualGame
                 Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
                 , Vector2.One, path));
         }
-        public bool UpdateAllZombies(int SizeOfSquare, int offset,Screen screen)
+        public bool UpdateAllZombies(int SizeOfSquare, int offset,Screen screen,SideScreen sideScreen)
         {
             // logic for removing and adding zombies 
             if (Zombies.Count == 0) return true;
@@ -71,7 +69,7 @@ namespace ActualGame
                 if(!Zombies[i].MoveEnemyAlongPathOnce(SizeOfSquare, offset,screen))//Only handles when the zombies go off screen no killing involved
                 {
                     Zombies.Remove(Zombies[i]);
-                    Lives--;
+                    sideScreen.Lives--;
                     if (Zombies.Count == 0) return true;//switch to next level
                 }
                 Prev = Zombies[index];
@@ -79,9 +77,8 @@ namespace ActualGame
             }
             return false;
         }
-        public void DrawAllZombies(SpriteBatch sprite,ContentManager Content)
+        public void DrawAllZombies(SpriteBatch sprite)
         {
-            sprite.DrawString(Content.Load<SpriteFont>("File"),$"{Lives}",new Vector2(900,100),Color.Black);//Will not be here later
             foreach(var item in Zombies)
             {
                 item.Draw(sprite);

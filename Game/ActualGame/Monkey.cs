@@ -66,6 +66,6 @@ namespace ActualGame
             }
         }
         public abstract bool Update(ref Zombie Zombie);
-        public abstract void Draw(SpriteBatch sprite,ContentManager Content);
+        public abstract void Draw(SpriteBatch sprite);
     }
 }

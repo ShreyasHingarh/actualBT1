@@ -25,6 +25,14 @@
     <Content Remove="C:\Users\shrey\.nuget\packages\monogame.framework.content.pipeline\3.8.1.303\contentFiles\any\net6.0\SharpDX.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Content.mgcb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="MonoGame.Framework.Content.Pipeline" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

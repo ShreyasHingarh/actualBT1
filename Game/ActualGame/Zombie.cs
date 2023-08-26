@@ -25,7 +25,9 @@ namespace ActualGame
             {0, 5},
             {1, 5},
             {2, 10},
-            {3, 10}
+            {3, 10},
+            {4, 10},
+            {5, 15},
         };
         float LerpAmount;
         public int Level;
