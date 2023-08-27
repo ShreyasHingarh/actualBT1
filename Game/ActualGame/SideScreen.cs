@@ -40,7 +40,7 @@ namespace ActualGame
         {
             Vector2 MousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             foreach(var item in DartMonkeyAddAndCost)
-            {//item.Item1.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed 
+            {
                 if (item.Item1.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed && item.Item2 < Money)
                 {
                     return (int)item.Item3;

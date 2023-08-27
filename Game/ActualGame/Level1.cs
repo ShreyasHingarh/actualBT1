@@ -28,7 +28,6 @@ namespace ActualGame
             OffSet = offSet;
             Enemies = new AllEnemies(Start,offSet,Content);
             allMonkeys = new AllMonkeys();
-            //allMonkeys.AddMonkey(screen, TypeOfMonkey.DartMonk, new Vector2(165, 495), Content, new Vector2(15,15), new Position(5, 16));
         }
         public void UpdateLvlScreen(int SizeOfSquare,Screen screen,ContentManager Content)
         {
@@ -80,6 +79,7 @@ namespace ActualGame
                     OneToAdd = null;
                 }
             }
+            
             allMonkeys.UpdateAllMonkeys(screen);
             if (Enemies.UpdateAllZombies(SizeOfSquare,OffSet, screen,SideScreen))
             {
