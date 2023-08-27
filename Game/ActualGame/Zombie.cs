@@ -29,6 +29,15 @@ namespace ActualGame
             {4, 10},
             {5, 15},
         };
+        public Dictionary<int, int> LevelToReward = new Dictionary<int, int>()
+        {
+            {0, 5},
+            {1, 5},
+            {2, 5},
+            {3, 10},
+            {4, 10},
+            {5, 10},
+        };
         float LerpAmount;
         public int Level;
         public float LerpIncrement;

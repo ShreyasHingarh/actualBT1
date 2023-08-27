@@ -26,7 +26,7 @@ namespace ActualGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            graphics.PreferredBackBufferWidth = 1210;
+            graphics.PreferredBackBufferWidth = 1010;
             graphics.PreferredBackBufferHeight = 810;
             graphics.ApplyChanges();
             base.Initialize();
@@ -46,7 +46,7 @@ namespace ActualGame
                 Exit();
             
             // TODO: Add your update logic here
-            LevelOne.UpdateLvlScreen(sizeOfSquare, screen);
+            LevelOne.UpdateLvlScreen(sizeOfSquare, screen,Content);
             base.Update(gameTime);
         }
 

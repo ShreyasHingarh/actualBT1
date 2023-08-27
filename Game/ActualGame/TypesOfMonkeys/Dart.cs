@@ -1,12 +1,7 @@
-﻿using Assimp;
-
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
-using SharpDX.Direct3D9;
-using SharpDX.MediaFoundation;
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,7 +9,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace ActualGame.TypesOfMonkeys
 {

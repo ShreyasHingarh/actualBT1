@@ -13,7 +13,7 @@ namespace ActualGame
    
     internal class AllMonkeys
     {
-        List<Monkey> Monkeys;
+        public List<Monkey> Monkeys;
         public AllMonkeys()
         {
             Monkeys = new List<Monkey>();
@@ -33,13 +33,17 @@ namespace ActualGame
                     break;
             }
         }
+        public void AddMonkey(Monkey monkey)
+        {
+            Monkeys.Add(monkey);
+        }
         public void UpdateAllMonkeys(Screen screen)
         {
             foreach(var item in Monkeys)
             {
                 foreach(var square in item.RangeSquares)
                 {
-                    square.Sprite.Tint = Color.Red;
+                    square.Sprite.Tint = Color.White;
                     if (!square.DoesContainZombie) continue;
                     item.Update(ref square.OneContained);
                 }

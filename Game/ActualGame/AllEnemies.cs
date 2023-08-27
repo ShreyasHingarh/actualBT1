@@ -11,7 +11,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 
-using SharpDX.MediaFoundation;
 
 namespace ActualGame
 {
@@ -52,6 +51,7 @@ namespace ActualGame
             {
                 if (Zombies[i].Health <= 0)
                 {
+                    sideScreen.Money += Zombies[i].LevelToReward[Zombies[i].Level];
                     if (Zombies[i].Level == 0)
                     {
                         screen.Map[Zombies[i].Path[Zombies[i].currentPosition].Y, Zombies[i].Path[Zombies[i].currentPosition].X].OneContained = null;
