@@ -28,7 +28,7 @@ namespace ActualGame
             OffSet = offSet;
             Enemies = new AllEnemies(Start,offSet,Content);
             allMonkeys = new AllMonkeys();
-            allMonkeys.AddMonkey(screen, TypeOfMonkey.DartMonk, new Vector2(165, 495), Content, new Vector2(15,15), new Position(5, 16));
+            //allMonkeys.AddMonkey(screen, TypeOfMonkey.DartMonk, new Vector2(165, 495), Content, new Vector2(15,15), new Position(5, 16));
         }
         public void UpdateLvlScreen(int SizeOfSquare,Screen screen,ContentManager Content)
         {
@@ -59,7 +59,7 @@ namespace ActualGame
                 if(Mouse.GetState().LeftButton == ButtonState.Released)
                 {
                     MousePressed = false;
-                    Position Grid = new Position((int)(MousePosition.X / SizeOfSquare), (int)(MousePosition.Y / SizeOfSquare)); 
+                    Position Grid = new Position((int)(MousePosition.X) / SizeOfSquare, (int)(MousePosition.Y) / SizeOfSquare); 
                     foreach(var item in allMonkeys.Monkeys)
                     {
                         if(item.GridPosition == Grid)
@@ -68,13 +68,16 @@ namespace ActualGame
                             break;
                         }
                     }
-                    if(OneToAdd != null)
+                    if(OneToAdd != null && screen.Map[Grid.Y, Grid.X].Type != TypeOfImage.Path)
                     {
                         OneToAdd.GridPosition = Grid;
+                        OneToAdd.AddRange(screen);
+                        OneToAdd.sprite.Position = new Vector2(Grid.X * SizeOfSquare + 15,Grid.Y * SizeOfSquare + 15);
                         allMonkeys.AddMonkey(OneToAdd);
                         SideScreen.Money -= 100;
                         OneToAdd = null;
                     }
+                    OneToAdd = null;
                 }
             }
             allMonkeys.UpdateAllMonkeys(screen);
@@ -85,6 +88,10 @@ namespace ActualGame
         }
         public void DrawLvlScreen(SpriteBatch spriteBatch,ContentManager Content)
         {
+            if(OneToAdd != null)
+            {
+                OneToAdd.Draw(spriteBatch);
+            }
             SideScreen.Draw(spriteBatch,Content);
             Enemies.DrawAllZombies(spriteBatch);
             allMonkeys.DrawAllMonkeys(spriteBatch);   

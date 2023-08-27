@@ -32,9 +32,10 @@ namespace ActualGame
             AddRange(screen);
             Type = type;
         }
-        void AddRange(Screen screen)
+        public void AddRange(Screen screen)
         {
-            Position CurrentPos = GridPosition;
+            if (GridPosition.X == -1 && GridPosition.Y == -1) return;
+            Position CurrentPos = new Position(GridPosition.X,GridPosition.Y);
             //Gets Top Left
             int indexX = 0;
             while (indexX < RangeSize && CurrentPos.X > 0)
@@ -48,8 +49,8 @@ namespace ActualGame
                 CurrentPos.Y--;
                 indexY++;
             }
-            indexX += RangeSize+1;
-            indexY += RangeSize+1;
+            indexX += RangeSize + 1;
+            indexY += RangeSize + 1;
             int originalX = CurrentPos.X;
             for (int i = 0; i < indexY; i++)
             {
