@@ -17,7 +17,7 @@ namespace ActualGame.TypesOfMonkeys
     {
         (int, int,int) DamageAndCostAndLvl;
         (int, int,int) CooldownAndCostAndLvl;
-        (int,int) IncreaseRangeCostAndLvl;
+        public (int,int) IncreaseRangeCostAndLvl;
         int MaxUpgradeLvl;
         Stopwatch FiringTimer;
         Sprite Bullet;
@@ -86,9 +86,9 @@ namespace ActualGame.TypesOfMonkeys
             IncreaseRangeCostAndLvl.Item1 += CostIncrement;
             IncreaseRangeCostAndLvl.Item2++;
             RangeSize++;
-            Position CurrentPos = GridPosition;
+            Position CurrentPos = new Position(GridPosition.X, GridPosition.Y);
             int indexX = 0;
-            while (indexX < RangeSize && CurrentPos.X >= 0)
+            while (indexX < RangeSize && CurrentPos.X > 0)
             {
                 CurrentPos.X--;        
                 indexX++;
@@ -106,8 +106,11 @@ namespace ActualGame.TypesOfMonkeys
             {
                 for (int x = 0; x < indexX; x++)
                 {
-                    if (RangeSquares.Contains(screen.Map[CurrentPos.Y, CurrentPos.X])) continue;
-                    RangeSquares.Add(screen.Map[CurrentPos.Y, CurrentPos.X]);
+                    if (!RangeSquares.Contains(screen.Map[CurrentPos.Y, CurrentPos.X]))
+                    {
+                        RangeSquares.Add(screen.Map[CurrentPos.Y, CurrentPos.X]);
+                        
+                    }
                     CurrentPos.X++;
                     if (CurrentPos.X == screen.Map.GetLength(0)) break;
                 }

@@ -17,14 +17,23 @@ namespace ActualGame
         public int Lives;
         public int Money;
         public int Level;
-        Monkey OneClicked;
-        SpriteFont Font;
+        public Monkey OneClicked;
+        public SpriteFont Font;
+        
         Texture2D Border;
+        public Sprite UpCooldown;
+        public Sprite UpDamage;
+        public Sprite UpRange;
+        public Sprite Home;
         public (Sprite,int,TypeOfMonkey)[] DartMonkeyAddAndCost;
         public SideScreen(int baseLive, int baseMoney, int baseLevel, ContentManager Content)
         {
             Font = Content.Load<SpriteFont>("File");
             Border = Content.Load<Texture2D>("Border");
+            Home = new Sprite(Color.BlanchedAlmond, new Vector2(840,600),Content.Load<Texture2D>("Home"),0,Vector2.Zero,Vector2.One);
+            UpCooldown = new Sprite(Color.BlanchedAlmond, new Vector2(810, 220),Content.Load<Texture2D>("upgradeCoolDownButton"),0,Vector2.Zero,Vector2.One);
+            UpDamage = new Sprite(Color.BlanchedAlmond, new Vector2(810, 280), Content.Load<Texture2D>("upgradeDamageButton"), 0, Vector2.Zero, Vector2.One);
+            UpRange = new Sprite(Color.BlanchedAlmond, new Vector2(810, 340),Content.Load<Texture2D>("upgradeRangeButton"),0,Vector2.Zero,Vector2.One);
             DartMonkeyAddAndCost = new (Sprite, int, TypeOfMonkey)[]
             {
                 (new Sprite(Color.White, new Vector2(860, 200),Content.Load<Texture2D>("Monkey"),0,Vector2.Zero,new Vector2(2,2)),100,TypeOfMonkey.DartMonk)   
@@ -51,9 +60,12 @@ namespace ActualGame
         public bool UpgradeMonkey(Monkey monkey)
         {
             Vector2 MousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-            if (!monkey.sprite.HitBox.Value.Contains(MousePosition)) return false;
-            OneClicked = monkey;
-            return true;
+            if (monkey.sprite.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                OneClicked = monkey;
+                return true;
+            }
+            return false;
         }
         public void Draw(SpriteBatch sprite,ContentManager Content)
         {
@@ -66,12 +78,26 @@ namespace ActualGame
                 foreach(var item in DartMonkeyAddAndCost)
                 {
                     item.Item1.Draw(sprite);
-                    sprite.DrawString(Font, $"${item.Item2}", new Vector2(930, 220), Color.Black);
+                    sprite.DrawString(Font, $"${item.Item2}", new Vector2(930, item.Item1.Position.X + 20), Color.Black);
                 }
             }
             else
             {
-                //upgrades
+                switch (OneClicked.Type)
+                {
+                    case TypeOfMonkey.DartMonk:
+                        UpCooldown.Draw(sprite);
+                        UpDamage.Draw(sprite);
+                        UpRange.Draw(sprite);
+                        Home.Draw(sprite);
+                        break;
+                    case TypeOfMonkey.SpikeMonk:
+                        break;
+                    case TypeOfMonkey.BombMonk:
+                        break;
+                    case TypeOfMonkey.IceMonk:
+                        break;
+                }
             }
         }
     }
