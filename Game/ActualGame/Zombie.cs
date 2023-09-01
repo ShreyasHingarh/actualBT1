@@ -56,7 +56,7 @@ namespace ActualGame
             Health = LevelToHealth[level];
             currentPosition = 0;
             LerpAmount = 0f;
-            LerpIncrement = 0.02f;
+            LerpIncrement = 0.03f;
             PreviousPosition = Position;
         }
         public void UpdateLevel()

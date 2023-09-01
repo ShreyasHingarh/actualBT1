@@ -50,8 +50,13 @@ namespace ActualGame
             Vector2 MousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             foreach(var item in DartMonkeyAddAndCost)
             {
-                if (item.Item1.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed && item.Item2 < Money)
+                
+                if (item.Item1.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
+                    if (item.Item2 > Money)
+                    {
+                        return -2;
+                    }
                     return (int)item.Item3;
                 }
             }
@@ -86,9 +91,14 @@ namespace ActualGame
                 switch (OneClicked.Type)
                 {
                     case TypeOfMonkey.DartMonk:
-                        UpCooldown.Draw(sprite);
+                        TypesOfMonkeys.Dart dart = (TypesOfMonkeys.Dart)OneClicked;
+                        sprite.DrawString(Font, $"Max Level is 3", new Vector2(870, 200), Color.Black,0,Vector2.Zero,0.5f,SpriteEffects.None,0);
+                        UpCooldown.Draw(sprite); 
+                        sprite.DrawString(Font, $"Lvl: {dart.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.Position.Y + UpCooldown.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         UpDamage.Draw(sprite);
+                        sprite.DrawString(Font, $"Lvl: {dart.DamageAndCostAndLvl.Item3}", new Vector2(890, UpDamage.Position.Y + UpDamage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         UpRange.Draw(sprite);
+                        sprite.DrawString(Font, $"Lvl: {dart.IncreaseRangeCostAndLvl.Item2}", new Vector2(890, UpRange.Position.Y + UpRange.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         Home.Draw(sprite);
                         break;
                     case TypeOfMonkey.SpikeMonk:

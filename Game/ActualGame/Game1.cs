@@ -15,7 +15,7 @@ namespace ActualGame
         int sizeOfSquare = 30;
         int offSet = 4;
         bool HasPressedSpace = false;
-        //Plan: CreateSideMenu, FinishUpLvl1 (Adjust Health), AddAllOtherMonkeys, Make next 30 levels, Add a win and lose screen
+        //Plan: FinishUpLvl1 (Adjust Health), AddAllOtherMonkeys, Make next 30 levels, Add a win and lose screen
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

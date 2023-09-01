@@ -25,23 +25,27 @@ namespace ActualGame
         bool ShouldUpgrade = false;
         Monkey OneToAdd;
         bool TooLittleMoney;
+        bool MaxLevelReached;
         Stopwatch DisplayTimer;
 
         bool hasClicked;
-        
-        public Level1(ScreenSquare Start,int offSet, ContentManager Content, int cash,Screen screen)
+
+        public Level1(ScreenSquare Start, int offSet, ContentManager Content, int cash, Screen screen)
         {
             TooLittleMoney = false;
-            SideScreen = new SideScreen(100,cash,1,Content);
+            MaxLevelReached = false;
+            SideScreen = new SideScreen(100, cash, 1, Content);
             OffSet = offSet;
-            Enemies = new AllEnemies(Start,offSet,Content);
+            Enemies = new AllEnemies(Start, offSet, Content);
             allMonkeys = new AllMonkeys();
             DisplayTimer = new Stopwatch();
         }
-        public void UpdateLvlScreen(int SizeOfSquare,Screen screen,ContentManager Content)
+        public void UpdateLvlScreen(int SizeOfSquare, Screen screen, ContentManager Content)
         {
-            // handle adding removing, and upgrading monkeys and adding and removing enenmies
+            // Need to handle removing monkeys and adding and removing enenmies and Start and pause button 
             Vector2 MousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+            
+            //Handles Adding and upgrading Monkeys
             foreach (var item in allMonkeys.Monkeys)
             {
                 if (SideScreen.UpgradeMonkey(item))
@@ -55,34 +59,65 @@ namespace ActualGame
                 switch (SideScreen.OneClicked.Type)
                 {
                     case TypeOfMonkey.DartMonk:
-                        if(Mouse.GetState().LeftButton == ButtonState.Released)
+                        if (Mouse.GetState().LeftButton == ButtonState.Released)
                         {
                             hasClicked = false;
                         }
-                        if(!hasClicked && SideScreen.UpRange.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        if (!hasClicked && SideScreen.UpRange.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
                             TypesOfMonkeys.Dart monk = (TypesOfMonkeys.Dart)SideScreen.OneClicked;
-                            if(!monk.IncreaseRangeByOne(ref SideScreen.Money,monk.IncreaseRangeCostAndLvl.Item1,screen))
+                            if (!monk.IncreaseRangeByOne(ref SideScreen.Money, monk.IncreaseRangeCostAndLvl.Item1, screen))
                             {
-                                TooLittleMoney = true;
+                                if (monk.IncreaseRangeCostAndLvl.Item2 == monk.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
                                 DisplayTimer.Start();
                                 DisplayTimer.Restart();
                             }
                             hasClicked = true;
                         }
-                        else if(!hasClicked && SideScreen.UpDamage.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        else if (!hasClicked && SideScreen.UpDamage.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
-
+                            TypesOfMonkeys.Dart monk = (TypesOfMonkeys.Dart)SideScreen.OneClicked;
+                            if (!monk.UpgradeDamage(ref SideScreen.Money,10,monk.DamageAndCostAndLvl.Item2))
+                            {
+                                if (monk.DamageAndCostAndLvl.Item3 == monk.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
                             hasClicked = true;
-                            //need to finish
                         }
-                        else if(!hasClicked && SideScreen.UpCooldown.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        else if (!hasClicked && SideScreen.UpCooldown.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
-
+                            TypesOfMonkeys.Dart monk = (TypesOfMonkeys.Dart)SideScreen.OneClicked;
+                            if (!monk.UpgradeCooldown(ref SideScreen.Money, 300, monk.CooldownAndCostAndLvl.Item2))
+                            {
+                                if (monk.CooldownAndCostAndLvl.Item3 == monk.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
                             hasClicked = true;
-                            //need to finish
                         }
-                        else if(SideScreen.Home.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        else if (SideScreen.Home.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
                             hasClicked = false;
                             SideScreen.OneClicked = null;
@@ -101,27 +136,33 @@ namespace ActualGame
             {
                 if (!MousePressed)
                 {
-                    if (!MousePressed)
-                    {
-                        switch (SideScreen.AddMonkey())
-                        {
-                            case -1:
-                                break;
-                            case 0:
-                                OneToAdd = new TypesOfMonkeys.Dart(MousePosition, Content, new Vector2(15, 15), screen, 4, new Position(-1, -1), 5, 50, 1500, 50, 50, 3);
 
-                                MousePressed = true;
-                                break;
-                            case 1:
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                        }
+                    switch (SideScreen.AddMonkey())
+                    {
+                        case -2:
+                            if (!TooLittleMoney)
+                            {
+                                TooLittleMoney = true;
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
+                            break;
+                        case -1:
+                            break;
+                        case 0:
+                            OneToAdd = new TypesOfMonkeys.Dart(MousePosition, Content, new Vector2(15, 15), screen, 4, new Position(-1, -1), 5, 50, 1500, 50, 50, 3);
+
+                            MousePressed = true;
+                            break;
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
                     }
                 }
-                else 
+                else
                 {
                     OneToAdd.sprite.Position = MousePosition;
                     if (Mouse.GetState().LeftButton == ButtonState.Released)
@@ -153,32 +194,40 @@ namespace ActualGame
                     }
                 }
 
-            }//Handles AddingMonkeys
+            }
 
             allMonkeys.UpdateAllMonkeys(screen);
-            if (Enemies.UpdateAllZombies(SizeOfSquare,OffSet, screen,SideScreen))
+            if (Enemies.UpdateAllZombies(SizeOfSquare, OffSet, screen, SideScreen))
             {
                 //next level
             }
         }
-        public void DrawLvlScreen(SpriteBatch spriteBatch,ContentManager Content)
+        public void DrawLvlScreen(SpriteBatch spriteBatch, ContentManager Content)
         {
-            if(TooLittleMoney && DisplayTimer.ElapsedMilliseconds < 2000)
+            if (DisplayTimer.ElapsedMilliseconds < 2000)
             {
-                spriteBatch.DrawString(SideScreen.Font,"Too Little Money",new Vector2(840,700),Color.Black,0,Vector2.Zero,0.75f,SpriteEffects.None,0);
+                if (TooLittleMoney)
+                {
+                    spriteBatch.DrawString(SideScreen.Font, "Too Little Money", new Vector2(840, 700), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
+                }
+                else if (MaxLevelReached)
+                {
+                    spriteBatch.DrawString(SideScreen.Font, "Max Level Reached", new Vector2(820, 700), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
+                }
             }
             else
             {
                 TooLittleMoney = false;
+                MaxLevelReached = false;
                 DisplayTimer.Stop();
             }
-            if(OneToAdd != null)
+            if (OneToAdd != null)
             {
                 OneToAdd.Draw(spriteBatch);
             }
-            SideScreen.Draw(spriteBatch,Content);
+            SideScreen.Draw(spriteBatch, Content);
             Enemies.DrawAllZombies(spriteBatch);
-            allMonkeys.DrawAllMonkeys(spriteBatch);   
+            allMonkeys.DrawAllMonkeys(spriteBatch);
         }
     }
 }

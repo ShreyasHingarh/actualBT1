@@ -15,10 +15,10 @@ namespace ActualGame.TypesOfMonkeys
 {
     internal class Dart : Monkey
     {
-        (int, int,int) DamageAndCostAndLvl;
-        (int, int,int) CooldownAndCostAndLvl;
+        public (int, int,int) DamageAndCostAndLvl;
+        public (int, int,int) CooldownAndCostAndLvl;
         public (int,int) IncreaseRangeCostAndLvl;
-        int MaxUpgradeLvl;
+        public int MaxUpgradeLvl;
         Stopwatch FiringTimer;
         Sprite Bullet;
         Vector2 Target;
