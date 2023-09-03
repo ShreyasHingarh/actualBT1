@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ActualGame.TypesOfMonkeys;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -47,6 +49,20 @@ namespace ActualGame
                     if (!square.DoesContainZombie) continue;
                     item.Update(ref square.OneContained);
                 }
+            }
+        }
+        public void IncreaseSpeedOfAllMonkeys()
+        {
+            foreach(var item in Monkeys)
+            {
+                item.CooldownAndCostAndLvl.Item1 /= 2;
+            }
+        }
+        public void DecreaseSpeedOfAllMonkeys()
+        {
+            foreach (var item in Monkeys) 
+            {
+                item.CooldownAndCostAndLvl.Item1 *= 2;
             }
         }
         public void DrawAllMonkeys(SpriteBatch spriteB)

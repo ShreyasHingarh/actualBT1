@@ -18,12 +18,15 @@ namespace ActualGame
     }
     abstract class Monkey
     {
-        //ShouldAlsoHaveASideScreen
+        public (int, int, int) DamageAndCostAndLvl;
+        public (int, int, int) CooldownAndCostAndLvl;
+        public (int, int) IncreaseRangeCostAndLvl;
         public Position GridPosition;
         public List<ScreenSquare> RangeSquares;
         public TypeOfMonkey Type;
         public Sprite sprite;
         public int RangeSize;
+        public int RemoveCost;
         public Monkey(Screen screen, TypeOfMonkey type, Position gridpos, int baseRange)
         {
             GridPosition = gridpos;

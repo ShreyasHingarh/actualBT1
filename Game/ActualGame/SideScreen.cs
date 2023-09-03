@@ -25,18 +25,36 @@ namespace ActualGame
         public Sprite UpDamage;
         public Sprite UpRange;
         public Sprite Home;
+        public Sprite Remove;
+        public Sprite StartButton;
+        public Sprite PauseButton;
+        public Sprite SpeedUpButton;
+        public Sprite SpeedDownButton;
+
+        public bool HasStarted;
+        public bool SpeedUp;
         public (Sprite,int,TypeOfMonkey)[] DartMonkeyAddAndCost;
+
+        bool HasClicked;
         public SideScreen(int baseLive, int baseMoney, int baseLevel, ContentManager Content)
         {
+            HasClicked = false;
             Font = Content.Load<SpriteFont>("File");
             Border = Content.Load<Texture2D>("Border");
-            Home = new Sprite(Color.BlanchedAlmond, new Vector2(840,600),Content.Load<Texture2D>("Home"),0,Vector2.Zero,Vector2.One);
+            Remove = new Sprite(Color.BlanchedAlmond,new Vector2(860,460),Content.Load<Texture2D>("PopeCoinRemove"),0,Vector2.Zero,Vector2.One);
+            Home = new Sprite(Color.BlanchedAlmond, new Vector2(880,400),Content.Load<Texture2D>("Home"),0,Vector2.Zero,Vector2.One);
             UpCooldown = new Sprite(Color.BlanchedAlmond, new Vector2(810, 220),Content.Load<Texture2D>("upgradeCoolDownButton"),0,Vector2.Zero,Vector2.One);
             UpDamage = new Sprite(Color.BlanchedAlmond, new Vector2(810, 280), Content.Load<Texture2D>("upgradeDamageButton"), 0, Vector2.Zero, Vector2.One);
             UpRange = new Sprite(Color.BlanchedAlmond, new Vector2(810, 340),Content.Load<Texture2D>("upgradeRangeButton"),0,Vector2.Zero,Vector2.One);
+            StartButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 650), Content.Load<Texture2D>("StartButton"), 0, Vector2.Zero, Vector2.One);
+            PauseButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 650), Content.Load<Texture2D>("PauseButton"), 0, Vector2.Zero, Vector2.One);
+            SpeedUpButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 710), Content.Load<Texture2D>("SpeedButton"), 0, Vector2.Zero, Vector2.One);
+            SpeedDownButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 710), Content.Load<Texture2D>("SlowButton"), 0, Vector2.Zero, Vector2.One);
+
+            HasStarted = false;
             DartMonkeyAddAndCost = new (Sprite, int, TypeOfMonkey)[]
             {
-                (new Sprite(Color.White, new Vector2(860, 200),Content.Load<Texture2D>("Monkey"),0,Vector2.Zero,new Vector2(2,2)),100,TypeOfMonkey.DartMonk)   
+                (new Sprite(Color.White, new Vector2(880, 200),Content.Load<Texture2D>("Monkey"),0,Vector2.Zero,new Vector2(2,2)),100,TypeOfMonkey.DartMonk)   
                 //new Sprite(Color.White, new Vector2(860, 280),Content.Load<Texture2D>("IceMonkey"),0,Vector2.Zero,new Vector2(2,2));
                 //new Sprite(Color.White, new Vector2(860, 360),Content.Load<Texture2D>("BombMonkey"),0,Vector2.Zero,new Vector2(2,2));
                 //new Sprite(Color.White, new Vector2(860, 440),Content.Load<Texture2D>("SpikeMonkey"),0,Vector2.Zero,new Vector2(2,2));
@@ -44,6 +62,43 @@ namespace ActualGame
             Lives = baseLive;
             Money = baseMoney;
             Level = baseLevel;
+        }
+        public int CheckSpeedButton(Vector2 MousePosition)
+        {
+            if (!HasClicked && !SpeedUp && SpeedUpButton.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                HasClicked = true;
+                SpeedUp = true;
+                return 1;
+            }
+            else if(!HasClicked && SpeedDownButton.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                HasClicked = true;
+                SpeedUp = false;
+                return 0;
+            }
+            else if (HasClicked && Mouse.GetState().LeftButton == ButtonState.Released)
+            {
+                HasClicked = false;
+            }
+            return -1;
+        }
+        public void CheckStartButton(Vector2 MousePosition)
+        {
+            if(!HasClicked && !HasStarted && StartButton.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                HasClicked = true;
+                HasStarted = true;
+            }
+            else if (!HasClicked && PauseButton.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                HasClicked = true;
+                HasStarted = false;
+            }
+            else if (HasClicked && Mouse.GetState().LeftButton == ButtonState.Released)
+            {
+                HasClicked = false;
+            }
         }
         public int AddMonkey()
         {
@@ -78,7 +133,24 @@ namespace ActualGame
             sprite.DrawString(Font, $"Money: {Money}", new Vector2(850, 60), Color.Black);
             sprite.DrawString(Font, $"Level: {Level}", new Vector2(850, 110), Color.Black);
             sprite.Draw(Border, new Vector2(810, 150), Color.White);
-            if(OneClicked == null)
+            sprite.Draw(Border, new Vector2(810, 600), Color.White);
+            if(HasStarted)
+            {
+                PauseButton.Draw(sprite);
+            }
+            else
+            {
+                StartButton.Draw(sprite);
+            }
+            if(SpeedUp)
+            {
+                SpeedDownButton.Draw(sprite);
+            }
+            else
+            {
+                SpeedUpButton.Draw(sprite);
+            }
+            if (OneClicked == null)
             {
                 foreach(var item in DartMonkeyAddAndCost)
                 {
@@ -100,6 +172,7 @@ namespace ActualGame
                         UpRange.Draw(sprite);
                         sprite.DrawString(Font, $"Lvl: {dart.IncreaseRangeCostAndLvl.Item2}", new Vector2(890, UpRange.Position.Y + UpRange.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         Home.Draw(sprite);
+                        Remove.Draw(sprite);
                         break;
                     case TypeOfMonkey.SpikeMonk:
                         break;

@@ -15,37 +15,48 @@ using System.Threading.Tasks;
 
 namespace ActualGame
 {
-    internal class Level1
+    internal class Level1 : Level
     {
-        public AllEnemies Enemies;
-        public AllMonkeys allMonkeys;
         int OffSet;
-        public SideScreen SideScreen;
         bool MousePressed = false;
         bool ShouldUpgrade = false;
         Monkey OneToAdd;
         bool TooLittleMoney;
         bool MaxLevelReached;
         Stopwatch DisplayTimer;
-
         bool hasClicked;
 
-        public Level1(ScreenSquare Start, int offSet, ContentManager Content, int cash, Screen screen)
+        public Level1(ScreenSquare Start, int offSet, ContentManager Content, int cash,int Lives) 
+            : base(Start,offSet,Content,cash,Lives)
         {
+            SideScreen = new SideScreen(Lives, cash, 1, Content);
+            allMonkeys = new AllMonkeys();
             TooLittleMoney = false;
             MaxLevelReached = false;
-            SideScreen = new SideScreen(100, cash, 1, Content);
             OffSet = offSet;
-            Enemies = new AllEnemies(Start, offSet, Content);
-            allMonkeys = new AllMonkeys();
+            Enemies.AddAZombie(0, Start, offSet, Content);
             DisplayTimer = new Stopwatch();
         }
-        public void UpdateLvlScreen(int SizeOfSquare, Screen screen, ContentManager Content)
+        public override bool UpdateLvlScreen(int SizeOfSquare, Screen screen, ContentManager Content)
         {
-            // Need to handle removing monkeys and adding and removing enenmies and Start and pause button 
+            if (SideScreen.Lives <= 0) return false;
+            // Need adding 
             Vector2 MousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-            
-            //Handles Adding and upgrading Monkeys
+            SideScreen.CheckStartButton(MousePosition);
+            switch (SideScreen.CheckSpeedButton(MousePosition))
+            {
+                case -1://Does Nothing
+                    break;
+                case 0:// SlowDown
+                    allMonkeys.DecreaseSpeedOfAllMonkeys();
+                    Enemies.DecreaseSpeedOfAllZombies();
+                    break;
+                case 1://SpeedUp
+                    allMonkeys.IncreaseSpeedOfAllMonkeys();
+                    Enemies.IncreaseSpeedOfAllZombies();
+                    break;
+            }
+            //Handles Adding and upgrading and removing Monkeys
             foreach (var item in allMonkeys.Monkeys)
             {
                 if (SideScreen.UpgradeMonkey(item))
@@ -102,7 +113,9 @@ namespace ActualGame
                         else if (!hasClicked && SideScreen.UpCooldown.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
                             TypesOfMonkeys.Dart monk = (TypesOfMonkeys.Dart)SideScreen.OneClicked;
-                            if (!monk.UpgradeCooldown(ref SideScreen.Money, 300, monk.CooldownAndCostAndLvl.Item2))
+                            int CooldownDecrement = 300;
+                            if (SideScreen.SpeedUp) CooldownDecrement = 150;
+                            if (!monk.UpgradeCooldown(ref SideScreen.Money, CooldownDecrement, monk.CooldownAndCostAndLvl.Item2))
                             {
                                 if (monk.CooldownAndCostAndLvl.Item3 == monk.MaxUpgradeLvl)
                                 {
@@ -120,6 +133,15 @@ namespace ActualGame
                         else if (SideScreen.Home.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
                             hasClicked = false;
+                            SideScreen.OneClicked = null;
+                            ShouldUpgrade = false;
+                        }
+                        else if (SideScreen.Remove.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            hasClicked = false;
+                            SideScreen.Money += SideScreen.OneClicked.RemoveCost;
+                            allMonkeys.Monkeys.Remove(SideScreen.OneClicked);
+                            
                             SideScreen.OneClicked = null;
                             ShouldUpgrade = false;
                         }
@@ -195,24 +217,27 @@ namespace ActualGame
                 }
 
             }
+            ///
 
-            allMonkeys.UpdateAllMonkeys(screen);
-            if (Enemies.UpdateAllZombies(SizeOfSquare, OffSet, screen, SideScreen))
+
+            if(SideScreen.HasStarted)
             {
-                //next level
+                allMonkeys.UpdateAllMonkeys(screen);
+                if (Enemies.UpdateAllZombies(SizeOfSquare, OffSet, screen, SideScreen)) return false;
             }
+            return true;
         }
-        public void DrawLvlScreen(SpriteBatch spriteBatch, ContentManager Content)
+        public override void DrawLvlScreen(SpriteBatch spriteBatch, ContentManager Content)
         {
             if (DisplayTimer.ElapsedMilliseconds < 2000)
             {
                 if (TooLittleMoney)
                 {
-                    spriteBatch.DrawString(SideScreen.Font, "Too Little Money", new Vector2(840, 700), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(SideScreen.Font, "Too Little Money", new Vector2(840, 575), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
                 }
                 else if (MaxLevelReached)
                 {
-                    spriteBatch.DrawString(SideScreen.Font, "Max Level Reached", new Vector2(820, 700), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(SideScreen.Font, "Max Level Reached", new Vector2(820, 575), Color.Black, 0, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
                 }
             }
             else

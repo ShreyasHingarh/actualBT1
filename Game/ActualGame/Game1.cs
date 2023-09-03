@@ -10,12 +10,9 @@ namespace ActualGame
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        Screen screen;
-        Level1 LevelOne;
-        int sizeOfSquare = 30;
-        int offSet = 4;
+        
         bool HasPressedSpace = false;
-        //Plan: FinishUpLvl1 (Adjust Health), AddAllOtherMonkeys, Make next 30 levels, Add a win and lose screen
+        //Plan: AddAllOtherMonkeys (Spikes To be placed on path), Make next 30 levels(boss, bulldozers, ), Add a win and lose screen
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -35,8 +32,7 @@ namespace ActualGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            screen = new Screen(GraphicsDevice.Viewport.Height, sizeOfSquare, Content);
-            LevelOne = new Level1(screen.Start,offSet,Content,500,screen);
+            
             // TODO: use this.Content to load your game content here
         }
 

@@ -15,9 +15,7 @@ namespace ActualGame.TypesOfMonkeys
 {
     internal class Dart : Monkey
     {
-        public (int, int,int) DamageAndCostAndLvl;
-        public (int, int,int) CooldownAndCostAndLvl;
-        public (int,int) IncreaseRangeCostAndLvl;
+
         public int MaxUpgradeLvl;
         Stopwatch FiringTimer;
         Sprite Bullet;
@@ -29,6 +27,7 @@ namespace ActualGame.TypesOfMonkeys
             int baseDamage,int baseDamageUpgradeCost,int baseCooldown,int baseCooldownUpgradeCost,int baseRangeCost,int MaxLvl) 
             : base(screen,TypeOfMonkey.DartMonk,Grid,baseRange)
         {
+            RemoveCost = 50;
             Bullet = new Sprite(Color.White, Position, Content.Load<Texture2D>("Dart"),0,Origin,Vector2.One) ;
             ShouldFire = false;
             MaxUpgradeLvl = MaxLvl;
@@ -64,6 +63,7 @@ namespace ActualGame.TypesOfMonkeys
         public bool UpgradeDamage(ref int Money,int Increment,int CostIncrement)
         {
             if (DamageAndCostAndLvl.Item2 >= Money || DamageAndCostAndLvl.Item3 == MaxUpgradeLvl) return false;
+            RemoveCost += CostIncrement / 3;
             Money -= DamageAndCostAndLvl.Item2;
             DamageAndCostAndLvl.Item1 += Increment;
             DamageAndCostAndLvl.Item2 += CostIncrement;
@@ -73,6 +73,7 @@ namespace ActualGame.TypesOfMonkeys
         public bool UpgradeCooldown(ref int Money, int Decrement,int CostIncrement)
         {
             if(CooldownAndCostAndLvl.Item2 >= Money || CooldownAndCostAndLvl.Item3 == MaxUpgradeLvl) return false;
+            RemoveCost += CostIncrement / 3;
             Money -= CooldownAndCostAndLvl.Item2;
             CooldownAndCostAndLvl.Item1 -= Decrement;
             CooldownAndCostAndLvl.Item2 += CostIncrement;
@@ -82,6 +83,7 @@ namespace ActualGame.TypesOfMonkeys
         public bool IncreaseRangeByOne(ref int Money,int CostIncrement,Screen screen)
         {
             if (IncreaseRangeCostAndLvl.Item1 >= Money || IncreaseRangeCostAndLvl.Item2 == MaxUpgradeLvl) return false;
+            RemoveCost += CostIncrement / 3;
             Money -= IncreaseRangeCostAndLvl.Item1;
             IncreaseRangeCostAndLvl.Item1 += CostIncrement;
             IncreaseRangeCostAndLvl.Item2++;

@@ -32,13 +32,26 @@ namespace ActualGame
         {
             path = JsonConvert.DeserializeObject<Position[]>(File.ReadAllText(@"..\..\..\..\MapEditor\Path.txt"));
             Zombies = new List<Zombie>();
-            AddAZombie(2, Start, offSet, Content);
         }
         public void AddAZombie(int Level, ScreenSquare Start, int offSet, ContentManager Content)
         {
             Zombies.Add(new Zombie(Level, new Vector2(Start.Sprite.Position.X * Start.Sprite.Image.Width + offSet, Start.Sprite.Position.Y * Start.Sprite.Image.Width + offSet),
                 Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
                 , Vector2.One, path));
+        }
+        public void IncreaseSpeedOfAllZombies()
+        {
+            foreach(var zombie in Zombies) 
+            {
+                zombie.LerpIncrement *= 2;
+            }
+        }
+        public void DecreaseSpeedOfAllZombies()
+        {
+            foreach( var zombie in Zombies)
+            {
+                zombie.LerpIncrement /= 2;
+            }
         }
         public bool UpdateAllZombies(int SizeOfSquare, int offset,Screen screen,SideScreen sideScreen)
         {
@@ -70,7 +83,7 @@ namespace ActualGame
                 {
                     Zombies.Remove(Zombies[i]);
                     sideScreen.Lives--;
-                    if (Zombies.Count == 0) return true;//switch to next level
+                    if (Zombies.Count == 0) return true;
                 }
                 Prev = Zombies[index];
                 index++;
