@@ -12,32 +12,29 @@ namespace ActualGame
 {
     internal class RunGame
     {
-        public Level CurrentLevel;
-        public List<Level> Levels;
         int LevelIndex;
+        Dictionary<int, Level> LevelsDictionary;
         public RunGame(Screen screen,ContentManager Content,int BaseCash,int BaseLives,int offSet)
-        {
-            Levels = new List<Level>()
+        { 
+            LevelsDictionary = new Dictionary<int, Level>()
             {
-                new Level1(screen.Start, offSet, Content, BaseCash,BaseLives)
-                //rest of Levels
+                { 0, new Level1(screen.Start, offSet, Content, BaseCash,BaseLives) }
+                //rest of Levels}
             };
             LevelIndex = 0;
-            CurrentLevel = new Level1(screen.Start, offSet, Content, BaseCash,BaseLives);
         }
         public bool SwitchLevel()
         {
             LevelIndex++;
-            if (Levels[LevelIndex] == null || CurrentLevel.SideScreen.Lives <= 0) return false;
-            Levels[LevelIndex].SideScreen = CurrentLevel.SideScreen;
-            Levels[LevelIndex].allMonkeys = CurrentLevel.allMonkeys;
-            CurrentLevel = Levels[LevelIndex];
+            if (!LevelsDictionary.ContainsKey(LevelIndex) || LevelsDictionary[LevelIndex--].SideScreen.Lives <= 0) return false;
+            LevelsDictionary[LevelIndex].SideScreen = LevelsDictionary[LevelIndex--].SideScreen;
+            LevelsDictionary[LevelIndex].allMonkeys = LevelsDictionary[LevelIndex--].allMonkeys;
             return true;
         }
         public bool RunLevel(ContentManager Content,Screen screen,int sizeOfSquare)
         {
             bool MoveOn = true;
-            if (!CurrentLevel.UpdateLvlScreen(sizeOfSquare, screen, Content))
+            if (!LevelsDictionary[LevelIndex].UpdateLvlScreen(sizeOfSquare, screen, Content))
             {
                 MoveOn = SwitchLevel();
             }
@@ -45,7 +42,7 @@ namespace ActualGame
         }
         public void DrawLevel(SpriteBatch sprite, ContentManager content)
         {
-            CurrentLevel.DrawLvlScreen(sprite, content);
+            LevelsDictionary[LevelIndex].DrawLvlScreen(sprite, content);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ActualGame
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        
+        GameScreen gameScreen;
         bool HasPressedSpace = false;
         //Plan: AddAllOtherMonkeys (Spikes To be placed on path), Make next 30 levels(boss, bulldozers, ), Add a win and lose screen
         public Game1()
@@ -32,7 +32,7 @@ namespace ActualGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+            gameScreen = new GameScreen(GraphicsDevice.Viewport.Height, Content, 400, 100);
             // TODO: use this.Content to load your game content here
         }
 
@@ -40,9 +40,8 @@ namespace ActualGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
+            gameScreen.Run(Content);
             // TODO: Add your update logic here
-            LevelOne.UpdateLvlScreen(sizeOfSquare, screen,Content);
             base.Update(gameTime);
         }
 
@@ -50,8 +49,7 @@ namespace ActualGame
         {
             spriteBatch.Begin();
             GraphicsDevice.Clear(Color.BlanchedAlmond);
-            screen.DrawScreen(spriteBatch);
-            LevelOne.DrawLvlScreen(spriteBatch, Content);
+            gameScreen.Draw(spriteBatch,Content);
             base.Draw(gameTime);
             spriteBatch.End();
         }

@@ -24,13 +24,13 @@ namespace ActualGame
         bool TooLittleMoney;
         bool MaxLevelReached;
         Stopwatch DisplayTimer;
+        Stopwatch LevelSwitchTimer;
         bool hasClicked;
 
         public Level1(ScreenSquare Start, int offSet, ContentManager Content, int cash,int Lives) 
             : base(Start,offSet,Content,cash,Lives)
         {
-            SideScreen = new SideScreen(Lives, cash, 1, Content);
-            allMonkeys = new AllMonkeys();
+            LevelSwitchTimer = new Stopwatch();
             TooLittleMoney = false;
             MaxLevelReached = false;
             OffSet = offSet;
@@ -39,7 +39,7 @@ namespace ActualGame
         }
         public override bool UpdateLvlScreen(int SizeOfSquare, Screen screen, ContentManager Content)
         {
-            if (SideScreen.Lives <= 0) return false;
+            if (LevelSwitchTimer.ElapsedMilliseconds > 2000 || SideScreen.Lives <= 0) return false;
             // Need adding 
             Vector2 MousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             SideScreen.CheckStartButton(MousePosition);
@@ -223,7 +223,10 @@ namespace ActualGame
             if(SideScreen.HasStarted)
             {
                 allMonkeys.UpdateAllMonkeys(screen);
-                if (Enemies.UpdateAllZombies(SizeOfSquare, OffSet, screen, SideScreen)) return false;
+                if (Enemies.UpdateAllZombies(SizeOfSquare, OffSet, screen, SideScreen))
+                {
+                    LevelSwitchTimer.Start();
+                }
             }
             return true;
         }

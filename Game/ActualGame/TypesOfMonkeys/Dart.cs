@@ -37,7 +37,7 @@ namespace ActualGame.TypesOfMonkeys
             CooldownAndCostAndLvl = (baseCooldown, baseCooldownUpgradeCost,0);
             IncreaseRangeCostAndLvl = (baseRangeCost,0);
             LerpAmount = 0;
-            LerpIncrement = 0.2f;
+            LerpIncrement = 0.1f;
             FiringTimer.Start();
         }
         

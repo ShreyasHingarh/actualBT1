@@ -17,6 +17,8 @@ namespace ActualGame
         public SideScreen SideScreen;
         public Level(ScreenSquare Start, int offSet, ContentManager Content, int cash,int Lives)
         {
+            SideScreen = new SideScreen(Lives, cash, 1, Content);
+            allMonkeys = new AllMonkeys();
             Enemies = new AllEnemies(Start, offSet, Content);
         }
         public abstract bool UpdateLvlScreen(int SizeOfSquare, Screen screen, ContentManager Content);
