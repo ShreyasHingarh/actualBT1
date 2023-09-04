@@ -65,7 +65,7 @@ namespace ActualGame
             Tint = LevelToTintColor[Level];
             Health = LevelToHealth[Level];
         }
-        public bool MoveEnemyAlongPathOnce(int SizeOfSquare, int offSet, Screen screen)
+        public  bool MoveEnemyAlongPathOnce(int SizeOfSquare, int offSet, Screen screen)
         {
             if (currentPosition + 1 == Path.Length) return false;
             Position NextSquare = Path[currentPosition+1];

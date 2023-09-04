@@ -95,7 +95,7 @@ namespace ActualGame
                         else if (!hasClicked && SideScreen.UpDamage.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
                             TypesOfMonkeys.Dart monk = (TypesOfMonkeys.Dart)SideScreen.OneClicked;
-                            if (!monk.UpgradeDamage(ref SideScreen.Money,10,monk.DamageAndCostAndLvl.Item2))
+                            if (!monk.UpgradeDamage(ref SideScreen.Money,5,monk.DamageAndCostAndLvl.Item2))
                             {
                                 if (monk.DamageAndCostAndLvl.Item3 == monk.MaxUpgradeLvl)
                                 {
@@ -190,7 +190,7 @@ namespace ActualGame
                     if (Mouse.GetState().LeftButton == ButtonState.Released)
                     {
                         MousePressed = false;
-                        Position Grid = new Position((int)(MousePosition.X) / SizeOfSquare, (int)(MousePosition.Y) / SizeOfSquare);
+                        Position Grid = new Position((sbyte)(MousePosition.X / SizeOfSquare), (sbyte)(MousePosition.Y / SizeOfSquare));
                         if (Grid.X < screen.Map.GetLength(1) && Grid.Y < screen.Map.GetLength(0))
                         {
                             foreach (var item in allMonkeys.Monkeys)

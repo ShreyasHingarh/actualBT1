@@ -16,9 +16,9 @@ namespace ActualGame
 {
     public class Position
     {
-        public int X;
-        public int Y;
-        public Position(int x, int y)
+        public sbyte X;
+        public sbyte Y;
+        public Position(sbyte x, sbyte y)
         {
             X = x;
             Y = y;

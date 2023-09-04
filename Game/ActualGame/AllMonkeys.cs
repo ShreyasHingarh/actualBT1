@@ -45,7 +45,7 @@ namespace ActualGame
             {
                 foreach(var square in item.RangeSquares)
                 {
-                    square.Sprite.Tint = Color.White;
+                    //square.Sprite.Tint = Color.White;
                     if (!square.DoesContainZombie) continue;
                     item.Update(ref square.OneContained);
                 }

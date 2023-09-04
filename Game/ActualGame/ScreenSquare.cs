@@ -21,7 +21,7 @@ namespace ActualGame
         public Position GridLocation;
         public Sprite Sprite;
         public bool DoesContainZombie;
-        public Zombie OneContained;
+        public ref Zombie OneContained;
         public ScreenSquare(Sprite sprite,TypeOfImage type, Position location)
         {
             DoesContainZombie = false;
