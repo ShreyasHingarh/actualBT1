@@ -17,18 +17,22 @@ namespace ActualGame.TypesOfMonkeys
     {
         public (int, int) IncreaseRangeCostAndLvl;
         Stopwatch FiringTimer;
-        Bullet Bullet;
+        public Bullet Bullet;
         bool ShouldFire;
+        List<Zombie> zombies;
+        List<bool> Bools;
+        int total = 0;
         public Dart(Vector2 Position,ContentManager Content,Vector2 Origin,Screen screen, int baseRange,Position Grid,
             int baseDamage, int baseDamageUpgradeCost, int baseCooldown, int baseCooldownUpgradeCost, int baseRangeCost, int MaxLvl) 
-            : base(screen,TypeOfMonkey.DartMonk,Grid,baseRange,baseDamage,baseDamageUpgradeCost,baseCooldown,baseCooldownUpgradeCost,MaxLvl)
+            : base(screen,TypeOfMonkey.DartMonk,Grid,baseRange,baseDamage,baseDamageUpgradeCost,baseCooldown,baseCooldownUpgradeCost,MaxLvl,100)
         {
             IncreaseRangeCostAndLvl = (baseRangeCost, 0);
             RemoveCost = 50;
-            Bullet = new Bullet(new Sprite(Color.White, Position, Content.Load<Texture2D>("Dart"),0,Origin,Vector2.One),0.1f);
+            Bullet = new Bullet(new Sprite(Color.White, Position, Content.Load<Texture2D>("Dart"),0,Origin,Vector2.One),0.1f,Vector2.Zero);
             ShouldFire = false;
             FiringTimer = new Stopwatch();
             sprite = new Sprite(Color.White,Position,Content.Load<Texture2D>("DartMonkey"),0,Origin,Vector2.One);
+            Bools = new List<bool>();
             FiringTimer.Start();
         }
         
@@ -36,7 +40,16 @@ namespace ActualGame.TypesOfMonkeys
         {
             if (ShouldFire)
             {
-                Bullet.Draw(spriteb, sprite.Position, RangeSquares, DamageAndCostAndLvl.Item1);
+                if(total == 0)
+                {
+                    total += Bullet.Draw(spriteb, sprite.Position, DamageAndCostAndLvl.Item1, ref zombies, ref Bools);
+                }
+                if (total == 1)
+                {
+                    total = 0;
+                    ShouldFire = false;
+                    Bullet.HasHit = false;
+                }
             }
             sprite.Draw(spriteb);
         }
@@ -72,7 +85,6 @@ namespace ActualGame.TypesOfMonkeys
                     if (!RangeSquares.Contains(screen.Map[CurrentPos.Y, CurrentPos.X]))
                     {
                         RangeSquares.Add(screen.Map[CurrentPos.Y, CurrentPos.X]);
-                        
                     }
                     CurrentPos.X++;
                     if (CurrentPos.X == screen.Map.GetLength(0)) break;
@@ -83,12 +95,15 @@ namespace ActualGame.TypesOfMonkeys
             }
             return true;
         }
-        public override bool Update(ref Zombie zombie)
+        public override bool Update(ref List<Zombie> zombie)
         {
-            sprite.Rotation = (float)(Math.Atan2(zombie.Position.Y - sprite.Position.Y, zombie.Position.X - sprite.Position.X));
+            sprite.Rotation = (float)(Math.Atan2(zombie[0].Position.Y - sprite.Position.Y, zombie[0].Position.X - sprite.Position.X));
             if (zombie == null || FiringTimer.ElapsedMilliseconds < CooldownAndCostAndLvl.Item1) return false;
-            Bullet.Target = zombie.Position;
+            Bullet.Target = new Vector2(zombie[0].Position.X + sprite.Origin.X, zombie[0].Position.Y + sprite.Origin.Y);
             Bullet.sprite.Rotation = sprite.Rotation;
+            zombies = zombie;
+            Bools.Clear();
+            for (int i = 0; i < zombie.Count; i++) { Bools.Add(false); }
             FiringTimer.Restart();
             ShouldFire = true;
             return true;

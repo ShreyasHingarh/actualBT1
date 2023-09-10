@@ -25,11 +25,13 @@ namespace ActualGame
         public TypeOfMonkey Type;
         public Sprite sprite;
         public int RangeSize;
+        public int AddCost;
         public int RemoveCost;
         public int MaxUpgradeLvl;
         public Monkey(Screen screen, TypeOfMonkey type, Position gridpos, int baseRange,
-            int baseDamage, int baseDamageUpgradeCost, int baseCooldown, int baseCooldownUpgradeCost, int MaxLvl)
+            int baseDamage, int baseDamageUpgradeCost, int baseCooldown, int baseCooldownUpgradeCost, int MaxLvl, int addCost)
         {
+            AddCost = addCost;
             MaxUpgradeLvl = MaxLvl;
             GridPosition = gridpos;
             RangeSquares = new List<ScreenSquare>();
@@ -92,7 +94,7 @@ namespace ActualGame
             CooldownAndCostAndLvl.Item3++;
             return true;
         }
-        public abstract bool Update(ref Zombie Zombie);
+        public abstract bool Update(ref List<Zombie> Zombies);
         public abstract void Draw(SpriteBatch sprite);
     }
 }

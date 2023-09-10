@@ -12,7 +12,7 @@ namespace ActualGame
         private SpriteBatch spriteBatch;
         GameScreen gameScreen;
         bool HasPressedSpace = false;
-        //Plan: AddAllOtherMonkeys (AddSpikes To be placed on path), Make next 30 levels(boss, bulldozers, ), Add a win and lose screen
+        //Plan: AddAllOtherMonkeys (AddSpikes To be placed on path), Make next 30 levels(boss, bulldozers, ), Add a win and lose screen, Alterating paths using astar
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

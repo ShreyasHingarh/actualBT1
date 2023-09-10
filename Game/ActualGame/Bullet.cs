@@ -16,28 +16,28 @@ namespace ActualGame
         float LerpIncrement;
         public bool HasHit;
         public Vector2 Target;
-        public Bullet(Sprite prite, float lerpIncrement)
+        public Bullet(Sprite prite, float lerpIncrement,Vector2 target)
         {
+            Target = target;
             sprite = prite;
             LerpAmount = 0;
             LerpIncrement = lerpIncrement;
             HasHit = false;
         }
-        public int Draw(SpriteBatch spriteB, Vector2 Position,List<ScreenSquare> RangeSquares,int DamageToDeal)
+        public int Draw(SpriteBatch spriteB, Vector2 Position,int DamageToDeal,ref List<Zombie> zombies,ref List<bool> Bools)
         {
-            if (HasHit) return 1;
             if (LerpAmount < 1)
             {
-                foreach (var item in RangeSquares)
+                byte index = 0;
+                foreach (var item in zombies)
                 {
-                    if (item.OneContained.HitBox.Value.Contains(sprite.Position))
+                    if (!Bools[index] && item.HitBox.Value.Contains(sprite.Position))
                     {
-                        item.OneContained.Health -= DamageToDeal;
-                        sprite.Position = Position;
-                        LerpAmount = 0;
+                        item.Health -= DamageToDeal;
+                        Bools[index] = true;
                         HasHit = true;
-                        return 1;
                     }
+                    index++;
                 }
                 sprite.Position = Vector2.Lerp(sprite.Position, Target, LerpAmount);
                 LerpAmount += LerpIncrement;

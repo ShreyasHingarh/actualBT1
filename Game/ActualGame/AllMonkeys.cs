@@ -20,34 +20,25 @@ namespace ActualGame
         {
             Monkeys = new List<Monkey>();
         }
-        public void AddMonkey(Screen screen,TypeOfMonkey type,Vector2 Position,ContentManager Content,Vector2 Origin,Position GridPosition) 
-        {
-            switch (type)
-            {
-                case TypeOfMonkey.DartMonk:
-                    Monkeys.Add(new TypesOfMonkeys.Dart(Position,Content,Origin,screen,4,GridPosition,5,50,1500,50,50,3));
-                    break;
-                case TypeOfMonkey.SpikeMonk:
-                    break;
-                case TypeOfMonkey.BombMonk:
-                    break;
-                case TypeOfMonkey.IceMonk:
-                    break;
-            }
-        }
+      
         public void AddMonkey(Monkey monkey)
         {
             Monkeys.Add(monkey);
         }
-        public void UpdateAllMonkeys(Screen screen)
+        public void UpdateAllMonkeys()
         {
             foreach(var item in Monkeys)
             {
+                List<Zombie> zombieList = new List<Zombie>();
                 foreach(var square in item.RangeSquares)
                 {
                     //square.Sprite.Tint = Color.White;
                     if (!square.DoesContainZombie) continue;
-                    item.Update(ref square.OneContained);
+                    zombieList.Add(square.OneContained);
+                }
+                if(zombieList.Count != 0)
+                {
+                    item.Update(ref zombieList);
                 }
             }
         }

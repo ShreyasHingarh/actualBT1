@@ -21,7 +21,12 @@ namespace ActualGame
         public Position GridLocation;
         public Sprite Sprite;
         public bool DoesContainZombie;
-        public ref Zombie OneContained;
+        public Zombie OneContained;
+        //public ref struct OneContained
+        //{
+        //    Zombie it;
+        //}
+
         public ScreenSquare(Sprite sprite,TypeOfImage type, Position location)
         {
             DoesContainZombie = false;

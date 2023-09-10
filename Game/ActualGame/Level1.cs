@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ActualGame.TypesOfMonkeys;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -27,8 +29,8 @@ namespace ActualGame
         Stopwatch LevelSwitchTimer;
         bool hasClicked;
 
-        public Level1(ScreenSquare Start, int offSet, ContentManager Content, int cash,int Lives) 
-            : base(Start,offSet,Content,cash,Lives)
+        public Level1(ScreenSquare Start, int offSet, ContentManager Content, int cash, int Lives)
+            : base(Start, offSet, Content, cash, Lives)
         {
             LevelSwitchTimer = new Stopwatch();
             TooLittleMoney = false;
@@ -59,6 +61,7 @@ namespace ActualGame
             //Handles Adding and upgrading and removing Monkeys
             foreach (var item in allMonkeys.Monkeys)
             {
+                if (MousePressed) continue;
                 if (SideScreen.UpgradeMonkey(item))
                 {
                     ShouldUpgrade = true;
@@ -76,7 +79,7 @@ namespace ActualGame
                         }
                         if (!hasClicked && SideScreen.UpRange.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
-                            TypesOfMonkeys.Dart monk = (TypesOfMonkeys.Dart)SideScreen.OneClicked;
+                            Dart monk = (Dart)SideScreen.OneClicked;
                             if (!monk.IncreaseRangeByOne(ref SideScreen.Money, monk.IncreaseRangeCostAndLvl.Item1, screen))
                             {
                                 if (monk.IncreaseRangeCostAndLvl.Item2 == monk.MaxUpgradeLvl)
@@ -94,8 +97,8 @@ namespace ActualGame
                         }
                         else if (!hasClicked && SideScreen.UpDamage.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
-                            TypesOfMonkeys.Dart monk = (TypesOfMonkeys.Dart)SideScreen.OneClicked;
-                            if (!monk.UpgradeDamage(ref SideScreen.Money,5,monk.DamageAndCostAndLvl.Item2))
+                            Dart monk = (Dart)SideScreen.OneClicked;
+                            if (!monk.UpgradeDamage(ref SideScreen.Money, 5, monk.DamageAndCostAndLvl.Item2))
                             {
                                 if (monk.DamageAndCostAndLvl.Item3 == monk.MaxUpgradeLvl)
                                 {
@@ -112,7 +115,7 @@ namespace ActualGame
                         }
                         else if (!hasClicked && SideScreen.UpCooldown.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                         {
-                            TypesOfMonkeys.Dart monk = (TypesOfMonkeys.Dart)SideScreen.OneClicked;
+                            Dart monk = (Dart)SideScreen.OneClicked;
                             int CooldownDecrement = 300;
                             if (SideScreen.SpeedUp) CooldownDecrement = 150;
                             if (!monk.UpgradeCooldown(ref SideScreen.Money, CooldownDecrement, monk.CooldownAndCostAndLvl.Item2))
@@ -141,12 +144,86 @@ namespace ActualGame
                             hasClicked = false;
                             SideScreen.Money += SideScreen.OneClicked.RemoveCost;
                             allMonkeys.Monkeys.Remove(SideScreen.OneClicked);
-                            
+
                             SideScreen.OneClicked = null;
                             ShouldUpgrade = false;
                         }
                         break;
                     case TypeOfMonkey.SpikeMonk:
+                        if (Mouse.GetState().LeftButton == ButtonState.Released)
+                        {
+                            hasClicked = false;
+                        }
+                        if (!hasClicked && SideScreen.UpRange.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            Spike monk = (Spike)SideScreen.OneClicked;
+                            if (!monk.IncreaseRangeByOne(ref SideScreen.Money, monk.IncreaseRangeCostAndLvl.Item1, screen))
+                            {
+                                if (monk.IncreaseRangeCostAndLvl.Item2 == monk.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
+                            hasClicked = true;
+                        }
+                        else if (!hasClicked && SideScreen.UpDamage.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            Spike monk = (Spike)SideScreen.OneClicked;
+                            if (!monk.UpgradeDamage(ref SideScreen.Money, 5, monk.DamageAndCostAndLvl.Item2))
+                            {
+                                if (monk.DamageAndCostAndLvl.Item3 == monk.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
+                            hasClicked = true;
+                        }
+                        else if (!hasClicked && SideScreen.UpCooldown.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            Spike monk = (Spike)SideScreen.OneClicked;
+                            int CooldownDecrement = 300;
+                            if (SideScreen.SpeedUp) CooldownDecrement = 150;
+                            if (!monk.UpgradeCooldown(ref SideScreen.Money, CooldownDecrement, monk.CooldownAndCostAndLvl.Item2))
+                            {
+                                if (monk.CooldownAndCostAndLvl.Item3 == monk.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
+                            hasClicked = true;
+                        }
+                        else if (SideScreen.Home.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            hasClicked = false;
+                            SideScreen.OneClicked = null;
+                            ShouldUpgrade = false;
+                        }
+                        else if (SideScreen.Remove.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            hasClicked = false;
+                            SideScreen.Money += SideScreen.OneClicked.RemoveCost;
+                            allMonkeys.Monkeys.Remove(SideScreen.OneClicked);
+                            SideScreen.OneClicked = null;
+                            ShouldUpgrade = false;
+                        }
                         break;
                     case TypeOfMonkey.BombMonk:
                         break;
@@ -172,11 +249,13 @@ namespace ActualGame
                         case -1:
                             break;
                         case 0:
-                            OneToAdd = new TypesOfMonkeys.Dart(MousePosition, Content, new Vector2(15, 15), screen, 4, new Position(-1, -1), 5, 50, 1500, 50, 50, 3);
+                            OneToAdd = new Dart(MousePosition, Content, new Vector2(15, 15), screen, 4, new Position(-1, -1), 5, 50, 1500, 50, 50, 3);
 
                             MousePressed = true;
                             break;
                         case 1:
+                            OneToAdd = new Spike(MousePosition, Content, new Vector2(15, 15), screen, new Position(-1, -1), 3, 5, 75, 1500, 75, 75, 3);
+                            MousePressed = true;
                             break;
                         case 2:
                             break;
@@ -193,36 +272,49 @@ namespace ActualGame
                         Position Grid = new Position((sbyte)(MousePosition.X / SizeOfSquare), (sbyte)(MousePosition.Y / SizeOfSquare));
                         if (Grid.X < screen.Map.GetLength(1) && Grid.Y < screen.Map.GetLength(0))
                         {
-                            foreach (var item in allMonkeys.Monkeys)
-                            {
-                                if (item.GridPosition == Grid)
-                                {
-                                    OneToAdd = null;
-                                    break;
-                                }
-                            }
-                            if (OneToAdd != null && screen.Map[Grid.Y, Grid.X].Type != TypeOfImage.Path)
+                            if (screen.Map[Grid.Y, Grid.X].Type != TypeOfImage.Path)
                             {
                                 OneToAdd.GridPosition = Grid;
-                                OneToAdd.AddRange(screen);
                                 OneToAdd.sprite.Position = new Vector2(Grid.X * SizeOfSquare + 15, Grid.Y * SizeOfSquare + 15);
-                                allMonkeys.AddMonkey(OneToAdd);
-                                SideScreen.Money -= 100;
-                                OneToAdd = null;
+                                foreach (var item in allMonkeys.Monkeys)
+                                {
+                                    if (item.sprite.Position == OneToAdd.sprite.Position)
+                                    {
+                                        OneToAdd = null;
+                                        break;
+                                    }
+                                }
+                                if(OneToAdd != null)
+                                {
+                                    OneToAdd.AddRange(screen);
+                                    switch (OneToAdd.Type)
+                                    {
+                                        case TypeOfMonkey.DartMonk:
+                                            Dart temp = (Dart)OneToAdd;
+                                            temp.Bullet.sprite.Position = temp.sprite.Position;
+                                            break;
+                                        case TypeOfMonkey.SpikeMonk:
+                                            Spike spike = (Spike)OneToAdd;
+                                            spike.CreateAllBullets(Content);
+                                            break;
+                                        case TypeOfMonkey.BombMonk:
+                                            break;
+                                        case TypeOfMonkey.IceMonk:
+                                            break;
+                                    }
+                                    allMonkeys.AddMonkey(OneToAdd);
+                                    SideScreen.Money -= OneToAdd.AddCost;
+                                }
                             }
-
                         }
                         OneToAdd = null;
                     }
                 }
 
             }
-            ///
-
-
-            if(SideScreen.HasStarted)
+            if (SideScreen.HasStarted)
             {
-                allMonkeys.UpdateAllMonkeys(screen);
+                allMonkeys.UpdateAllMonkeys();
                 if (Enemies.UpdateAllZombies(SizeOfSquare, OffSet, screen, SideScreen))
                 {
                     LevelSwitchTimer.Start();

@@ -57,7 +57,7 @@ namespace ActualGame
                             break;
                     }
                     Sprite Current = new Sprite(Color.White, new Vector2(x,y),image,0,Vector2.Zero,Vector2.One);
-                    Map[i, z] = new ScreenSquare(Current,type,new Position(z,i));
+                    Map[i, z] = new ScreenSquare(Current,type,new Position((sbyte)z, (sbyte)i));
                     if (hasWentToStart)
                     {
                         Start = Map[i, z];
