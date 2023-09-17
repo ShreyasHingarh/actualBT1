@@ -56,7 +56,7 @@ namespace ActualGame
             {
                 (new Sprite(Color.White, new Vector2(880, 200),Content.Load<Texture2D>("Monkey"),0,Vector2.Zero,new Vector2(2,2)),100,TypeOfMonkey.DartMonk),   
                 //new Sprite(Color.White, new Vector2(860, 280),Content.Load<Texture2D>("IceMonkey"),0,Vector2.Zero,new Vector2(2,2));
-                //new Sprite(Color.White, new Vector2(860, 360),Content.Load<Texture2D>("BombMonkey"),0,Vector2.Zero,new Vector2(2,2));
+                (new Sprite(Color.White, new Vector2(880, 360),Content.Load<Texture2D>("BombMonkey"),0,Vector2.Zero,new Vector2(2,2)),150,TypeOfMonkey.BombMonk),
                 (new Sprite(Color.White, new Vector2(880, 440),Content.Load<Texture2D>("KirboSpike"),0,Vector2.Zero,new Vector2(2,2)),150,TypeOfMonkey.SpikeMonk)
             };
             Lives = baseLive;
@@ -188,6 +188,14 @@ namespace ActualGame
                         Remove.Draw(sprite);
                         break;
                     case TypeOfMonkey.BombMonk:
+                        Bomb bomb = (Bomb)OneClicked;
+                        sprite.DrawString(Font, $"Max Level is 3", new Vector2(870, 200), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpCooldown.Draw(sprite);
+                        sprite.DrawString(Font, $"Lvl: {bomb.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.Position.Y + UpCooldown.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpDamage.Draw(sprite);
+                        sprite.DrawString(Font, $"Lvl: {bomb.DamageAndCostAndLvl.Item3}", new Vector2(890, UpDamage.Position.Y + UpDamage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        Home.Draw(sprite);
+                        Remove.Draw(sprite);
                         break;
                     case TypeOfMonkey.IceMonk:
                         break;

@@ -8,10 +8,10 @@ namespace ActualGame
 {
     public class Game1 : Game
     {
+        
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         GameScreen gameScreen;
-        bool HasPressedSpace = false;
         //Plan: AddAllOtherMonkeys (AddSpikes To be placed on path), Make next 30 levels(boss, bulldozers, ), Add a win and lose screen, Alterating paths using astar
         public Game1()
         {
@@ -49,7 +49,7 @@ namespace ActualGame
         {
             spriteBatch.Begin();
             GraphicsDevice.Clear(Color.BlanchedAlmond);
-            gameScreen.Draw(spriteBatch,Content);
+            gameScreen.Draw(spriteBatch,Content, gameTime);
             base.Draw(gameTime);
             spriteBatch.End();
         }

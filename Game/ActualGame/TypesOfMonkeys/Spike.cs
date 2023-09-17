@@ -118,7 +118,7 @@ namespace ActualGame.TypesOfMonkeys
             return true;
         }
 
-        public override void Draw(SpriteBatch spriteB)
+        public override void Draw(SpriteBatch spriteB, GameTime gameTime, Screen screen)
         {
             if(ShouldFire)
             {

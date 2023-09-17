@@ -36,7 +36,7 @@ namespace ActualGame.TypesOfMonkeys
             FiringTimer.Start();
         }
         
-        public override void Draw(SpriteBatch spriteb)
+        public override void Draw(SpriteBatch spriteb,GameTime gameTime, Screen screen)
         {
             if (ShouldFire)
             {

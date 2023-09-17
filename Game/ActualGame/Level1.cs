@@ -37,6 +37,11 @@ namespace ActualGame
             MaxLevelReached = false;
             OffSet = offSet;
             Enemies.AddAZombie(0, Start, offSet, Content);
+
+            Enemies.AddAZombie(0, Start, offSet, Content);
+            Enemies.AddAZombie(0, Start, offSet, Content);
+            Enemies.AddAZombie(0, Start, offSet, Content);
+            Enemies.AddAZombie(0, Start, offSet, Content);
             DisplayTimer = new Stopwatch();
         }
         public override bool UpdateLvlScreen(int SizeOfSquare, Screen screen, ContentManager Content)
@@ -250,7 +255,6 @@ namespace ActualGame
                             break;
                         case 0:
                             OneToAdd = new Dart(MousePosition, Content, new Vector2(15, 15), screen, 4, new Position(-1, -1), 5, 50, 1500, 50, 50, 3);
-
                             MousePressed = true;
                             break;
                         case 1:
@@ -258,6 +262,8 @@ namespace ActualGame
                             MousePressed = true;
                             break;
                         case 2:
+                            OneToAdd = new Bomb(screen,new Position(-1,-1),3,10,100,2500,100,3,150,Content,MousePosition,new Vector2(15,15));
+                            MousePressed = true;
                             break;
                         case 3:
                             break;
@@ -298,6 +304,8 @@ namespace ActualGame
                                             spike.CreateAllBullets(Content);
                                             break;
                                         case TypeOfMonkey.BombMonk:
+                                            Bomb bomb = (Bomb)OneToAdd;
+                                            bomb.TheBomb.Position = bomb.sprite.Position;
                                             break;
                                         case TypeOfMonkey.IceMonk:
                                             break;
@@ -322,7 +330,7 @@ namespace ActualGame
             }
             return true;
         }
-        public override void DrawLvlScreen(SpriteBatch spriteBatch, ContentManager Content)
+        public override void DrawLvlScreen(SpriteBatch spriteBatch, ContentManager Content,GameTime gameTime, Screen screen)
         {
             if (DisplayTimer.ElapsedMilliseconds < 2000)
             {
@@ -343,11 +351,11 @@ namespace ActualGame
             }
             if (OneToAdd != null)
             {
-                OneToAdd.Draw(spriteBatch);
+                OneToAdd.Draw(spriteBatch,gameTime, screen);
             }
             SideScreen.Draw(spriteBatch, Content);
             Enemies.DrawAllZombies(spriteBatch);
-            allMonkeys.DrawAllMonkeys(spriteBatch);
+            allMonkeys.DrawAllMonkeys(spriteBatch,gameTime, screen);
         }
     }
 }

@@ -41,9 +41,9 @@ namespace ActualGame
             }
             return MoveOn;
         }
-        public void DrawLevel(SpriteBatch sprite, ContentManager content)
+        public void DrawLevel(SpriteBatch sprite, ContentManager content,GameTime gameTime, Screen screen)
         {
-            LevelsDictionary[LevelIndex].DrawLvlScreen(sprite, content);
+            LevelsDictionary[LevelIndex].DrawLvlScreen(sprite, content,gameTime,screen);
         }
     }
 }

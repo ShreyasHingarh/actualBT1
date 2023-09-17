@@ -23,6 +23,6 @@ namespace ActualGame
             Enemies = new AllEnemies(Start, offSet, Content);
         }
         public abstract bool UpdateLvlScreen(int SizeOfSquare, Screen screen, ContentManager Content);
-        public abstract void DrawLvlScreen(SpriteBatch spriteBatch, ContentManager Content);
+        public abstract void DrawLvlScreen(SpriteBatch spriteBatch, ContentManager Content,GameTime gameTime, Screen screen);
     }
 }

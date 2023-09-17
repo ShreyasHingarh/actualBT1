@@ -56,11 +56,11 @@ namespace ActualGame
                 item.CooldownAndCostAndLvl.Item1 *= 2;
             }
         }
-        public void DrawAllMonkeys(SpriteBatch spriteB)
+        public void DrawAllMonkeys(SpriteBatch spriteB,GameTime gameTime, Screen screen)
         {
             foreach(var item in Monkeys)
             {
-                item.Draw(spriteB);
+                item.Draw(spriteB,gameTime,screen);
             }
         }
     }

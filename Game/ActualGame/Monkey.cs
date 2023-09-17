@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using System;
@@ -95,6 +96,6 @@ namespace ActualGame
             return true;
         }
         public abstract bool Update(ref List<Zombie> Zombies);
-        public abstract void Draw(SpriteBatch sprite);
+        public abstract void Draw(SpriteBatch sprite, GameTime gameTime, Screen screen);
     }
 }
