@@ -32,7 +32,6 @@ namespace ActualGame
                 List<Zombie> zombieList = new List<Zombie>();
                 foreach(var square in item.RangeSquares)
                 {
-                    //square.Sprite.Tint = Color.White;
                     if (!square.DoesContainZombie) continue;
                     zombieList.Add(square.OneContained);
                 }

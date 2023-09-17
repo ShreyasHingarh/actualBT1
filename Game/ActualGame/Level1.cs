@@ -39,8 +39,11 @@ namespace ActualGame
             Enemies.AddAZombie(0, Start, offSet, Content);
 
             Enemies.AddAZombie(0, Start, offSet, Content);
+
             Enemies.AddAZombie(0, Start, offSet, Content);
+
             Enemies.AddAZombie(0, Start, offSet, Content);
+
             Enemies.AddAZombie(0, Start, offSet, Content);
             DisplayTimer = new Stopwatch();
         }

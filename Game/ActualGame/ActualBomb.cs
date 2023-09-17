@@ -72,7 +72,6 @@ namespace ActualGame
             {
                 for (int x = 0; x < indexX; x++)
                 {
-                    screen.Map[CurrentPos.Y, CurrentPos.X].Sprite.Tint = Color.Red;
                     BombRange.Add(screen.Map[CurrentPos.Y, CurrentPos.X]);
                     CurrentPos.X++;
                     if (CurrentPos.X == screen.Map.GetLength(0)) break;

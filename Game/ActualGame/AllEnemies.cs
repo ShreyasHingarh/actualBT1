@@ -35,7 +35,7 @@ namespace ActualGame
         }
         public void AddAZombie(int Level, ScreenSquare Start, int offSet, ContentManager Content)
         {
-            Zombies.Add(new Zombie(Level, new Vector2(Start.Sprite.Position.X * Start.Sprite.Image.Width + offSet, Start.Sprite.Position.Y * Start.Sprite.Image.Width + offSet),
+            Zombies.Add(new Zombie(Level, new Vector2(Start.Sprite.Position.X +offSet, Start.Sprite.Position.Y + offSet),
                 Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
                 , Vector2.One, path));
         }
@@ -59,7 +59,6 @@ namespace ActualGame
             if (Zombies.Count == 0) return true;
             Zombie Prev = Zombies[0];
             int index = 0;
-            
             for(int i = 0;i < Zombies.Count;i++)
             {
                 if (Zombies[i].Health <= 0)
@@ -77,8 +76,10 @@ namespace ActualGame
                     }
                     continue;
                 }
-                if (index != 0 && !Prev.HasLerpedOnce) continue;
-
+                if (index != 0 && !Prev.HasLerpedOnce) //Controls moving in suconly when the previous has moved
+                {
+                    continue;
+                }
                 if(!Zombies[i].MoveEnemyAlongPathOnce(SizeOfSquare, offset,screen))//Only handles when the zombies go off screen no killing involved
                 {
                     Zombies.Remove(Zombies[i]);

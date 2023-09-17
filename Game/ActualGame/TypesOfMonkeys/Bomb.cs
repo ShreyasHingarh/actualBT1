@@ -57,8 +57,8 @@ namespace ActualGame.TypesOfMonkeys
                         TheBomb.stopwatch = TimeSpan.Zero;
                         TheBomb.GridPosition = new Position((sbyte)(Targets[0].Position.X / 30), (sbyte)(Targets[0].Position.Y / 30));
                         TheBomb.BombRange.Clear();
-                        TheBomb.AddRange(screen,3);
-                        TheBomb.Scale = new Vector2(1.75f, 1.75f);
+                        TheBomb.AddRange(screen,1);
+                        TheBomb.Scale = new Vector2(2f, 2f);
                         HasLerped = true;
                     }
                 }
@@ -66,12 +66,12 @@ namespace ActualGame.TypesOfMonkeys
                 {
                     TheBomb.Scale = Vector2.One;
                     ShouldFire = false;
-                    TheBomb.Position = sprite.Position;
-                    foreach(var square in TheBomb.BombRange)
+                    foreach (var square in TheBomb.BombRange)
                     {
                         if (!square.DoesContainZombie) continue;
                         square.OneContained.Health -= DamageAndCostAndLvl.Item1;
                     }
+                    TheBomb.Position = sprite.Position;
                 }
             }
             sprite.Draw(spriteB);

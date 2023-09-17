@@ -69,6 +69,9 @@ namespace ActualGame
         {
             if (currentPosition + 1 == Path.Length) return false;
             Position NextSquare = Path[currentPosition+1];
+
+            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].DoesContainZombie = true;
+            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].OneContained = this;
             if (LerpAmount < 1f)
             {
                 Position = Vector2.Lerp(PreviousPosition, new Vector2(NextSquare.X * SizeOfSquare + offSet, NextSquare.Y * SizeOfSquare + offSet), LerpAmount);
@@ -78,8 +81,6 @@ namespace ActualGame
             screen.Map[Path[currentPosition].Y, Path[currentPosition].X].DoesContainZombie = false;
             screen.Map[Path[currentPosition].Y, Path[currentPosition].X].OneContained = null;
             currentPosition += 1;
-            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].DoesContainZombie = true;
-            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].OneContained = this;
             LerpAmount = 0f;
             HasLerpedOnce = true;
             PreviousPosition = Position;
