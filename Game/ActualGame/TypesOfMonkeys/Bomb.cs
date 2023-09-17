@@ -57,7 +57,7 @@ namespace ActualGame.TypesOfMonkeys
                         TheBomb.stopwatch = TimeSpan.Zero;
                         TheBomb.GridPosition = new Position((sbyte)(Targets[0].Position.X / 30), (sbyte)(Targets[0].Position.Y / 30));
                         TheBomb.BombRange.Clear();
-                        TheBomb.AddRange(screen,5);
+                        TheBomb.AddRange(screen,3);
                         TheBomb.Scale = new Vector2(1.75f, 1.75f);
                         HasLerped = true;
                     }
