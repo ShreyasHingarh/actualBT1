@@ -16,7 +16,7 @@ namespace ActualGame
         public Frames CurrentFrame { get; set; }
         public List<Frames> Frames { get; set; }
         public TimeSpan stopwatch;
-        TimeSpan compare = TimeSpan.FromMilliseconds(50);
+        TimeSpan compare = TimeSpan.FromMilliseconds(30);
         public AnimatedSpriteClass(Color tint, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale) 
             : base(tint, position, image, rotation, origin, scale)
         {

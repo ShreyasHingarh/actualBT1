@@ -13,9 +13,11 @@ namespace ActualGame
     {
         public List<ScreenSquare> BombRange;
         public Position GridPosition;
+        public int RangeSize;
         public ActualBomb(Color tint, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale)
             : base(tint, position, image, rotation, origin, scale)
         {
+            RangeSize = 1;
             BombRange = new List<ScreenSquare>();
             Frames = new List<Frames>()
             {
@@ -33,24 +35,10 @@ namespace ActualGame
                 new Frames(29,64,1,1,  new Vector2(0,0)),
             };
         }
-        public void AddRange(Screen screen,int RangeSize)
+        public void AddRange(Screen screen)
         {
             if (GridPosition.X == -1 && GridPosition.Y == -1) return;
-            //Make it a diamond range.
-            /*
-             * if (GridPosition.X == -1 && GridPosition.Y == -1) return;
-            Position CurrentPosition = new Position(GridPosition.X, GridPosition.Y);
-            ScreenSquare Current = screen.Map[GridPosition.Y,GridPosition.X];
-            Stack<ScreenSquare> screenSquares = new Stack<ScreenSquare>();
-            screenSquares.Push(Current);
-            List<ScreenSquare> OnesToAdd = new List<ScreenSquare>();
-            int currentSize = 0;
-            //Create the 
-            while(screenSquares != null && currentSize <= RangeSize)
-            {
-
-            }
-             */
+            
             Position CurrentPos = new Position(GridPosition.X, GridPosition.Y);
             //Gets Top Left
             int indexX = 0;

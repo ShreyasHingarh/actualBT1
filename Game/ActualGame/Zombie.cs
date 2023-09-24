@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace ActualGame
 {
@@ -41,22 +42,26 @@ namespace ActualGame
         float LerpAmount;
         public int Level;
         public float LerpIncrement;
-
+        public int MaxFrozenTime;
+        public Stopwatch FrozenTimer;
         public Position[] Path;
         public int Health;
         public int currentPosition;
         public bool HasLerpedOnce;
         Vector2 PreviousPosition;
+        Texture2D OriginalZombieImage;
         public Zombie(int level, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale, Position[] locations,Rectangle? sourceRec = null) 
             : base(LevelToTintColor[level], position, image, rotation, origin, scale, sourceRec)
         {
+            OriginalZombieImage = image;
             Level = level;
             HasLerpedOnce = false;
             Path = locations.Reverse().ToArray();
             Health = LevelToHealth[level];
             currentPosition = 0;
             LerpAmount = 0f;
-            LerpIncrement = 0.03f;
+            LerpIncrement = 0.04f;
+            FrozenTimer = new Stopwatch();
             PreviousPosition = Position;
         }
         public void UpdateLevel()
@@ -65,9 +70,15 @@ namespace ActualGame
             Tint = LevelToTintColor[Level];
             Health = LevelToHealth[Level];
         }
-        public  bool MoveEnemyAlongPathOnce(int SizeOfSquare, int offSet, Screen screen)
+        public bool MoveEnemyAlongPathOnce(int SizeOfSquare, int offSet, Screen screen)
         {
             if (currentPosition + 1 == Path.Length) return false;
+            if(FrozenTimer.ElapsedMilliseconds >= MaxFrozenTime)
+            {
+                FrozenTimer.Stop();
+                LerpIncrement *= 2;
+                Image = OriginalZombieImage;
+            }
             Position NextSquare = Path[currentPosition+1];
 
             screen.Map[Path[currentPosition].Y, Path[currentPosition].X].DoesContainZombie = true;

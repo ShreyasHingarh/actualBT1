@@ -45,6 +45,24 @@ namespace ActualGame
             Enemies.AddAZombie(0, Start, offSet, Content);
 
             Enemies.AddAZombie(0, Start, offSet, Content);
+            Enemies.AddAZombie(0, Start, offSet, Content);
+
+            Enemies.AddAZombie(0, Start, offSet, Content);
+
+            Enemies.AddAZombie(0, Start, offSet, Content);
+
+            Enemies.AddAZombie(0, Start, offSet, Content);
+
+            Enemies.AddAZombie(0, Start, offSet, Content);
+            Enemies.AddAZombie(0, Start, offSet, Content);
+
+            Enemies.AddAZombie(0, Start, offSet, Content);
+
+            Enemies.AddAZombie(0, Start, offSet, Content);
+
+            Enemies.AddAZombie(0, Start, offSet, Content);
+
+            Enemies.AddAZombie(0, Start, offSet, Content);
             DisplayTimer = new Stopwatch();
         }
         public override bool UpdateLvlScreen(int SizeOfSquare, Screen screen, ContentManager Content)
@@ -234,6 +252,79 @@ namespace ActualGame
                         }
                         break;
                     case TypeOfMonkey.BombMonk:
+                        Bomb bomb = (Bomb)SideScreen.OneClicked;
+
+                        if (Mouse.GetState().LeftButton == ButtonState.Released)
+                        {
+                            hasClicked = false;
+                        }
+                        if (!hasClicked && SideScreen.UpRange.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            if (!bomb.IncreaseRangeOfBomb(ref SideScreen.Money, bomb.UpgradeCostandLevel.Item1, screen,Content))
+                            {
+                                if (bomb.UpgradeCostandLevel.Item2 == bomb.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
+                            hasClicked = true;
+                        }
+                        else if (!hasClicked && SideScreen.UpDamage.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            if (!bomb.UpgradeDamage(ref SideScreen.Money, 5, bomb.DamageAndCostAndLvl.Item2))
+                            {
+                                if (bomb.DamageAndCostAndLvl.Item3 == bomb.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
+                            hasClicked = true;
+                        }
+                        else if (!hasClicked && SideScreen.UpCooldown.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            int CooldownDecrement = 300;
+                            if (SideScreen.SpeedUp) CooldownDecrement = 150;
+                            if (!bomb.UpgradeCooldown(ref SideScreen.Money, CooldownDecrement, bomb.CooldownAndCostAndLvl.Item2))
+                            {
+                                if (bomb.CooldownAndCostAndLvl.Item3 == bomb.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
+                            hasClicked = true;
+                        }
+                        else if (SideScreen.Home.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            hasClicked = false;
+                            SideScreen.OneClicked = null;
+                            ShouldUpgrade = false;
+                        }
+                        else if (SideScreen.Remove.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            hasClicked = false;
+                            SideScreen.Money += SideScreen.OneClicked.RemoveCost;
+                            allMonkeys.Monkeys.Remove(SideScreen.OneClicked);
+                            SideScreen.OneClicked = null;
+                            ShouldUpgrade = false;
+                        }
                         break;
                     case TypeOfMonkey.IceMonk:
                         break;
@@ -265,7 +356,7 @@ namespace ActualGame
                             MousePressed = true;
                             break;
                         case 2:
-                            OneToAdd = new Bomb(screen,new Position(-1,-1),3,10,100,2500,100,3,150,Content,MousePosition,new Vector2(15,15));
+                            OneToAdd = new Bomb(screen,new Position(-1,-1),3,10,100,2750,100,3,150,Content,MousePosition,new Vector2(15,15));
                             MousePressed = true;
                             break;
                         case 3:
@@ -308,7 +399,7 @@ namespace ActualGame
                                             break;
                                         case TypeOfMonkey.BombMonk:
                                             Bomb bomb = (Bomb)OneToAdd;
-                                            bomb.TheBomb.Position = bomb.sprite.Position;
+                                            bomb.TheBomb1.Position = bomb.sprite.Position;
                                             break;
                                         case TypeOfMonkey.IceMonk:
                                             break;

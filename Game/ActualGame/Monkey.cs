@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,8 @@ namespace ActualGame
         public int AddCost;
         public int RemoveCost;
         public int MaxUpgradeLvl;
+        public Stopwatch FiringTimer;
+        public bool ShouldFire = false;
         public Monkey(Screen screen, TypeOfMonkey type, Position gridpos, int baseRange,
             int baseDamage, int baseDamageUpgradeCost, int baseCooldown, int baseCooldownUpgradeCost, int MaxLvl, int addCost)
         {
@@ -41,6 +44,8 @@ namespace ActualGame
             AddRange(screen);
             DamageAndCostAndLvl = (baseDamage, baseDamageUpgradeCost, 0);
             CooldownAndCostAndLvl = (baseCooldown, baseCooldownUpgradeCost, 0);
+            FiringTimer = new Stopwatch();
+            FiringTimer.Start();
         }
         public void AddRange(Screen screen)
         {
@@ -75,6 +80,7 @@ namespace ActualGame
                 if (CurrentPos.Y == screen.Map.GetLength(1)) break;
             }
         }
+
         public bool UpgradeDamage(ref int Money, int Increment, int CostIncrement)
         {
             if (DamageAndCostAndLvl.Item2 >= Money || DamageAndCostAndLvl.Item3 == MaxUpgradeLvl) return false;

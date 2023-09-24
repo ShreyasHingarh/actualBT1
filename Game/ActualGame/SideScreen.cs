@@ -30,7 +30,8 @@ namespace ActualGame
         public Sprite PauseButton;
         public Sprite SpeedUpButton;
         public Sprite SpeedDownButton;
-
+        public Sprite BombRangeButton;
+        public Sprite AddBombButton;
         public bool HasStarted;
         public bool SpeedUp;
         public (Sprite,int,TypeOfMonkey)[] MonkeyAddAndCost;
@@ -50,7 +51,8 @@ namespace ActualGame
             PauseButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 650), Content.Load<Texture2D>("PauseButton"), 0, Vector2.Zero, Vector2.One);
             SpeedUpButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 710), Content.Load<Texture2D>("SpeedButton"), 0, Vector2.Zero, Vector2.One);
             SpeedDownButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 710), Content.Load<Texture2D>("SlowButton"), 0, Vector2.Zero, Vector2.One);
-
+            BombRangeButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 340), Content.Load<Texture2D>("upgradeBombRangeButton"), 0, Vector2.Zero, Vector2.One);
+            AddBombButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 340), Content.Load<Texture2D>("AddABombButton"), 0, Vector2.Zero, Vector2.One);
             HasStarted = false;
             MonkeyAddAndCost = new (Sprite, int, TypeOfMonkey)[]
             {
@@ -194,6 +196,15 @@ namespace ActualGame
                         sprite.DrawString(Font, $"Lvl: {bomb.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.Position.Y + UpCooldown.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         UpDamage.Draw(sprite);
                         sprite.DrawString(Font, $"Lvl: {bomb.DamageAndCostAndLvl.Item3}", new Vector2(890, UpDamage.Position.Y + UpDamage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        if(bomb.UpgradeCostandLevel.Item2 == 1)
+                        {
+                            AddBombButton.Draw(sprite);
+                        }
+                        else
+                        {
+                            BombRangeButton.Draw(sprite);
+                        }
+                        sprite.DrawString(Font, $"Lvl: {bomb.UpgradeCostandLevel.Item2}", new Vector2(890, AddBombButton.Position.Y + AddBombButton.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         Home.Draw(sprite);
                         Remove.Draw(sprite);
                         break;

@@ -16,9 +16,7 @@ namespace ActualGame.TypesOfMonkeys
     internal class Dart : Monkey
     {
         public (int, int) IncreaseRangeCostAndLvl;
-        Stopwatch FiringTimer;
         public Bullet Bullet;
-        bool ShouldFire;
         List<Zombie> zombies;
         List<bool> Bools;
         int total = 0;
@@ -29,11 +27,8 @@ namespace ActualGame.TypesOfMonkeys
             IncreaseRangeCostAndLvl = (baseRangeCost, 0);
             RemoveCost = 50;
             Bullet = new Bullet(new Sprite(Color.White, Position, Content.Load<Texture2D>("Dart"),0,Origin,Vector2.One),0.1f,Vector2.Zero);
-            ShouldFire = false;
-            FiringTimer = new Stopwatch();
             sprite = new Sprite(Color.White,Position,Content.Load<Texture2D>("DartMonkey"),0,Origin,Vector2.One);
             Bools = new List<bool>();
-            FiringTimer.Start();
         }
         
         public override void Draw(SpriteBatch spriteb,GameTime gameTime, Screen screen)
