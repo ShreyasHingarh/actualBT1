@@ -76,7 +76,7 @@ namespace ActualGame
             if (currentPosition + 1 == Path.Length) return false;
             if(FrozenTimer.ElapsedMilliseconds >= MaxFrozenTime)
             {
-                FrozenTimer.Stop();
+                FrozenTimer.Reset();
                 LerpIncrement *= 2;
                 Image = OriginalZombieImage;
             }

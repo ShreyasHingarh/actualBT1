@@ -21,18 +21,18 @@ namespace ActualGame
         public SpriteFont Font;
         
         Texture2D Border;
-        public Sprite UpCooldown;
-        public Sprite UpDamage;
-        public Sprite UpRange;
-        public Sprite Home;
-        public Sprite Remove;
-        public Sprite StartButton;
-        public Sprite PauseButton;
-        public Sprite SpeedUpButton;
-        public Sprite SpeedDownButton;
-        public Sprite BombRangeButton;
-        public Sprite AddBombButton;
-        public Sprite UpIce;
+        public Button UpCooldown;
+        public Button UpDamage;
+        public Button UpRange;
+        public Button Home;
+        public Button Remove;
+        public Button StartButton;
+        public Button PauseButton;
+        public Button SpeedUpButton;
+        public Button SpeedDownButton;
+        public Button BombRangeButton;
+        public Button AddBombButton;
+        public Button UpIce;
         public bool HasStarted;
         public bool SpeedUp;
         public (Sprite,int,TypeOfMonkey)[] MonkeyAddAndCost;
@@ -43,23 +43,24 @@ namespace ActualGame
             HasClicked = false;
             Font = Content.Load<SpriteFont>("File");
             Border = Content.Load<Texture2D>("Border");
-            Remove = new Sprite(Color.BlanchedAlmond,new Vector2(860,460),Content.Load<Texture2D>("PopeCoinRemove"),0,Vector2.Zero,Vector2.One);
-            Home = new Sprite(Color.BlanchedAlmond, new Vector2(880,400),Content.Load<Texture2D>("Home"),0,Vector2.Zero,Vector2.One);
-            UpCooldown = new Sprite(Color.BlanchedAlmond, new Vector2(810, 220),Content.Load<Texture2D>("upgradeCoolDownButton"),0,Vector2.Zero,Vector2.One);
-            UpDamage = new Sprite(Color.BlanchedAlmond, new Vector2(810, 280), Content.Load<Texture2D>("upgradeDamageButton"), 0, Vector2.Zero, Vector2.One);
-            UpRange = new Sprite(Color.BlanchedAlmond, new Vector2(810, 340),Content.Load<Texture2D>("upgradeRangeButton"),0,Vector2.Zero,Vector2.One);
-            StartButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 650), Content.Load<Texture2D>("StartButton"), 0, Vector2.Zero, Vector2.One);
-            PauseButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 650), Content.Load<Texture2D>("PauseButton"), 0, Vector2.Zero, Vector2.One);
-            SpeedUpButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 710), Content.Load<Texture2D>("SpeedButton"), 0, Vector2.Zero, Vector2.One);
-            SpeedDownButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 710), Content.Load<Texture2D>("SlowButton"), 0, Vector2.Zero, Vector2.One);
-            BombRangeButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 340), Content.Load<Texture2D>("upgradeBombRangeButton"), 0, Vector2.Zero, Vector2.One);
-            AddBombButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 340), Content.Load<Texture2D>("AddABombButton"), 0, Vector2.Zero, Vector2.One);
-            UpIce = new Sprite(Color.BlanchedAlmond, new Vector2(810, 280), Content.Load<Texture2D>("UpgradeIce"), 0, Vector2.Zero, Vector2.One);
+            Texture2D Button = Content.Load<Texture2D>("Button");
+            Remove = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(860, 460), Content.Load<Texture2D>("PopeCoinRemove"), 0, Vector2.Zero, Vector2.One), "");
+            Home = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(880,400),Content.Load<Texture2D>("Home"),0,Vector2.Zero,Vector2.One), "");
+            UpCooldown = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(810, 220),Button,0,Vector2.Zero,Vector2.One),"Upgrade Cooldown");
+            UpDamage = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(810, 280), Button, 0, Vector2.Zero, Vector2.One),"Upgrade Damage");
+            UpRange = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(810, 340),Button,0,Vector2.Zero,Vector2.One),"UpgradeRange");
+            StartButton = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(810, 650), Content.Load<Texture2D>("StartButton"), 0, Vector2.Zero, Vector2.One),"");
+            PauseButton = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(810, 650), Content.Load<Texture2D>("PauseButton"), 0, Vector2.Zero, Vector2.One),"");
+            SpeedUpButton = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(810, 710), Content.Load<Texture2D>("SpeedButton"), 0, Vector2.Zero, Vector2.One),"");
+            SpeedDownButton = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(810, 710), Content.Load<Texture2D>("SlowButton"), 0, Vector2.Zero, Vector2.One),"");
+            BombRangeButton = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(810, 340), Button, 0, Vector2.Zero, Vector2.One),"Upgrade Bomb Range");
+            AddBombButton = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(810, 340), Button, 0, Vector2.Zero, Vector2.One),"Add A Bomb");
+            UpIce = new Button(new Sprite(Color.BlanchedAlmond, new Vector2(810, 280), Button, 0, Vector2.Zero, Vector2.One),"Upgrade Ice");
             HasStarted = false;
             MonkeyAddAndCost = new (Sprite, int, TypeOfMonkey)[]
             {
                 (new Sprite(Color.White, new Vector2(880, 200),Content.Load<Texture2D>("Monkey"),0,Vector2.Zero,new Vector2(2,2)),100,TypeOfMonkey.DartMonk),   
-                (new Sprite(Color.White, new Vector2(860, 280),Content.Load<Texture2D>("IceMonkey"),0,Vector2.Zero,new Vector2(2,2)),125,TypeOfMonkey.IceMonk),
+                (new Sprite(Color.White, new Vector2(880, 280),Content.Load<Texture2D>("IceMonkey"),0,Vector2.Zero,new Vector2(2,2)),125,TypeOfMonkey.IceMonk),
                 (new Sprite(Color.White, new Vector2(880, 360),Content.Load<Texture2D>("BombMonkey"),0,Vector2.Zero,new Vector2(2,2)),150,TypeOfMonkey.BombMonk),
                 (new Sprite(Color.White, new Vector2(880, 440),Content.Load<Texture2D>("KirboSpike"),0,Vector2.Zero,new Vector2(2,2)),150,TypeOfMonkey.SpikeMonk)
             };
@@ -69,13 +70,13 @@ namespace ActualGame
         }
         public int CheckSpeedButton(Vector2 MousePosition)
         {
-            if (!HasClicked && !SpeedUp && SpeedUpButton.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            if (!HasClicked && !SpeedUp && SpeedUpButton.HasPressed(MousePosition))
             {
                 HasClicked = true;
                 SpeedUp = true;
                 return 1;
             }
-            else if(!HasClicked && SpeedDownButton.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            else if(!HasClicked && SpeedDownButton.HasPressed(MousePosition))
             {
                 HasClicked = true;
                 SpeedUp = false;
@@ -89,12 +90,12 @@ namespace ActualGame
         }
         public void CheckStartButton(Vector2 MousePosition)
         {
-            if(!HasClicked && !HasStarted && StartButton.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            if(!HasClicked && !HasStarted && StartButton.HasPressed(MousePosition))
             {
                 HasClicked = true;
                 HasStarted = true;
             }
-            else if (!HasClicked && PauseButton.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+            else if (!HasClicked && PauseButton.HasPressed(MousePosition))
             {
                 HasClicked = true;
                 HasStarted = false;
@@ -109,7 +110,6 @@ namespace ActualGame
             Vector2 MousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             foreach(var item in MonkeyAddAndCost)
             {
-                
                 if (item.Item1.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
                     if (item.Item2 > Money)
@@ -140,19 +140,19 @@ namespace ActualGame
             sprite.Draw(Border, new Vector2(810, 600), Color.White);
             if(HasStarted)
             {
-                PauseButton.Draw(sprite);
+                PauseButton.DrawButton(sprite,Content,new Vector2(PauseButton.BaseImage.Position.X + 10,PauseButton.BaseImage.Position.Y + 10));
             }
             else
             {
-                StartButton.Draw(sprite);
+                StartButton.DrawButton(sprite, Content, new Vector2(StartButton.BaseImage.Position.X + 10, StartButton.BaseImage.Position.Y + 10));
             }
             if(SpeedUp)
             {
-                SpeedDownButton.Draw(sprite);
+                SpeedDownButton.DrawButton(sprite, Content, new Vector2(SpeedDownButton.BaseImage.Position.X + 10, SpeedDownButton.BaseImage.Position.Y + 10));
             }
             else
             {
-                SpeedUpButton.Draw(sprite);
+                SpeedUpButton.DrawButton(sprite, Content, new Vector2(SpeedUpButton.BaseImage.Position.X + 10, SpeedUpButton.BaseImage.Position.Y + 10));
             }
             if (OneClicked == null)
             {
@@ -169,58 +169,58 @@ namespace ActualGame
                 {
                     case TypeOfMonkey.DartMonk:
                         Dart dart = (Dart)OneClicked;
-                        UpCooldown.Draw(sprite); 
-                        sprite.DrawString(Font, $"Lvl: {dart.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.Position.Y + UpCooldown.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
-                        UpDamage.Draw(sprite);
-                        sprite.DrawString(Font, $"Lvl: {dart.DamageAndCostAndLvl.Item3}", new Vector2(890, UpDamage.Position.Y + UpDamage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
-                        UpRange.Draw(sprite);
-                        sprite.DrawString(Font, $"Lvl: {dart.IncreaseRangeCostAndLvl.Item2}", new Vector2(890, UpRange.Position.Y + UpRange.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpCooldown.DrawButton(sprite, Content, new Vector2(UpCooldown.BaseImage.Position.X + 10, UpCooldown.BaseImage.Position.Y + 10)); 
+                        sprite.DrawString(Font, $"Lvl: {dart.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.BaseImage.Position.Y + UpCooldown.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpDamage.DrawButton(sprite, Content, new Vector2(UpDamage.BaseImage.Position.X + 10, UpDamage.BaseImage.Position.Y + 10));
+                        sprite.DrawString(Font, $"Lvl: {dart.DamageAndCostAndLvl.Item3}", new Vector2(890, UpDamage.BaseImage.Position.Y + UpDamage.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpRange.DrawButton(sprite, Content, new Vector2(UpRange.BaseImage.Position.X + 10, UpRange.BaseImage.Position.Y + 10));
+                        sprite.DrawString(Font, $"Lvl: {dart.IncreaseRangeCostAndLvl.Item2}", new Vector2(890, UpRange.BaseImage.Position.Y + UpRange.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         break;
                     case TypeOfMonkey.SpikeMonk:
                         Spike spike = (Spike)OneClicked;
-                        UpCooldown.Draw(sprite);
-                        sprite.DrawString(Font, $"Lvl: {spike.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.Position.Y + UpCooldown.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
-                        UpDamage.Draw(sprite);
-                        sprite.DrawString(Font, $"Lvl: {spike.DamageAndCostAndLvl.Item3}", new Vector2(890, UpDamage.Position.Y + UpDamage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
-                        UpRange.Draw(sprite);
-                        sprite.DrawString(Font, $"Lvl: {spike.IncreaseRangeCostAndLvl.Item2}", new Vector2(890, UpRange.Position.Y + UpRange.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpCooldown.DrawButton(sprite, Content, new Vector2(UpCooldown.BaseImage.Position.X + 10, UpCooldown.BaseImage.Position.Y + 10));
+                        sprite.DrawString(Font, $"Lvl: {spike.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.BaseImage.Position.Y + UpCooldown.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpDamage.DrawButton(sprite, Content, new Vector2(UpDamage.BaseImage.Position.X + 10, UpDamage.BaseImage.Position.Y + 10));
+                        sprite.DrawString(Font, $"Lvl: {spike.DamageAndCostAndLvl.Item3}", new Vector2(890, UpDamage.BaseImage.Position.Y + UpDamage.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpRange.DrawButton(sprite, Content, new Vector2(UpRange.BaseImage.Position.X + 10, UpRange.BaseImage.Position.Y + 10));
+                        sprite.DrawString(Font, $"Lvl: {spike.IncreaseRangeCostAndLvl.Item2}", new Vector2(890, UpRange.BaseImage.Position.Y + UpRange.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         break;
                     case TypeOfMonkey.BombMonk:
                         Bomb bomb = (Bomb)OneClicked;
-                        UpCooldown.Draw(sprite);
-                        sprite.DrawString(Font, $"Lvl: {bomb.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.Position.Y + UpCooldown.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
-                        UpDamage.Draw(sprite);
-                        sprite.DrawString(Font, $"Lvl: {bomb.DamageAndCostAndLvl.Item3}", new Vector2(890, UpDamage.Position.Y + UpDamage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpCooldown.DrawButton(sprite, Content, new Vector2(UpCooldown.BaseImage.Position.X + 10, UpCooldown.BaseImage.Position.Y + 10));
+                        sprite.DrawString(Font, $"Lvl: {bomb.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.BaseImage.Position.Y + UpCooldown.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpDamage.DrawButton(sprite, Content, new Vector2(UpDamage.BaseImage.Position.X + 10, UpDamage.BaseImage.Position.Y + 10));
+                        sprite.DrawString(Font, $"Lvl: {bomb.DamageAndCostAndLvl.Item3}", new Vector2(890, UpDamage.BaseImage.Position.Y + UpDamage.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         if(bomb.UpgradeCostandLevel.Item2 == 1)
                         {
-                            AddBombButton.Draw(sprite);
+                            AddBombButton.DrawButton(sprite, Content, new Vector2(AddBombButton.BaseImage.Position.X + 10, AddBombButton.BaseImage.Position.Y + 10));
                         }
                         else
                         {
-                            BombRangeButton.Draw(sprite);
+                            BombRangeButton.DrawButton(sprite, Content, new Vector2(BombRangeButton.BaseImage.Position.X + 10, BombRangeButton.BaseImage.Position.Y + 10));
                         }
-                        sprite.DrawString(Font, $"Lvl: {bomb.UpgradeCostandLevel.Item2}", new Vector2(890, AddBombButton.Position.Y + AddBombButton.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        sprite.DrawString(Font, $"Lvl: {bomb.UpgradeCostandLevel.Item2}", new Vector2(890, AddBombButton.BaseImage.Position.Y + AddBombButton.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         break;
                     case TypeOfMonkey.IceMonk:
                         Ice ice = (Ice)OneClicked;
-                        UpCooldown.Draw(sprite);
-                        sprite.DrawString(Font, $"Lvl: {ice.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.Position.Y + UpCooldown.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
-                        UpRange.Draw(sprite);
-                        sprite.DrawString(Font, $"Lvl: {ice.IncreaseRangeCostAndLvl.Item2}", new Vector2(890, UpRange.Position.Y + UpRange.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpCooldown.DrawButton(sprite, Content, new Vector2(UpCooldown.BaseImage.Position.X + 10, UpCooldown.BaseImage.Position.Y + 10));
+                        sprite.DrawString(Font, $"Lvl: {ice.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.BaseImage.Position.Y + UpCooldown.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpRange.DrawButton(sprite, Content, new Vector2(UpRange.BaseImage.Position.X + 10, UpRange.BaseImage.Position.Y + 10));
+                        sprite.DrawString(Font, $"Lvl: {ice.IncreaseRangeCostAndLvl.Item2}", new Vector2(890, UpRange.BaseImage.Position.Y + UpRange.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         if(ice.FrozenUpgradeCostandLvl.Item2 == 2)
                         {
-                            UpDamage.Draw(sprite);
+                            UpDamage.DrawButton(sprite, Content, new Vector2(UpDamage.BaseImage.Position.X + 10, UpDamage.BaseImage.Position.Y + 10));
                         }
                         else
                         {
-                            UpIce.Draw(sprite);
+                            UpIce.DrawButton(sprite, Content, new Vector2(UpIce.BaseImage.Position.X + 10, UpIce.BaseImage.Position.Y + 10));
                         }
-                        sprite.DrawString(Font, $"Lvl: {ice.FrozenUpgradeCostandLvl.Item2}", new Vector2(890, UpIce.Position.Y + UpIce.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        sprite.DrawString(Font, $"Lvl: {ice.FrozenUpgradeCostandLvl.Item2}", new Vector2(890, UpIce.BaseImage.Position.Y + UpIce.BaseImage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         
                         break;
                 }
-                Home.Draw(sprite);
-                Remove.Draw(sprite);
+                Home.DrawButton(sprite, Content, new Vector2(Home.BaseImage.Position.X + 10, Home.BaseImage.Position.Y + 10));
+                Remove.DrawButton(sprite, Content, new Vector2(Remove.BaseImage.Position.X + 10, Remove.BaseImage.Position.Y + 10));
             }
         }
     }

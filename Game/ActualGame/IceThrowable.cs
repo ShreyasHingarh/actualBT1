@@ -26,20 +26,20 @@ namespace ActualGame
             HasHit = false;
         }
         
-        public int DrawThing(SpriteBatch spriteB, Vector2 Position,int DamageToDeal, ref Zombie zombie, ref bool Bool, Texture2D SlowZombieImage)
+        public int DrawThing(SpriteBatch spriteB, Vector2 Position,int DamageToDeal, ref Zombie zombie, Texture2D SlowZombieImage)
         {
             if (LerpAmount < 1)
             {
-                if(!Bool && zombie.HitBox.Value.Contains(this.Position))
+                Console.WriteLine(zombie.HitBox.Value.Contains(this.Position));
+                if (!HasHit && zombie.HitBox.Value.Contains(new Vector2(this.Position.X + this.Image.Width,this.Position.Y + this.Image.Height)))
                 {
                     zombie.FrozenTimer.Restart();
                     zombie.LerpIncrement /= 2;
                     zombie.Health -= DamageToDeal; 
                     zombie.Image = SlowZombieImage;
-                    Bool = true;
                     HasHit = true;
                 }
-                this.Position = Vector2.Lerp(Position, Target, LerpAmount);
+                this.Position = Vector2.Lerp(this.Position, Target, LerpAmount);
                 LerpAmount += LerpIncrement;
                 Draw(spriteB);
             }

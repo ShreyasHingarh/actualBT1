@@ -37,7 +37,7 @@ namespace ActualGame
         {
             Zombies.Add(new Zombie(Level, new Vector2(Start.Sprite.Position.X +offSet, Start.Sprite.Position.Y + offSet),
                 Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
-                , Vector2.One, path,500));
+                , Vector2.One, path,1000));
         }
         public void IncreaseSpeedOfAllZombies()
         {

@@ -17,7 +17,6 @@ namespace ActualGame.TypesOfMonkeys
         public IceThrowable throwable;
         public (int, int) IncreaseRangeCostAndLvl;
         Zombie Target;
-        bool HasHit;
         int total;
         Texture2D SlowZombie;
         public Ice(Vector2 Position, ContentManager Content, Vector2 Origin, Screen screen, int baseRange
@@ -26,10 +25,10 @@ namespace ActualGame.TypesOfMonkeys
         {
             FrozenUpgradeCostandLvl = (baseFrozenCost,0);
             IncreaseRangeCostAndLvl = (baseRangeCost,0);
-            throwable = new IceThrowable(Position, Content.Load<Texture2D>("Ice"),Origin,0.2f,Vector2.Zero);
+            throwable = new IceThrowable(Position, Content.Load<Texture2D>("Ice"),Origin,0.1f,Vector2.Zero);
             sprite = new Sprite(Color.White,Position, Content.Load<Texture2D>("IceMonkey"),0,Origin,Vector2.One);
             RemoveCost = 150;
-            SlowZombie = Content.Load<Texture2D>("ColdZombie");
+            SlowZombie = Content.Load<Texture2D>("IceZombie");
         }
         public bool IncreaseRangeByOne(ref int Money, int CostIncrement, Screen screen)
         {
@@ -80,7 +79,7 @@ namespace ActualGame.TypesOfMonkeys
             {
                 if (total == 0)
                 {
-                    total += throwable.DrawThing(spriteB, sprite.Position, DamageAndCostAndLvl.Item1, ref Target, ref HasHit,SlowZombie);
+                    total += throwable.DrawThing(spriteB, sprite.Position, DamageAndCostAndLvl.Item1, ref Target,SlowZombie);
                 }
                 if(total == 1)
                 {
@@ -115,7 +114,7 @@ namespace ActualGame.TypesOfMonkeys
                     DamageAndCostAndLvl.Item1 += DamageIncrease;
                     break;
             }
-            IncreaseRangeCostAndLvl.Item2++;
+            FrozenUpgradeCostandLvl.Item2++;
             return true;
         }
         public override bool Update(ref List<Zombie> Zombies)
@@ -124,9 +123,8 @@ namespace ActualGame.TypesOfMonkeys
             if (Zombies == null || FiringTimer.ElapsedMilliseconds < CooldownAndCostAndLvl.Item1) return false;
             FiringTimer.Restart();
             ShouldFire = true;
-            HasHit = false;
             Target = Zombies[0];
-            throwable.Target = new Vector2(Zombies[0].Position.X + sprite.Origin.X, Zombies[0].Position.Y + sprite.Origin.Y);
+            throwable.Target = new Vector2(Zombies[0].Position.X + Zombies[0].Origin.X, Zombies[0].Position.Y + Zombies[0].Origin.Y);
             throwable.Rotation = sprite.Rotation;
             return true;
         }

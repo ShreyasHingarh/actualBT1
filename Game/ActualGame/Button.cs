@@ -24,7 +24,7 @@ namespace ActualGame
         public void DrawButton(SpriteBatch spriteBatch,ContentManager Content,Vector2 Position)
         {
             BaseImage.Draw(spriteBatch);
-            spriteBatch.DrawString(Content.Load<SpriteFont>("Temp"),Text,Position,Color.Black);
+            spriteBatch.DrawString(Content.Load<SpriteFont>("File"),Text,Position,Color.Black,0,Vector2.Zero,0.5f,SpriteEffects.None,0);
         }
     }
 }

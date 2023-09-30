@@ -50,12 +50,10 @@ namespace ActualGame.TypesOfMonkeys
                 if(TheBomb2 != null && WhichBomb)
                 {
                     bomb = TheBomb2;
-                    Console.WriteLine("2");
                     CooldownAndCostAndLvl.Item1 = 500;
                 }
                 else
                 {
-                    Console.WriteLine("1");
                     CooldownAndCostAndLvl.Item1 = OriginalCooldown;
                 }
                 bomb.DrawBomb(spriteB);
