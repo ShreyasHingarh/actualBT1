@@ -68,7 +68,6 @@ namespace ActualGame
         public override bool UpdateLvlScreen(int SizeOfSquare, Screen screen, ContentManager Content)
         {
             if (LevelSwitchTimer.ElapsedMilliseconds > 2000 || SideScreen.Lives <= 0) return false;
-            // Need adding 
             Vector2 MousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             SideScreen.CheckStartButton(MousePosition);
             switch (SideScreen.CheckSpeedButton(MousePosition))
@@ -327,6 +326,79 @@ namespace ActualGame
                         }
                         break;
                     case TypeOfMonkey.IceMonk:
+                        Ice ice = (Ice)SideScreen.OneClicked;
+
+                        if (Mouse.GetState().LeftButton == ButtonState.Released)
+                        {
+                            hasClicked = false;
+                        }
+                        if (!hasClicked && SideScreen.UpIce.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            if (!ice.UpgradeFrozen(ref SideScreen.Money,(int)(0.5f * ice.FrozenUpgradeCostandLvl.Item1),250,10,ref Enemies))
+                            {
+                                if (ice.FrozenUpgradeCostandLvl.Item2 == ice.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
+                            hasClicked = true;
+                        }
+                        else if (!hasClicked && SideScreen.UpRange.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            if (!ice.IncreaseRangeByOne(ref SideScreen.Money,ice.IncreaseRangeCostAndLvl.Item1/2,screen))
+                            {
+                                if (ice.DamageAndCostAndLvl.Item3 == ice.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
+                            hasClicked = true;
+                        }
+                        else if (!hasClicked && SideScreen.UpCooldown.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            int CooldownDecrement = 300;
+                            if (SideScreen.SpeedUp) CooldownDecrement = 150;
+                            if (!ice.UpgradeCooldown(ref SideScreen.Money, CooldownDecrement, ice.CooldownAndCostAndLvl.Item2))
+                            {
+                                if (ice.CooldownAndCostAndLvl.Item3 == ice.MaxUpgradeLvl)
+                                {
+                                    MaxLevelReached = true;
+                                }
+                                else
+                                {
+                                    TooLittleMoney = true;
+                                }
+                                DisplayTimer.Start();
+                                DisplayTimer.Restart();
+                            }
+                            hasClicked = true;
+                        }
+                        else if (SideScreen.Home.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            hasClicked = false;
+                            SideScreen.OneClicked = null;
+                            ShouldUpgrade = false;
+                        }
+                        else if (SideScreen.Remove.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed)
+                        {
+                            hasClicked = false;
+                            SideScreen.Money += SideScreen.OneClicked.RemoveCost;
+                            allMonkeys.Monkeys.Remove(SideScreen.OneClicked);
+                            SideScreen.OneClicked = null;
+                            ShouldUpgrade = false;
+                        }
                         break;
                 }
             }
@@ -348,18 +420,20 @@ namespace ActualGame
                         case -1:
                             break;
                         case 0:
-                            OneToAdd = new Dart(MousePosition, Content, new Vector2(15, 15), screen, 4, new Position(-1, -1), 5, 50, 1500, 50, 50, 3);
+                            OneToAdd = new Dart(MousePosition, Content, new Vector2(15, 15), screen, 4, 5, 50, 1300, 50, 50, 3);
                             MousePressed = true;
                             break;
                         case 1:
-                            OneToAdd = new Spike(MousePosition, Content, new Vector2(15, 15), screen, new Position(-1, -1), 3, 5, 75, 1500, 75, 75, 3);
+                            OneToAdd = new Spike(MousePosition, Content, new Vector2(15, 15), screen, 3, 5, 75, 1500, 75, 75, 3);
                             MousePressed = true;
                             break;
                         case 2:
-                            OneToAdd = new Bomb(screen,new Position(-1,-1),3,10,100,2750,100,3,150,Content,MousePosition,new Vector2(15,15));
+                            OneToAdd = new Bomb(screen,3,10,100,2750,100,3,150,Content,MousePosition,new Vector2(15,15));
                             MousePressed = true;
                             break;
                         case 3:
+                            OneToAdd = new Ice(MousePosition,Content, new Vector2(15,15),screen,3,0,0,1750,100,100,3,150,100);
+                            MousePressed = true;
                             break;
                     }
                 }
@@ -402,6 +476,8 @@ namespace ActualGame
                                             bomb.TheBomb1.Position = bomb.sprite.Position;
                                             break;
                                         case TypeOfMonkey.IceMonk:
+                                            Ice ice = (Ice)OneToAdd;
+                                            ice.throwable.Position = ice.sprite.Position;
                                             break;
                                     }
                                     allMonkeys.AddMonkey(OneToAdd);

@@ -20,9 +20,9 @@ namespace ActualGame.TypesOfMonkeys
         List<bool> HasHitZombie = new List<bool>();
         
         int total = 0;
-        public Spike(Vector2 Position, ContentManager Content, Vector2 Origin, Screen screen, Position gridpos,
+        public Spike(Vector2 Position, ContentManager Content, Vector2 Origin, Screen screen,
             int baseRange, int baseDamage, int baseDamageUpgradeCost, int baseCooldown, int baseCooldownUpgradeCost, int baseRangeCost, int MaxLvl)
-            : base(screen, TypeOfMonkey.SpikeMonk, gridpos, baseRange, baseDamage, baseDamageUpgradeCost, baseCooldown, baseCooldownUpgradeCost, MaxLvl, 150)
+            : base(screen, TypeOfMonkey.SpikeMonk, new Position(-1, -1), baseRange, baseDamage, baseDamageUpgradeCost, baseCooldown, baseCooldownUpgradeCost, MaxLvl, 150)
         {
             RemoveCost = 100;
             sprite = new Sprite(Color.White, Position, Content.Load<Texture2D>("KirboSpike"), 0, Origin, Vector2.One);

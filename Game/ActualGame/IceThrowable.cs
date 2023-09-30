@@ -26,7 +26,7 @@ namespace ActualGame
             HasHit = false;
         }
         
-        public int DrawThing(SpriteBatch spriteB, Vector2 Position, int FrozenTime, ref Zombie zombie, ref bool Bool, Texture2D SlowZombieImage)
+        public int DrawThing(SpriteBatch spriteB, Vector2 Position,int DamageToDeal, ref Zombie zombie, ref bool Bool, Texture2D SlowZombieImage)
         {
             if (LerpAmount < 1)
             {
@@ -34,7 +34,7 @@ namespace ActualGame
                 {
                     zombie.FrozenTimer.Restart();
                     zombie.LerpIncrement /= 2;
-                    zombie.MaxFrozenTime = FrozenTime;
+                    zombie.Health -= DamageToDeal; 
                     zombie.Image = SlowZombieImage;
                     Bool = true;
                     HasHit = true;

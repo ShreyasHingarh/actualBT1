@@ -20,9 +20,9 @@ namespace ActualGame.TypesOfMonkeys
         List<Zombie> zombies;
         List<bool> Bools;
         int total = 0;
-        public Dart(Vector2 Position,ContentManager Content,Vector2 Origin,Screen screen, int baseRange,Position Grid,
+        public Dart(Vector2 Position,ContentManager Content,Vector2 Origin,Screen screen, int baseRange,
             int baseDamage, int baseDamageUpgradeCost, int baseCooldown, int baseCooldownUpgradeCost, int baseRangeCost, int MaxLvl) 
-            : base(screen,TypeOfMonkey.DartMonk,Grid,baseRange,baseDamage,baseDamageUpgradeCost,baseCooldown,baseCooldownUpgradeCost,MaxLvl,100)
+            : base(screen,TypeOfMonkey.DartMonk, new Position(-1, -1),baseRange,baseDamage,baseDamageUpgradeCost,baseCooldown,baseCooldownUpgradeCost,MaxLvl,100)
         {
             IncreaseRangeCostAndLvl = (baseRangeCost, 0);
             RemoveCost = 50;

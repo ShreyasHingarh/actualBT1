@@ -28,9 +28,9 @@ namespace ActualGame.TypesOfMonkeys
         float LerpAmount = 0;
         int OriginalCooldown;
         bool WhichBomb = false;
-        public Bomb(Screen screen, Position gridpos, int baseRange, int baseDamage, int baseDamageUpgradeCost, 
+        public Bomb(Screen screen, int baseRange, int baseDamage, int baseDamageUpgradeCost, 
             int baseCooldown, int baseCooldownUpgradeCost, int MaxLvl, int addCost, ContentManager Content,Vector2 Position, Vector2 Origin) 
-            : base(screen, TypeOfMonkey.BombMonk, gridpos, baseRange, baseDamage, baseDamageUpgradeCost, baseCooldown, baseCooldownUpgradeCost, MaxLvl, addCost)
+            : base(screen, TypeOfMonkey.BombMonk, new Position(-1, -1), baseRange, baseDamage, baseDamageUpgradeCost, baseCooldown, baseCooldownUpgradeCost, MaxLvl, addCost)
         {
             UpgradeCostandLevel = (200,0);
             RemoveCost = 200;

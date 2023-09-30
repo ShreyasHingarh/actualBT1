@@ -12,7 +12,8 @@ namespace ActualGame
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         GameScreen gameScreen;
-        //Plan: AddAllOtherMonkeys (AddSpikes To be placed on path), Make next 30 levels(boss, bulldozers, ), Add a win and lose screen, Alterating paths using astar
+        //Plan: AddAllOtherMonkeys, Adjust the Cooldowns/Damage Upgrades, Make next 30 levels(boss, bulldozers, zombies that run faster),
+        //Add a win and lose screen, Alterating paths using astar
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

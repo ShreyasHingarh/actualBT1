@@ -12,17 +12,19 @@ namespace ActualGame.TypesOfMonkeys
 {
     internal class Ice : Monkey
     {
-        // Add Upgrades: increase frozen time, increase frozen time, allow for it to do damage
-        IceThrowable throwable;
+        //free code camp.org, cs 50 harvard
+        public (int, int) FrozenUpgradeCostandLvl;
+        public IceThrowable throwable;
         public (int, int) IncreaseRangeCostAndLvl;
         Zombie Target;
         bool HasHit;
         int total;
         Texture2D SlowZombie;
-        public Ice(Vector2 Position, ContentManager Content, Vector2 Origin, Screen screen, TypeOfMonkey type, Position gridpos, int baseRange
-            , int baseDamage, int baseDamageUpgradeCost, int baseCooldown,int baseCooldownUpgradeCost, int baseRangeCost, int MaxLvl, int addCost) 
-            : base(screen, type, gridpos, baseRange, baseDamage, baseDamageUpgradeCost, baseCooldown, baseCooldownUpgradeCost, MaxLvl, addCost)
+        public Ice(Vector2 Position, ContentManager Content, Vector2 Origin, Screen screen, int baseRange
+            , int baseDamage, int baseDamageUpgradeCost, int baseCooldown,int baseCooldownUpgradeCost, int baseRangeCost, int MaxLvl, int addCost, int baseFrozenCost) 
+            : base(screen, TypeOfMonkey.IceMonk, new Position(-1, -1), baseRange, baseDamage, baseDamageUpgradeCost, baseCooldown, baseCooldownUpgradeCost, MaxLvl, addCost)
         {
+            FrozenUpgradeCostandLvl = (baseFrozenCost,0);
             IncreaseRangeCostAndLvl = (baseRangeCost,0);
             throwable = new IceThrowable(Position, Content.Load<Texture2D>("Ice"),Origin,0.2f,Vector2.Zero);
             sprite = new Sprite(Color.White,Position, Content.Load<Texture2D>("IceMonkey"),0,Origin,Vector2.One);
@@ -89,7 +91,33 @@ namespace ActualGame.TypesOfMonkeys
             }
             sprite.Draw(spriteB);
         }
-
+        public bool UpgradeFrozen(ref int Money, int CostIncrement,int TimeDecrement, int DamageIncrease, ref AllEnemies allZombies)
+        {
+            if (FrozenUpgradeCostandLvl.Item1 >= Money || FrozenUpgradeCostandLvl.Item2 == MaxUpgradeLvl || allZombies == null) return false;
+            RemoveCost += CostIncrement / 3;
+            Money -= FrozenUpgradeCostandLvl.Item1;
+            FrozenUpgradeCostandLvl.Item1 += CostIncrement;
+            switch(FrozenUpgradeCostandLvl.Item2)
+            {
+                case 0:
+                    foreach(var item in allZombies.Zombies)
+                    {
+                        item.MaxFrozenTime += TimeDecrement;
+                    }
+                    break;
+                case 1:
+                    foreach (var item in allZombies.Zombies)
+                    {
+                        item.MaxFrozenTime += TimeDecrement;
+                    }
+                    break;
+                case 2:
+                    DamageAndCostAndLvl.Item1 += DamageIncrease;
+                    break;
+            }
+            IncreaseRangeCostAndLvl.Item2++;
+            return true;
+        }
         public override bool Update(ref List<Zombie> Zombies)
         {
             sprite.Rotation = (float)(Math.Atan2(Zombies[0].Position.Y - sprite.Position.Y, Zombies[0].Position.X - sprite.Position.X));

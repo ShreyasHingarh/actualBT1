@@ -50,9 +50,10 @@ namespace ActualGame
         public bool HasLerpedOnce;
         Vector2 PreviousPosition;
         Texture2D OriginalZombieImage;
-        public Zombie(int level, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale, Position[] locations,Rectangle? sourceRec = null) 
-            : base(LevelToTintColor[level], position, image, rotation, origin, scale, sourceRec)
+        public Zombie(int level, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale, Position[] locations,int maxFrozenTime) 
+            : base(LevelToTintColor[level], position, image, rotation, origin, scale)
         {
+            MaxFrozenTime = maxFrozenTime;
             OriginalZombieImage = image;
             Level = level;
             HasLerpedOnce = false;

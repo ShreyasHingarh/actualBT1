@@ -32,6 +32,7 @@ namespace ActualGame
         public Sprite SpeedDownButton;
         public Sprite BombRangeButton;
         public Sprite AddBombButton;
+        public Sprite UpIce;
         public bool HasStarted;
         public bool SpeedUp;
         public (Sprite,int,TypeOfMonkey)[] MonkeyAddAndCost;
@@ -53,11 +54,12 @@ namespace ActualGame
             SpeedDownButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 710), Content.Load<Texture2D>("SlowButton"), 0, Vector2.Zero, Vector2.One);
             BombRangeButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 340), Content.Load<Texture2D>("upgradeBombRangeButton"), 0, Vector2.Zero, Vector2.One);
             AddBombButton = new Sprite(Color.BlanchedAlmond, new Vector2(810, 340), Content.Load<Texture2D>("AddABombButton"), 0, Vector2.Zero, Vector2.One);
+            UpIce = new Sprite(Color.BlanchedAlmond, new Vector2(810, 280), Content.Load<Texture2D>("UpgradeIce"), 0, Vector2.Zero, Vector2.One);
             HasStarted = false;
             MonkeyAddAndCost = new (Sprite, int, TypeOfMonkey)[]
             {
                 (new Sprite(Color.White, new Vector2(880, 200),Content.Load<Texture2D>("Monkey"),0,Vector2.Zero,new Vector2(2,2)),100,TypeOfMonkey.DartMonk),   
-                //new Sprite(Color.White, new Vector2(860, 280),Content.Load<Texture2D>("IceMonkey"),0,Vector2.Zero,new Vector2(2,2));
+                (new Sprite(Color.White, new Vector2(860, 280),Content.Load<Texture2D>("IceMonkey"),0,Vector2.Zero,new Vector2(2,2)),125,TypeOfMonkey.IceMonk),
                 (new Sprite(Color.White, new Vector2(880, 360),Content.Load<Texture2D>("BombMonkey"),0,Vector2.Zero,new Vector2(2,2)),150,TypeOfMonkey.BombMonk),
                 (new Sprite(Color.White, new Vector2(880, 440),Content.Load<Texture2D>("KirboSpike"),0,Vector2.Zero,new Vector2(2,2)),150,TypeOfMonkey.SpikeMonk)
             };
@@ -162,36 +164,29 @@ namespace ActualGame
             }
             else
             {
+                sprite.DrawString(Font, $"Max Level is 3", new Vector2(870, 200), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                 switch (OneClicked.Type)
                 {
                     case TypeOfMonkey.DartMonk:
                         Dart dart = (Dart)OneClicked;
-                        sprite.DrawString(Font, $"Max Level is 3", new Vector2(870, 200), Color.Black,0,Vector2.Zero,0.5f,SpriteEffects.None,0);
                         UpCooldown.Draw(sprite); 
                         sprite.DrawString(Font, $"Lvl: {dart.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.Position.Y + UpCooldown.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         UpDamage.Draw(sprite);
                         sprite.DrawString(Font, $"Lvl: {dart.DamageAndCostAndLvl.Item3}", new Vector2(890, UpDamage.Position.Y + UpDamage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         UpRange.Draw(sprite);
                         sprite.DrawString(Font, $"Lvl: {dart.IncreaseRangeCostAndLvl.Item2}", new Vector2(890, UpRange.Position.Y + UpRange.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
-                        Home.Draw(sprite);
-                        Remove.Draw(sprite);
                         break;
                     case TypeOfMonkey.SpikeMonk:
-
                         Spike spike = (Spike)OneClicked;
-                        sprite.DrawString(Font, $"Max Level is 3", new Vector2(870, 200), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         UpCooldown.Draw(sprite);
                         sprite.DrawString(Font, $"Lvl: {spike.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.Position.Y + UpCooldown.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         UpDamage.Draw(sprite);
                         sprite.DrawString(Font, $"Lvl: {spike.DamageAndCostAndLvl.Item3}", new Vector2(890, UpDamage.Position.Y + UpDamage.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         UpRange.Draw(sprite);
                         sprite.DrawString(Font, $"Lvl: {spike.IncreaseRangeCostAndLvl.Item2}", new Vector2(890, UpRange.Position.Y + UpRange.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
-                        Home.Draw(sprite);
-                        Remove.Draw(sprite);
                         break;
                     case TypeOfMonkey.BombMonk:
                         Bomb bomb = (Bomb)OneClicked;
-                        sprite.DrawString(Font, $"Max Level is 3", new Vector2(870, 200), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         UpCooldown.Draw(sprite);
                         sprite.DrawString(Font, $"Lvl: {bomb.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.Position.Y + UpCooldown.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
                         UpDamage.Draw(sprite);
@@ -205,12 +200,27 @@ namespace ActualGame
                             BombRangeButton.Draw(sprite);
                         }
                         sprite.DrawString(Font, $"Lvl: {bomb.UpgradeCostandLevel.Item2}", new Vector2(890, AddBombButton.Position.Y + AddBombButton.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
-                        Home.Draw(sprite);
-                        Remove.Draw(sprite);
                         break;
                     case TypeOfMonkey.IceMonk:
+                        Ice ice = (Ice)OneClicked;
+                        UpCooldown.Draw(sprite);
+                        sprite.DrawString(Font, $"Lvl: {ice.CooldownAndCostAndLvl.Item3}", new Vector2(890, UpCooldown.Position.Y + UpCooldown.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        UpRange.Draw(sprite);
+                        sprite.DrawString(Font, $"Lvl: {ice.IncreaseRangeCostAndLvl.Item2}", new Vector2(890, UpRange.Position.Y + UpRange.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        if(ice.FrozenUpgradeCostandLvl.Item2 == 2)
+                        {
+                            UpDamage.Draw(sprite);
+                        }
+                        else
+                        {
+                            UpIce.Draw(sprite);
+                        }
+                        sprite.DrawString(Font, $"Lvl: {ice.FrozenUpgradeCostandLvl.Item2}", new Vector2(890, UpIce.Position.Y + UpIce.Image.Height), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+                        
                         break;
                 }
+                Home.Draw(sprite);
+                Remove.Draw(sprite);
             }
         }
     }
