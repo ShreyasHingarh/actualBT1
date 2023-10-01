@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ActualGame.Enemies;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System;
@@ -13,7 +14,7 @@ namespace ActualGame
     {
         public Sprite sprite;
         float LerpAmount; 
-        float LerpIncrement;
+        public float LerpIncrement;
         public bool HasHit;
         public Vector2 Target;
         public Bullet(Sprite prite, float lerpIncrement,Vector2 target)

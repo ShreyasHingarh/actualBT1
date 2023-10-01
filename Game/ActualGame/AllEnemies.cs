@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-
+using ActualGame.Enemies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -28,16 +28,16 @@ namespace ActualGame
     {
         public List<Zombie> Zombies = new List<Zombie>();
         Position[] path;
-        public AllEnemies(ScreenSquare Start,int offSet,ContentManager Content)
+        public AllEnemies()
         {
             path = JsonConvert.DeserializeObject<Position[]>(File.ReadAllText(@"..\..\..\..\MapEditor\Path.txt"));
             Zombies = new List<Zombie>();
         }
-        public void AddAZombie(int Level, ScreenSquare Start, int offSet, ContentManager Content)
+        public void AddAZombie(int Level, ScreenSquare Start, int offSet, ContentManager Content,bool IsFast)
         {
             Zombies.Add(new Zombie(Level, new Vector2(Start.Sprite.Position.X +offSet, Start.Sprite.Position.Y + offSet),
                 Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
-                , Vector2.One, path,1000));
+                , Vector2.One, path,1000,IsFast));
         }
         public void IncreaseSpeedOfAllZombies()
         {

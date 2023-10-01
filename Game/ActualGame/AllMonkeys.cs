@@ -1,4 +1,5 @@
-﻿using ActualGame.TypesOfMonkeys;
+﻿using ActualGame.Enemies;
+using ActualGame.TypesOfMonkeys;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace ActualGame
 {
-   
+
     internal class AllMonkeys
     {
         public List<Monkey> Monkeys;
@@ -46,13 +47,67 @@ namespace ActualGame
             foreach(var item in Monkeys)
             {
                 item.CooldownAndCostAndLvl.Item1 /= 2;
+                switch (item.Type)
+                {
+                    case TypeOfMonkey.DartMonk:
+                        Dart dart = (Dart)item;
+                        dart.Bullet.LerpIncrement *= 2;
+                        break;
+                    case TypeOfMonkey.SpikeMonk:
+                        Spike spike = (Spike)item;
+                        foreach(var thing in spike.Bullets)
+                        {
+                            thing.LerpIncrement *= 2;
+                        }
+                        break;
+                    case TypeOfMonkey.BombMonk:
+                        Bomb bomb = (Bomb)item;
+                        bomb.LerpIncrement *= 2;
+                        bomb.Bomb2CoolDown /= 2;
+                        bomb.TheBomb1.compare /= 2;
+                        bomb.TheBomb2.compare /= 2;
+
+                        Console.WriteLine(bomb.OneToCompare);
+                        break;
+                    case TypeOfMonkey.IceMonk:
+                        Ice ice = (Ice)item;
+                        ice.throwable.LerpIncrement *= 2;
+                        break;
+                }
             }
         }
         public void DecreaseSpeedOfAllMonkeys()
         {
             foreach (var item in Monkeys) 
             {
-                item.CooldownAndCostAndLvl.Item1 *= 2;
+                item.CooldownAndCostAndLvl.Item1 *= 2; 
+                switch (item.Type)
+                {
+                    case TypeOfMonkey.DartMonk:
+                        Dart dart = (Dart)item;
+                        dart.Bullet.LerpIncrement /= 2;
+                        break;
+                    case TypeOfMonkey.SpikeMonk:
+                        Spike spike = (Spike)item;
+                        foreach (var thing in spike.Bullets)
+                        {
+                            thing.LerpIncrement /= 2;
+                        }
+                        break;
+                    case TypeOfMonkey.BombMonk:
+                        Bomb bomb = (Bomb)item;
+                        bomb.LerpIncrement /= 2;
+                        bomb.Bomb2CoolDown *= 2;
+                        bomb.TheBomb1.compare *= 2;
+                        bomb.TheBomb2.compare *= 2;
+
+                        Console.WriteLine(bomb.OneToCompare);
+                        break;
+                    case TypeOfMonkey.IceMonk:
+                        Ice ice = (Ice)item;
+                        ice.throwable.LerpIncrement /= 2;
+                        break;
+                }
             }
         }
         public void DrawAllMonkeys(SpriteBatch spriteB,GameTime gameTime, Screen screen)

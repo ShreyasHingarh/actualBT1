@@ -1,4 +1,5 @@
-﻿using ActualGame.TypesOfMonkeys;
+﻿using ActualGame.Enemies;
+using ActualGame.TypesOfMonkeys;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,7 +15,7 @@ namespace ActualGame
     internal class IceThrowable : Sprite
     {
         float LerpAmount;
-        float LerpIncrement;
+        public float LerpIncrement;
         public bool HasHit;
         public Vector2 Target;
         public IceThrowable(Vector2 position, Texture2D image, Vector2 origin, float lerpIncrement, Vector2 target) 

@@ -15,12 +15,14 @@ namespace ActualGame
     {
         public Sprite BaseImage;
         public string Text;
-        public Button(Sprite baseImage, string text)
+        public bool CanClick;
+        public Button(Sprite baseImage, string text,bool canClick)
         {
+            CanClick = canClick;
             BaseImage = baseImage;
             Text = text;
         }
-        public bool HasPressed(Vector2 MousePosition) => BaseImage.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed;
+        public bool HasPressed(Vector2 MousePosition) => CanClick && BaseImage.HitBox.Value.Contains(MousePosition) && Mouse.GetState().LeftButton == ButtonState.Pressed;
         public void DrawButton(SpriteBatch spriteBatch,ContentManager Content,Vector2 Position)
         {
             BaseImage.Draw(spriteBatch);

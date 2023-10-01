@@ -28,7 +28,7 @@ namespace ActualGame
         public void Run(ContentManager Content)
         {
             //Run Start Screen
-            if(!RunEndOfGame && !RunGame.RunLevel(Content,screen,sizeOfSquare))
+            if(!RunEndOfGame && !RunGame.RunLevel(Content,screen,sizeOfSquare,offSet))
             {
                 RunEndOfGame = true;
                 //run end of game screen

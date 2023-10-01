@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ActualGame.Enemies;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -24,21 +25,22 @@ namespace ActualGame.TypesOfMonkeys
         List<Zombie> Targets;
         bool HasLerped = false;
         public (int,int) UpgradeCostandLevel;
-        float LerpIncrement = 0.1f;
+        public float LerpIncrement = 0.1f;
         float LerpAmount = 0;
-        int OriginalCooldown;
         bool WhichBomb = false;
+        public int OneToCompare;
+        public int Bomb2CoolDown = 500;
         public Bomb(Screen screen, int baseRange, int baseDamage, int baseDamageUpgradeCost, 
             int baseCooldown, int baseCooldownUpgradeCost, int MaxLvl, int addCost, ContentManager Content,Vector2 Position, Vector2 Origin) 
             : base(screen, TypeOfMonkey.BombMonk, new Position(-1, -1), baseRange, baseDamage, baseDamageUpgradeCost, baseCooldown, baseCooldownUpgradeCost, MaxLvl, addCost)
         {
+            OneToCompare = CooldownAndCostAndLvl.Item1;
             UpgradeCostandLevel = (200,0);
             RemoveCost = 200;
             TheBomb1 = new ActualBomb(Color.White, Position, Content.Load<Texture2D>("Bomb"), 0, Vector2.Zero, Vector2.One);
             MonkeyWithBomb = Content.Load<Texture2D>("BombMonkey");
             MonkeyWithNoBomb = Content.Load<Texture2D>("NoBombMonkey");
             sprite = new Sprite(Color.White,Position,MonkeyWithBomb,0,Origin,Vector2.One);
-            OriginalCooldown = CooldownAndCostAndLvl.Item1;
         }
         
         public override void Draw(SpriteBatch spriteB,GameTime gameTime,Screen screen)
@@ -50,11 +52,11 @@ namespace ActualGame.TypesOfMonkeys
                 if(TheBomb2 != null && WhichBomb)
                 {
                     bomb = TheBomb2;
-                    CooldownAndCostAndLvl.Item1 = 500;
+                    OneToCompare = Bomb2CoolDown;
                 }
                 else
                 {
-                    CooldownAndCostAndLvl.Item1 = OriginalCooldown;
+                    OneToCompare = CooldownAndCostAndLvl.Item1;
                 }
                 bomb.DrawBomb(spriteB);
                 if (!HasLerped)
@@ -118,7 +120,7 @@ namespace ActualGame.TypesOfMonkeys
         public override bool Update(ref List<Zombie> Zombies)
         {
             sprite.Rotation = (float)(Math.Atan2(Zombies[0].Position.Y - sprite.Position.Y, Zombies[0].Position.X - sprite.Position.X));
-            if (Zombies == null || FiringTimer.ElapsedMilliseconds < CooldownAndCostAndLvl.Item1) return false;
+            if (Zombies == null || FiringTimer.ElapsedMilliseconds < OneToCompare) return false;
             
             FiringTimer.Restart();
             Targets = Zombies;

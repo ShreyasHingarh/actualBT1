@@ -33,7 +33,7 @@ namespace ActualGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            gameScreen = new GameScreen(GraphicsDevice.Viewport.Height, Content, 2000, 100);
+            gameScreen = new GameScreen(GraphicsDevice.Viewport.Height, Content, 4000, 100);
             // TODO: use this.Content to load your game content here
         }
 

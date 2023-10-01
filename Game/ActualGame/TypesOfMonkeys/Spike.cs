@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ActualGame.Enemies;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -15,7 +16,7 @@ namespace ActualGame.TypesOfMonkeys
     internal class Spike : Monkey
     {
         public (int, int) IncreaseRangeCostAndLvl;
-        Bullet[] Bullets;
+        public Bullet[] Bullets;
         public List<Zombie> zombies;
         List<bool> HasHitZombie = new List<bool>();
         
@@ -34,14 +35,14 @@ namespace ActualGame.TypesOfMonkeys
             int size = RangeSize * 30;
             Bullets = new Bullet[]
             {
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,0,sprite.Origin,Vector2.One), 0.1f, new Vector2(sprite.Position.X + size + sprite.Origin.Y, sprite.Position.Y + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI/4),sprite.Origin,Vector2.One), 0.1f,new Vector2(sprite.Position.X + size + sprite.Origin.Y, sprite.Position.Y + size + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI/2),sprite.Origin,Vector2.One), 0.1f,new Vector2(sprite.Position.X + sprite.Origin.Y, sprite.Position.Y+ size + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(3 * Math.PI/4),sprite.Origin,Vector2.One), 0.1f,new Vector2(sprite.Position.X - size + sprite.Origin.Y, sprite.Position.Y +size+ sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI),sprite.Origin,Vector2.One), 0.1f,new Vector2(sprite.Position.X - size + sprite.Origin.Y, sprite.Position.Y + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(5 * Math.PI/4),sprite.Origin,Vector2.One), 0.1f,new Vector2(sprite.Position.X - size + sprite.Origin.Y, sprite.Position.Y - size + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(3 * Math.PI/2),sprite.Origin,Vector2.One), 0.1f,new Vector2(sprite.Position.X + sprite.Origin.Y, sprite.Position.Y - size + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(7 * Math.PI/4),sprite.Origin,Vector2.One), 0.1f,new Vector2(sprite.Position.X + size  + sprite.Origin.Y, sprite.Position.Y - size + sprite.Origin.Y))
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,0,sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f, new Vector2(sprite.Position.X + size + sprite.Origin.Y, sprite.Position.Y + sprite.Origin.Y)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X + size + sprite.Origin.Y, sprite.Position.Y + size + sprite.Origin.Y)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI/2),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X + sprite.Origin.Y, sprite.Position.Y+ size + sprite.Origin.Y)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(3 * Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X - size + sprite.Origin.Y, sprite.Position.Y +size+ sprite.Origin.Y)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X - size + sprite.Origin.Y, sprite.Position.Y + sprite.Origin.Y)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(5 * Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X - size + sprite.Origin.Y, sprite.Position.Y - size + sprite.Origin.Y)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(3 * Math.PI/2),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X + sprite.Origin.Y, sprite.Position.Y - size + sprite.Origin.Y)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(7 * Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X + size  + sprite.Origin.Y, sprite.Position.Y - size + sprite.Origin.Y))
             };
         }
         void UpdateTargets()

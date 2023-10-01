@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ActualGame.Enemies;
+using Microsoft.Xna.Framework;
 
 using System;
 using System.Collections.Generic;
