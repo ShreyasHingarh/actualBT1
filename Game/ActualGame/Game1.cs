@@ -12,7 +12,7 @@ namespace ActualGame
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         GameScreen gameScreen;
-        //Plan: Make next 30 levels(boss, bulldozers, zombies that run faster),
+        //Plan: Make next 25 levels(bulldozers, poison, darts more accurate, clear board button) adjust all the prices and health,
         //Add a win and lose screen, Alterating paths using astar
         public Game1()
         {

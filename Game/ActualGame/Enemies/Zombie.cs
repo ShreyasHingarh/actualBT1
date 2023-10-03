@@ -22,6 +22,8 @@ namespace ActualGame.Enemies
             { 3,Color.Orange },
             { 4,Color.Yellow },
             { 5,Color.Red },
+            { 6, Color.Purple},
+            { 7, Color.White }
         };
         public Dictionary<int, int> LevelToHealth = new Dictionary<int, int>()
         {
@@ -29,8 +31,10 @@ namespace ActualGame.Enemies
             {1, 5},
             {2, 10},
             {3, 10},
-            {4, 10},
-            {5, 15},
+            {4, 15},
+            {5, 20},
+            {6, 50},
+            {7, 100}
         };
         public Dictionary<int, int> LevelToReward = new Dictionary<int, int>()
         {
@@ -39,7 +43,9 @@ namespace ActualGame.Enemies
             {2, 5},
             {3, 10},
             {4, 10},
-            {5, 10},
+            {5, 15},
+            {6, 40},
+            {7, 80}
         };
         float LerpAmount;
         public int Level;
@@ -70,12 +76,29 @@ namespace ActualGame.Enemies
             {
                 LerpIncrement *= 2;
             }
+            if(Level == 7)
+            {
+                Scale = new Vector2(2.5f, 2.5f);
+            }
+            else if(Level == 6)
+            {
+                Scale = new Vector2(1.5f, 1.5f);
+            }
         }
         public void UpdateLevel()
         {
             Level--;
             Tint = LevelToTintColor[Level];
             Health = LevelToHealth[Level];
+            switch (Level)
+            {
+                case 6:
+                    Scale = new Vector2(1.5f, 1.5f);
+                    break;
+                case 5:
+                    Scale = Vector2.One;
+                    break;
+            }
         }
         public bool MoveEnemyAlongPathOnce(int SizeOfSquare, int offSet, Screen screen)
         {
@@ -92,7 +115,7 @@ namespace ActualGame.Enemies
             screen.Map[Path[currentPosition].Y, Path[currentPosition].X].OneContained = this;
             if (LerpAmount < 1f)
             {
-                Position = Vector2.Lerp(PreviousPosition, new Vector2(NextSquare.X * SizeOfSquare + offSet, NextSquare.Y * SizeOfSquare + offSet), LerpAmount);
+                Position = Vector2.Lerp(PreviousPosition, new Vector2(NextSquare.X * SizeOfSquare + 15, NextSquare.Y * SizeOfSquare + 15), LerpAmount);
                 LerpAmount += LerpIncrement;
                 return true;
             }

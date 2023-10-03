@@ -35,9 +35,9 @@ namespace ActualGame
         }
         public void AddAZombie(int Level, ScreenSquare Start, int offSet, ContentManager Content,bool IsFast)
         {
-            Zombies.Add(new Zombie(Level, new Vector2(Start.Sprite.Position.X +offSet, Start.Sprite.Position.Y + offSet),
-                Content.Load<Texture2D>("Zombie"), 0, Vector2.Zero
-                , Vector2.One, path,1000,IsFast));
+            Zombies.Add(new Zombie(Level, new Vector2(Start.Sprite.Position.X + 15, Start.Sprite.Position.Y + 15),
+                Content.Load<Texture2D>("Zombie"), 0, new Vector2(15, 15)
+                , Vector2.One, path, 1000, IsFast)); 
         }
         public void IncreaseSpeedOfAllZombies()
         {

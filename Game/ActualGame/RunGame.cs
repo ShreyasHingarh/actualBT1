@@ -43,7 +43,7 @@ namespace ActualGame
         {
             LevelIndex = Levels.Level1;
             ActualLevelCode = new Level(offSet,Content,BaseCash,BaseLives);
-            ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content,false);
+            ActualLevelCode.Enemies.AddAZombie(7, screen.Start, offSet, Content,false);
         }
         public bool SwitchLevel(Screen screen, ContentManager Content, int offSet)
         {
