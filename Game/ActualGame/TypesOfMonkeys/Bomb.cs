@@ -84,7 +84,10 @@ namespace ActualGame.TypesOfMonkeys
                     foreach (var square in bomb.BombRange)
                     {
                         if (!square.DoesContainZombie) continue;
-                        square.OneContained.Health -= DamageAndCostAndLvl.Item1;
+                        foreach(var zombie in square.OneContained)
+                        {
+                            zombie.Health -= DamageAndCostAndLvl.Item1;
+                        }
                     }
                     WhichBomb = !WhichBomb;
                     bomb.Position = sprite.Position;

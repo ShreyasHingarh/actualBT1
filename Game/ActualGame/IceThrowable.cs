@@ -31,7 +31,6 @@ namespace ActualGame
         {
             if (LerpAmount < 1)
             {
-                Console.WriteLine(zombie.HitBox.Value.Contains(this.Position));
                 if (!HasHit && zombie.HitBox.Value.Contains(new Vector2(this.Position.X + this.Image.Width,this.Position.Y + this.Image.Height)))
                 {
                     zombie.FrozenTimer.Restart();

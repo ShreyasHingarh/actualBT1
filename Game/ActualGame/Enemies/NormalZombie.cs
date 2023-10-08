@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace ActualGame.Enemies
 {
-    internal class Zombie : Sprite
+    internal class NormalZombie : Zombie
     {
         static Dictionary<int, Color> LevelToTintColor = new Dictionary<int, Color>()
         {
@@ -47,40 +47,28 @@ namespace ActualGame.Enemies
             {6, 40},
             {7, 80}
         };
-        float LerpAmount;
+        
         public int Level;
-        public float LerpIncrement;
-        public int MaxFrozenTime;
-        public Stopwatch FrozenTimer;
-        public Position[] Path;
-        public int Health;
-        public int currentPosition;
-        public bool HasLerpedOnce;
-        Vector2 PreviousPosition;
+        
+
         Texture2D OriginalZombieImage;
-        public Zombie(int level, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale, Position[] locations, int maxFrozenTime, bool isAFastZombie)
-            : base(LevelToTintColor[level], position, image, rotation, origin, scale)
+        public NormalZombie(int level, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale, Position[] locations, bool isAFastZombie,int maxFrozenTime)
+            : base(LevelToTintColor[level], position, image, rotation, origin, scale,0.04f, TypeOfZombie.Normal,maxFrozenTime)
         {
-            MaxFrozenTime = maxFrozenTime;
             OriginalZombieImage = image;
             Level = level;
-            HasLerpedOnce = false;
             Path = locations.Reverse().ToArray();
             Health = LevelToHealth[level];
-            currentPosition = 0;
-            LerpAmount = 0f;
-            LerpIncrement = 0.04f;
-            FrozenTimer = new Stopwatch();
-            PreviousPosition = Position;
+            
             if (isAFastZombie)
             {
                 LerpIncrement *= 2;
             }
-            if(Level == 7)
+            if (Level == 7)
             {
                 Scale = new Vector2(2.5f, 2.5f);
             }
-            else if(Level == 6)
+            else if (Level == 6)
             {
                 Scale = new Vector2(1.5f, 1.5f);
             }
@@ -100,7 +88,7 @@ namespace ActualGame.Enemies
                     break;
             }
         }
-        public bool MoveEnemyAlongPathOnce(int SizeOfSquare, int offSet, Screen screen)
+        public override bool MoveEnemyAlongPathOnce(int SizeOfSquare, ref Screen screen)
         {
             if (currentPosition + 1 == Path.Length) return false;
             if (FrozenTimer.ElapsedMilliseconds >= MaxFrozenTime)
@@ -111,16 +99,23 @@ namespace ActualGame.Enemies
             }
             Position NextSquare = Path[currentPosition + 1];
 
-            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].DoesContainZombie = true;
-            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].OneContained = this;
+            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].Value.DoesContainZombie = true;
+            if (!screen.Map[Path[currentPosition].Y, Path[currentPosition].X].Value.OneContained.Contains(this))
+            {
+                screen.Map[Path[currentPosition].Y, Path[currentPosition].X].Value.OneContained.Add(this);
+            }
             if (LerpAmount < 1f)
             {
                 Position = Vector2.Lerp(PreviousPosition, new Vector2(NextSquare.X * SizeOfSquare + 15, NextSquare.Y * SizeOfSquare + 15), LerpAmount);
                 LerpAmount += LerpIncrement;
                 return true;
             }
-            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].DoesContainZombie = false;
-            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].OneContained = null;
+           
+            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].Value.OneContained.Remove(this);
+            if(screen.Map[Path[currentPosition].Y, Path[currentPosition].X].Value.OneContained.Count == 0)
+            {
+                screen.Map[Path[currentPosition].Y, Path[currentPosition].X].Value.DoesContainZombie = false;
+            }
             currentPosition += 1;
             LerpAmount = 0f;
             HasLerpedOnce = true;

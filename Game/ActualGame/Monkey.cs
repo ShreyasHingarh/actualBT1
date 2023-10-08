@@ -72,7 +72,8 @@ namespace ActualGame
             {
                 for (int x = 0; x < indexX; x++)
                 {
-                    RangeSquares.Add(screen.Map[CurrentPos.Y, CurrentPos.X]);
+                    
+                    RangeSquares.Add(screen.Map[CurrentPos.Y, CurrentPos.X].Value);
                     CurrentPos.X++;
                     if (CurrentPos.X == screen.Map.GetLength(0)) break;
                 }

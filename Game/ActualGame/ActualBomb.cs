@@ -60,7 +60,7 @@ namespace ActualGame
             {
                 for (int x = 0; x < indexX; x++)
                 {
-                    BombRange.Add(screen.Map[CurrentPos.Y, CurrentPos.X]);
+                    BombRange.Add(screen.Map[CurrentPos.Y, CurrentPos.X].Value);
                     CurrentPos.X++;
                     if (CurrentPos.X == screen.Map.GetLength(0)) break;
                 }

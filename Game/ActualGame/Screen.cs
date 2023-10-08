@@ -15,12 +15,14 @@ namespace ActualGame
 
     internal class Screen 
     {
-        public ScreenSquare[,] Map;
-        public ScreenSquare Start;
-        public ScreenSquare End;
+        public BuildGraph buildGraph;
+        public Vertex[,] Map;
+        public Vertex Start;
+        public Vertex End;
         public Screen(int ScreenSize, int ImageSize,ContentManager Content)
         {
-            Map = new ScreenSquare[ScreenSize/ImageSize, ScreenSize / ImageSize];
+            buildGraph = new BuildGraph();
+            Map = new Vertex[ScreenSize/ImageSize, ScreenSize / ImageSize];
             int[] ints = JsonConvert.DeserializeObject<int[]>(File.ReadAllText(@"..\..\..\..\MapEditor\Background.txt"));
             int x = 0;
             int y = 0;
@@ -57,7 +59,7 @@ namespace ActualGame
                             break;
                     }
                     Sprite Current = new Sprite(Color.White, new Vector2(x,y),image,0,Vector2.Zero,Vector2.One);
-                    Map[i, z] = new ScreenSquare(Current,type,new Position((sbyte)z, (sbyte)i));
+                    Map[i, z] = new Vertex(new ScreenSquare(Current,type,new Position((sbyte)z, (sbyte)i),Content.Load<Texture2D>("Path")));
                     if (hasWentToStart)
                     {
                         Start = Map[i, z];
@@ -74,12 +76,15 @@ namespace ActualGame
                 y += ImageSize;
                 x = 0;
             }
+            buildGraph.InitializeVerticies(Map);
+            buildGraph.InitializeEdges(Map);
         }
         public void DrawScreen(SpriteBatch spriteBatch)
         {
             foreach(var item in Map)
             {
-                item.Sprite.Draw(spriteBatch);
+                item.Value.CheckShouldBePath();
+                item.Value.Sprite.Draw(spriteBatch);
             }
         }
     }

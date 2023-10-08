@@ -513,7 +513,7 @@ namespace ActualGame
                         Position Grid = new Position((sbyte)(MousePosition.X / SizeOfSquare), (sbyte)(MousePosition.Y / SizeOfSquare));
                         if (Grid.X < screen.Map.GetLength(1) && Grid.Y < screen.Map.GetLength(0))
                         {
-                            if (screen.Map[Grid.Y, Grid.X].Type != TypeOfImage.Path)
+                            if (screen.Map[Grid.Y, Grid.X].Value.Type != TypeOfImage.Path)
                             {
                                 OneToAdd.GridPosition = Grid;
                                 OneToAdd.sprite.Position = new Vector2(Grid.X * SizeOfSquare + 15, Grid.Y * SizeOfSquare + 15);

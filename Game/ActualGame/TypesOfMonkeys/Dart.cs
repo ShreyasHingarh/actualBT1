@@ -78,9 +78,9 @@ namespace ActualGame.TypesOfMonkeys
             {
                 for (int x = 0; x < indexX; x++)
                 {
-                    if (!RangeSquares.Contains(screen.Map[CurrentPos.Y, CurrentPos.X]))
+                    if (!RangeSquares.Contains(screen.Map[CurrentPos.Y, CurrentPos.X].Value))
                     {
-                        RangeSquares.Add(screen.Map[CurrentPos.Y, CurrentPos.X]);
+                        RangeSquares.Add(screen.Map[CurrentPos.Y, CurrentPos.X].Value);
                     }
                     CurrentPos.X++;
                     if (CurrentPos.X == screen.Map.GetLength(0)) break;

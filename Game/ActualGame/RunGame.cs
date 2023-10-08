@@ -43,200 +43,200 @@ namespace ActualGame
         {
             LevelIndex = Levels.Level1;
             ActualLevelCode = new Level(offSet,Content,BaseCash,BaseLives);
-            ActualLevelCode.Enemies.AddAZombie(7, screen.Start, offSet, Content,false);
+            ActualLevelCode.Enemies.AddANormalZombie(7, screen.Start.Value, Content,false);
         }
         public bool SwitchLevel(Screen screen, ContentManager Content, int offSet)
         {
-            if ((int)LevelIndex >= MaxLevel || ActualLevelCode.SideScreen.Lives <= 0) return false;
-            LevelIndex++;
-            switch (LevelIndex)
-            {
-                case Levels.Level2:
-                    ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content, false);
-                    break;
-                case Levels.Level3:
-                    ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content, false);
-                    break;
-                case Levels.Level4:
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    break;
-                case Levels.Level5:
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    break;      
-                case Levels.Level6:
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);   
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    break;
-                case Levels.Level7:
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    break;
-                case Levels.Level8:
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    break;
-                case Levels.Level9:
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    break;
-                case Levels.Level10:
-                    //Add Zomibes that Move Faster
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content,true);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,true);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,true);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,true);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content,true);
-                    break;
-                case Levels.Level11:
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, true);
-                    break;
-                case Levels.Level12:
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false); 
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, true);
-                    break;
-                case Levels.Level13:
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    break;
-                case Levels.Level14:
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
-                    ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
-                    ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
-                    break;
-                case Levels.Level15:
-                    //Add Path Makers
-                    break;
-                case Levels.Level16:
-                    break;
-                case Levels.Level17:
-                    break;
-                case Levels.Level18:
-                    break;
-                case Levels.Level19:
-                    break;
-                case Levels.Level20:
-                    //First Boss
-                    break;
-            }
-            if (ActualLevelCode.Enemies.Zombies.Count == 0) return false;
-            if(ActualLevelCode.SideScreen.SpeedUp)
-            {
-                ActualLevelCode.Enemies.IncreaseSpeedOfAllZombies();
-            }
+            //if ((int)LevelIndex >= MaxLevel || ActualLevelCode.SideScreen.Lives <= 0) return false;
+            //LevelIndex++;
+            //switch (LevelIndex)
+            //{
+            //    case Levels.Level2:
+            //        ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content, false);
+            //        break;
+            //    case Levels.Level3:
+            //        ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(0, screen.Start, offSet, Content, false);
+            //        break;
+            //    case Levels.Level4:
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        break;
+            //    case Levels.Level5:
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        break;      
+            //    case Levels.Level6:
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);   
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        break;
+            //    case Levels.Level7:
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        break;
+            //    case Levels.Level8:
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        break;
+            //    case Levels.Level9:
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        break;
+            //    case Levels.Level10:
+            //        //Add Zomibes that Move Faster
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content,true);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,true);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,true);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content,true);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content,true);
+            //        break;
+            //    case Levels.Level11:
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, true);
+            //        break;
+            //    case Levels.Level12:
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false); 
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(5, screen.Start, offSet, Content, true);
+            //        break;
+            //    case Levels.Level13:
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        break;
+            //    case Levels.Level14:
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(4, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(1, screen.Start, offSet, Content, false);
+            //        ActualLevelCode.Enemies.AddAZombie(2, screen.Start, offSet, Content, true);
+            //        ActualLevelCode.Enemies.AddAZombie(3, screen.Start, offSet, Content, true);
+            //        break;
+            //    case Levels.Level15:
+            //        //Add Path Makers
+            //        break;
+            //    case Levels.Level16:
+            //        break;
+            //    case Levels.Level17:
+            //        break;
+            //    case Levels.Level18:
+            //        break;
+            //    case Levels.Level19:
+            //        break;
+            //    case Levels.Level20:
+            //        //First Boss
+            //        break;
+            //}
+            //if (ActualLevelCode.Enemies.Zombies.Count == 0) return false;
+            //if(ActualLevelCode.SideScreen.SpeedUp)
+            //{
+            //    ActualLevelCode.Enemies.IncreaseSpeedOfAllZombies();
+            //}
             return true;
         }
         public bool RunLevel(ContentManager Content,Screen screen,int sizeOfSquare,int offset)
