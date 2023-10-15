@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ActualGame.ScreenAndGraph;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,25 +11,25 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ActualGame
+namespace ActualGame.LevelClasses
 {
     internal class GameScreen
     {
         RunGame RunGame;
         public Screen screen;
-         int sizeOfSquare = 30;
+        int sizeOfSquare = 30;
         int offSet = 4;
         bool RunEndOfGame;
-        public GameScreen(int height, ContentManager Content,int baseCash,int baseLives)
+        public GameScreen(int height, ContentManager Content, int baseCash, int baseLives)
         {
             RunEndOfGame = false;
             screen = new Screen(height, sizeOfSquare, Content);
-            RunGame = new RunGame(screen,Content,baseCash,baseLives,offSet);
+            RunGame = new RunGame(screen, Content, baseCash, baseLives, offSet);
         }
         public void Run(ContentManager Content)
         {
             //Run Start Screen
-            if(!RunEndOfGame && !RunGame.RunLevel(Content,screen,sizeOfSquare,offSet))
+            if (!RunEndOfGame && !RunGame.RunLevel(Content, screen, sizeOfSquare, offSet))
             {
                 RunEndOfGame = true;
                 //run end of game screen

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ActualGame
+namespace ActualGame.Sprites
 {
     internal class AnimatedSpriteClass : Sprite
     {
@@ -17,7 +17,7 @@ namespace ActualGame
         public List<Frames> Frames { get; set; }
         public TimeSpan stopwatch;
         public TimeSpan compare = TimeSpan.FromMilliseconds(30);
-        public AnimatedSpriteClass(Color tint, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale) 
+        public AnimatedSpriteClass(Color tint, Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale)
             : base(tint, position, image, rotation, origin, scale)
         {
             currentFrameIndex = 0;
@@ -26,13 +26,13 @@ namespace ActualGame
         public bool UpdateAnimationFrame(GameTime gameTime)
         {
             stopwatch += gameTime.ElapsedGameTime;
-            if(stopwatch > compare && currentFrameIndex < Frames.Count - 1)
+            if (stopwatch > compare && currentFrameIndex < Frames.Count - 1)
             {
                 currentFrameIndex++;
                 stopwatch = TimeSpan.Zero;
                 return false;
             }
-            if(currentFrameIndex == Frames.Count - 1)
+            if (currentFrameIndex == Frames.Count - 1)
             {
                 CurrentFrame = null;
                 currentFrameIndex = 0;

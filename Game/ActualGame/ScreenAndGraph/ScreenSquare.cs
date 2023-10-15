@@ -1,4 +1,5 @@
 ﻿using ActualGame.Enemies;
+using ActualGame.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ActualGame
+namespace ActualGame.ScreenAndGraph
 {
     enum TypeOfImage
     {
@@ -30,8 +31,8 @@ namespace ActualGame
         public bool ShouldStartBeingPath;
         bool HasStarted;
         Stopwatch stopwatch;
-        int timeToStayAsPath;
-        public ScreenSquare(Sprite sprite,TypeOfImage type, Position location,Texture2D path)
+        public int timeToStayAsPath;
+        public ScreenSquare(Sprite sprite, TypeOfImage type, Position location, Texture2D path)
         {
             Path = path;
             timeToStayAsPath = 2000;
@@ -54,7 +55,7 @@ namespace ActualGame
                 Sprite.Image = Path;
                 Path = temp;
             }
-            else if(stopwatch.ElapsedMilliseconds >= timeToStayAsPath)
+            else if (stopwatch.ElapsedMilliseconds >= timeToStayAsPath)
             {
                 Texture2D temp = Sprite.Image;
                 Sprite.Image = Path;

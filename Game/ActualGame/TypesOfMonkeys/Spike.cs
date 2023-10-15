@@ -1,8 +1,10 @@
 ﻿using ActualGame.Enemies;
+using ActualGame.ScreenAndGraph;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using ActualGame.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -35,15 +37,16 @@ namespace ActualGame.TypesOfMonkeys
             int size = RangeSize * 30;
             Bullets = new Bullet[]
             {
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,0,sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f, new Vector2(sprite.Position.X + size + sprite.Origin.Y, sprite.Position.Y + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X + size + sprite.Origin.Y, sprite.Position.Y + size + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI/2),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X + sprite.Origin.Y, sprite.Position.Y+ size + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(3 * Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X - size + sprite.Origin.Y, sprite.Position.Y +size+ sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X - size + sprite.Origin.Y, sprite.Position.Y + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(5 * Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X - size + sprite.Origin.Y, sprite.Position.Y - size + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(3 * Math.PI/2),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X + sprite.Origin.Y, sprite.Position.Y - size + sprite.Origin.Y)),
-                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(7 * Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X + size  + sprite.Origin.Y, sprite.Position.Y - size + sprite.Origin.Y))
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,0,sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f, new Vector2(sprite.Position.X + size, sprite.Position.Y )),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X + size , sprite.Position.Y + size )),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI/2),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X , sprite.Position.Y+ size)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(3 * Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X - size, sprite.Position.Y + size)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(Math.PI),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X - size, sprite.Position.Y)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(5 * Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X - size, sprite.Position.Y - size)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(3 * Math.PI/2),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X, sprite.Position.Y - size)),
+                new Bullet(new Sprite(Color.White,sprite.Position,Dart,(float)(7 * Math.PI/4),sprite.Origin,new Vector2(1.5f,1.5f)), 0.05f,new Vector2(sprite.Position.X + size, sprite.Position.Y - size))
             };
+
         }
         void UpdateTargets()
         {
@@ -134,7 +137,7 @@ namespace ActualGame.TypesOfMonkeys
             sprite.Draw(spriteB);
         }
 
-        public override bool Update(ref List<Zombie> zombie)
+        public override bool Update(ref List<Zombie> zombie, bool IsFast)
         {
             if (zombie == null || FiringTimer.ElapsedMilliseconds < CooldownAndCostAndLvl.Item1) return false;
             FiringTimer.Restart();

@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ActualGame
+namespace ActualGame.ScreenAndGraph
 {
-    
+
     internal class AStar : GraphStuff
     {
-        PriorityQueue<Vertex,float> Queue;
+        PriorityQueue<Vertex, float> Queue;
 
         int Scalar;
         List<Vertex> AreInQueue;
-        public AStar() 
+        public AStar()
         {
             Queue = new PriorityQueue<Vertex, float>();
             AreInQueue = new List<Vertex>();
@@ -40,30 +40,30 @@ namespace ActualGame
             }
             a.CumlativeDistance = 0;
 
-            a.FinalDistance = a.CumlativeDistance + HeurManhattan(a.Value.GridLocation.X,a.Value.GridLocation.Y,b.Value.GridLocation.X, b.Value.GridLocation.Y);
+            a.FinalDistance = a.CumlativeDistance + HeurManhattan(a.Value.GridLocation.X, a.Value.GridLocation.Y, b.Value.GridLocation.X, b.Value.GridLocation.Y);
 
             Queue = new PriorityQueue<Vertex, float>();
             AreInQueue.Clear();
-            Queue.Enqueue(a,a.FinalDistance);
+            Queue.Enqueue(a, a.FinalDistance);
             AreInQueue.Add(a);
         }
         public List<Vertex> AStarThing(Vertex start, Vertex end)
         {
             InitializeVerticies(ref start, ref end);
             Vertex Current;
-            while(!end.HasBeenVisited && Queue.Count != 0)
+            while (!end.HasBeenVisited && Queue.Count != 0)
             {
                 Current = Queue.Dequeue();
-                foreach(var item in Current.Neighbors)
+                foreach (var item in Current.Neighbors)
                 {
                     if (item.EndingPoint.IsWall || item.EndingPoint.HasBeenVisited || AreInQueue.Contains(item.EndingPoint)) continue;
                     float tentativeDistance = Current.CumlativeDistance + item.Distance;
-                    if(tentativeDistance < item.EndingPoint.CumlativeDistance)
+                    if (tentativeDistance < item.EndingPoint.CumlativeDistance)
                     {
                         item.EndingPoint.CumlativeDistance = tentativeDistance;
                         item.EndingPoint.Founder = Current;
-                        item.EndingPoint.FinalDistance = item.EndingPoint.CumlativeDistance + 
-                            HeurManhattan(item.EndingPoint.Value.GridLocation.X, item.EndingPoint.Value.GridLocation.Y,end.Value.GridLocation.X,end.Value.GridLocation.Y);
+                        item.EndingPoint.FinalDistance = item.EndingPoint.CumlativeDistance +
+                            HeurManhattan(item.EndingPoint.Value.GridLocation.X, item.EndingPoint.Value.GridLocation.Y, end.Value.GridLocation.X, end.Value.GridLocation.Y);
                     }
                     Queue.Enqueue(item.EndingPoint, item.EndingPoint.FinalDistance);
                     AreInQueue.Add(item.EndingPoint);
@@ -73,7 +73,7 @@ namespace ActualGame
             }
             List<Vertex> vertices = new List<Vertex>();
             Current = end;
-            if(end.Founder == null || !end.HasBeenVisited)
+            if (end.Founder == null || !end.HasBeenVisited)
             {
                 return null;
             }

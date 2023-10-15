@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ActualGame.ScreenAndGraph;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System;
@@ -14,11 +15,12 @@ namespace ActualGame.Enemies
         Random gen = new Random();
         public int Reward;
         public PathMakerZombie(Vector2 position, Texture2D image, float rotation, Vector2 origin, Vector2 scale, ref Screen screen, ref AllMonkeys monkeys, int health,int maxFrozenTime)
-            : base(Color.White, position, image, rotation, origin, scale,0.1f,TypeOfZombie.Miner,maxFrozenTime)
+            : base(Color.White, position, image, rotation, origin, scale,0.04f,TypeOfZombie.Miner,maxFrozenTime)
         {
             Reward = 75;
             Path = GeneratePath(ref screen,ref monkeys);
             Health = health;
+            Level = 0;
         }
 
         Position[] GeneratePath(ref Screen screen,ref AllMonkeys monkeys)
@@ -46,11 +48,11 @@ namespace ActualGame.Enemies
 
 
             Position[] paths = new Position[Path.Count];
-            int index = 0;
+            int index = paths.Length - 1;
             foreach(var item in Path)
             {
                 paths[index] = item.Value.GridLocation;
-                index++;
+                index--;
             }
             return paths;
         }
@@ -61,7 +63,10 @@ namespace ActualGame.Enemies
             Position NextSquare = Path[currentPosition + 1];
 
             screen.Map[Path[currentPosition].Y, Path[currentPosition].X].Value.DoesContainZombie = true;
-            screen.Map[Path[currentPosition].Y, Path[currentPosition].X].Value.OneContained.Add(this);
+            if(!screen.Map[Path[currentPosition].Y, Path[currentPosition].X].Value.OneContained.Contains(this))
+            {
+                screen.Map[Path[currentPosition].Y, Path[currentPosition].X].Value.OneContained.Add(this);
+            }
             screen.Map[Path[currentPosition].Y, Path[currentPosition].X].Value.ShouldStartBeingPath = true;
             if (LerpAmount < 1f)
             {

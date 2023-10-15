@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using ActualGame.ScreenAndGraph;
 
 namespace ActualGame.Enemies
 {
@@ -34,7 +35,7 @@ namespace ActualGame.Enemies
             {4, 15},
             {5, 20},
             {6, 50},
-            {7, 100}
+            {7, 400}
         };
         public Dictionary<int, int> LevelToReward = new Dictionary<int, int>()
         {
@@ -45,10 +46,8 @@ namespace ActualGame.Enemies
             {4, 10},
             {5, 15},
             {6, 40},
-            {7, 80}
+            {7, 250}
         };
-        
-        public int Level;
         
 
         Texture2D OriginalZombieImage;

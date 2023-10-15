@@ -1,5 +1,6 @@
 ﻿
 using ActualGame.Enemies;
+using ActualGame.ScreenAndGraph;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using ActualGame.Sprites;
 
 
 namespace ActualGame.TypesOfMonkeys
@@ -91,15 +93,22 @@ namespace ActualGame.TypesOfMonkeys
             }
             return true;
         }
-        public override bool Update(ref List<Zombie> zombie)
+        public override bool Update(ref List<Zombie> zombie, bool IsFast)
         {
             sprite.Rotation = (float)(Math.Atan2(zombie[0].Position.Y - sprite.Position.Y, zombie[0].Position.X - sprite.Position.X));
             if (zombie == null || FiringTimer.ElapsedMilliseconds < CooldownAndCostAndLvl.Item1) return false;
-            Bullet.Target = new Vector2(zombie[0].Position.X + sprite.Origin.X, zombie[0].Position.Y + sprite.Origin.Y);
+            int temp = 1;
+            if(IsFast)
+            {
+                temp *= 2;
+            }
+            Bullet.Target = new Vector2(zombie[0].Path[zombie[0].currentPosition + temp].X * 30 + zombie[0].Origin.X, zombie[0].Path[zombie[0].currentPosition + temp].Y * 30 + zombie[0].Origin.Y);
             Bullet.sprite.Rotation = sprite.Rotation;
             zombies = zombie;
             Bools.Clear();
+
             for (int i = 0; i < zombie.Count; i++) { Bools.Add(false); }
+
             FiringTimer.Restart();
             ShouldFire = true;
             return true;

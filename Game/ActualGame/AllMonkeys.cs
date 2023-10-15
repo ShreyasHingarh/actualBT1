@@ -1,4 +1,5 @@
 ﻿using ActualGame.Enemies;
+using ActualGame.ScreenAndGraph;
 using ActualGame.TypesOfMonkeys;
 
 using Microsoft.Xna.Framework;
@@ -26,21 +27,16 @@ namespace ActualGame
         {
             Monkeys.Add(monkey);
         }
-        public void UpdateAllMonkeys()
+        public void UpdateAllMonkeys(bool IsFast)
         {
             foreach(var item in Monkeys)
             {
                 List<Zombie> zombieList = new List<Zombie>();
                 foreach(var square in item.RangeSquares)
                 {
-                    
-                    if(square.DoesContainZombie)
-                    {
-                        Console.WriteLine("thing");
-                        square.Sprite.Tint = Color.Red;
-                    }
                     if (!square.DoesContainZombie) continue;
-                    
+
+                 
                     foreach(var zombie in square.OneContained)
                     {
                         zombieList.Add(zombie);
@@ -48,7 +44,7 @@ namespace ActualGame
                 }
                 if(zombieList.Count != 0)
                 {
-                    item.Update(ref zombieList);
+                    item.Update(ref zombieList,IsFast);
                 }
             }
         }
@@ -77,7 +73,6 @@ namespace ActualGame
                         bomb.TheBomb1.compare /= 2;
                         bomb.TheBomb2.compare /= 2;
 
-                        Console.WriteLine(bomb.OneToCompare);
                         break;
                     case TypeOfMonkey.IceMonk:
                         Ice ice = (Ice)item;
@@ -111,7 +106,6 @@ namespace ActualGame
                         bomb.TheBomb1.compare *= 2;
                         bomb.TheBomb2.compare *= 2;
 
-                        Console.WriteLine(bomb.OneToCompare);
                         break;
                     case TypeOfMonkey.IceMonk:
                         Ice ice = (Ice)item;

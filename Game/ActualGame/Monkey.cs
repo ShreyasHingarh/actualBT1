@@ -1,4 +1,6 @@
 ﻿using ActualGame.Enemies;
+using ActualGame.ScreenAndGraph;
+using ActualGame.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -103,7 +105,7 @@ namespace ActualGame
             CooldownAndCostAndLvl.Item3++;
             return true;
         }
-        public abstract bool Update(ref List<Zombie> Zombies);
+        public abstract bool Update(ref List<Zombie> Zombies, bool IsFast);
         public abstract void Draw(SpriteBatch sprite, GameTime gameTime, Screen screen);
     }
 }

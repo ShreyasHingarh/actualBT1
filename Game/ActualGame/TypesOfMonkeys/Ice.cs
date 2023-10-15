@@ -1,7 +1,9 @@
 ﻿using ActualGame.Enemies;
+using ActualGame.ScreenAndGraph;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using ActualGame.Sprites;
 
 using System;
 using System.Collections.Generic;
@@ -118,14 +120,17 @@ namespace ActualGame.TypesOfMonkeys
             FrozenUpgradeCostandLvl.Item2++;
             return true;
         }
-        public override bool Update(ref List<Zombie> Zombies)
+        public override bool Update(ref List<Zombie> Zombies, bool IsFast)
         {
             sprite.Rotation = (float)(Math.Atan2(Zombies[0].Position.Y - sprite.Position.Y, Zombies[0].Position.X - sprite.Position.X));
             if (Zombies == null || FiringTimer.ElapsedMilliseconds < CooldownAndCostAndLvl.Item1) return false;
+            
             FiringTimer.Restart();
             ShouldFire = true;
             Target = Zombies[0];
-            throwable.Target = new Vector2(Zombies[0].Position.X + Zombies[0].Origin.X, Zombies[0].Position.Y + Zombies[0].Origin.Y);
+            int temp = 1;
+            if (IsFast) temp *= 2;
+            throwable.Target = new Vector2(Zombies[0].Path[Zombies[0].currentPosition+temp].X * 30 + Zombies[0].Origin.X, Zombies[0].Path[Zombies[0].currentPosition+temp].Y * 30 + Zombies[0].Origin.Y);
             throwable.Rotation = sprite.Rotation;
             return true;
         }

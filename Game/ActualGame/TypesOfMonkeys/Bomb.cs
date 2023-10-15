@@ -1,8 +1,9 @@
 ﻿using ActualGame.Enemies;
+using ActualGame.ScreenAndGraph;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
+using ActualGame.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -120,7 +121,7 @@ namespace ActualGame.TypesOfMonkeys
 
             return true;
         }
-        public override bool Update(ref List<Zombie> Zombies)
+        public override bool Update(ref List<Zombie> Zombies, bool IsFast)
         {
             sprite.Rotation = (float)(Math.Atan2(Zombies[0].Position.Y - sprite.Position.Y, Zombies[0].Position.X - sprite.Position.X));
             if (Zombies == null || FiringTimer.ElapsedMilliseconds < OneToCompare) return false;

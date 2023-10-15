@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ActualGame.LevelClasses;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -12,8 +13,8 @@ namespace ActualGame
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         GameScreen gameScreen;
-        //Plan: Make next 25 levels(bulldozers, poison, darts more accurate, clear board button) adjust all the prices and health,
-        //Add a win and lose screen, Alterating paths using astar
+        //Plan: darts more accurate, Add a win and lose screen (Alterating paths using astar,adjust all the prices and health)
+        //
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

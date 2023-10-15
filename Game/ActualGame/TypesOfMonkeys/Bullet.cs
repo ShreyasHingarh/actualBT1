@@ -1,4 +1,5 @@
 ﻿using ActualGame.Enemies;
+using ActualGame.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,16 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ActualGame
+namespace ActualGame.TypesOfMonkeys
 {
     internal class Bullet
     {
         public Sprite sprite;
-        float LerpAmount; 
+        float LerpAmount;
         public float LerpIncrement;
         public bool HasHit;
         public Vector2 Target;
-        public Bullet(Sprite prite, float lerpIncrement,Vector2 target)
+        public Bullet(Sprite prite, float lerpIncrement, Vector2 target)
         {
             Target = target;
             sprite = prite;
@@ -25,7 +26,7 @@ namespace ActualGame
             LerpIncrement = lerpIncrement;
             HasHit = false;
         }
-        public int Draw(SpriteBatch spriteB, Vector2 Position,int DamageToDeal,ref List<Zombie> zombies,ref List<bool> Bools)
+        public int Draw(SpriteBatch spriteB, Vector2 Position, int DamageToDeal, ref List<Zombie> zombies, ref List<bool> Bools)
         {
             if (LerpAmount < 1)
             {
@@ -34,6 +35,7 @@ namespace ActualGame
                 {
                     if (!Bools[index] && item.HitBox.Value.Contains(sprite.Position))
                     {
+
                         item.Health -= DamageToDeal;
                         Bools[index] = true;
                         HasHit = true;

@@ -11,8 +11,9 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using ActualGame.ScreenAndGraph;
 
-namespace ActualGame
+namespace ActualGame.LevelClasses
 {
     internal class Level
     {
@@ -30,11 +31,11 @@ namespace ActualGame
         int OffSet;
         public bool MousePressed = false;
         public bool ShouldUpgrade = false;
-        public Level(int offSet, ContentManager Content, int cash,int Lives)
+        public Level(int offSet, ContentManager Content, int cash, int Lives)
         {
             SideScreen = new SideScreen(Lives, cash, 1, Content);
             allMonkeys = new AllMonkeys();
-            Enemies = new AllEnemies(); 
+            Enemies = new AllEnemies();
             LevelSwitchTimer = new Stopwatch();
             TooLittleMoney = false;
             MaxLevelReached = false;
@@ -53,10 +54,18 @@ namespace ActualGame
                 case 0:// SlowDown
                     allMonkeys.DecreaseSpeedOfAllMonkeys();
                     Enemies.DecreaseSpeedOfAllZombies();
+                    foreach (var square in screen.Map)
+                    {
+                        square.Value.timeToStayAsPath *= 2;
+                    }
                     break;
                 case 1://SpeedUp
                     allMonkeys.IncreaseSpeedOfAllMonkeys();
                     Enemies.IncreaseSpeedOfAllZombies();
+                    foreach (var square in screen.Map)
+                    {
+                        square.Value.timeToStayAsPath /= 2;
+                    }
                     break;
             }
             //Handles Adding and upgrading and removing Monkeys
@@ -65,7 +74,7 @@ namespace ActualGame
                 if (MousePressed) continue;
                 if (SideScreen.UpgradeMonkey(item))
                 {
-                    foreach(var thing in SideScreen.MonkeyAddAndCost)
+                    foreach (var thing in SideScreen.MonkeyAddAndCost)
                     {
                         thing.Item1.CanClick = false;
                     }
@@ -152,7 +161,7 @@ namespace ActualGame
                             SideScreen.Home.CanClick = false;
                             SideScreen.Remove.CanClick = false;
                             SideScreen.UpDamage.CanClick = false;
-                            SideScreen.UpCooldown.CanClick = false; 
+                            SideScreen.UpCooldown.CanClick = false;
                             foreach (var thing in SideScreen.MonkeyAddAndCost)
                             {
                                 thing.Item1.CanClick = true;
@@ -187,7 +196,7 @@ namespace ActualGame
                         if (!hasClicked && SideScreen.UpRange.HasPressed(MousePosition))
                         {
                             Spike monk = (Spike)SideScreen.OneClicked;
-                            if (!monk.IncreaseRangeByOne(ref SideScreen.Money, monk.IncreaseRangeCostAndLvl.Item1/2, screen))
+                            if (!monk.IncreaseRangeByOne(ref SideScreen.Money, monk.IncreaseRangeCostAndLvl.Item1 / 2, screen))
                             {
                                 if (monk.IncreaseRangeCostAndLvl.Item2 == monk.MaxUpgradeLvl)
                                 {
@@ -249,7 +258,7 @@ namespace ActualGame
                             SideScreen.Home.CanClick = false;
                             SideScreen.Remove.CanClick = false;
                             SideScreen.UpDamage.CanClick = false;
-                            SideScreen.UpCooldown.CanClick = false; 
+                            SideScreen.UpCooldown.CanClick = false;
                             foreach (var thing in SideScreen.MonkeyAddAndCost)
                             {
                                 thing.Item1.CanClick = true;
@@ -285,7 +294,7 @@ namespace ActualGame
                         }
                         if (!hasClicked && SideScreen.UpRange.HasPressed(MousePosition))
                         {
-                            if (!bomb.IncreaseRangeOfBomb(ref SideScreen.Money, bomb.UpgradeCostandLevel.Item1/2, screen, Content))
+                            if (!bomb.IncreaseRangeOfBomb(ref SideScreen.Money, bomb.UpgradeCostandLevel.Item1 / 2, screen, Content))
                             {
                                 if (bomb.UpgradeCostandLevel.Item2 == bomb.MaxUpgradeLvl)
                                 {
@@ -302,7 +311,7 @@ namespace ActualGame
                         }
                         else if (!hasClicked && SideScreen.UpDamage.HasPressed(MousePosition))
                         {
-                            if (!bomb.UpgradeDamage(ref SideScreen.Money, 5, bomb.DamageAndCostAndLvl.Item2/2))
+                            if (!bomb.UpgradeDamage(ref SideScreen.Money, 5, bomb.DamageAndCostAndLvl.Item2 / 2))
                             {
                                 if (bomb.DamageAndCostAndLvl.Item3 == bomb.MaxUpgradeLvl)
                                 {
@@ -321,7 +330,7 @@ namespace ActualGame
                         {
                             int CooldownDecrement = 300;
                             if (SideScreen.SpeedUp) CooldownDecrement = 150;
-                            if (!bomb.UpgradeCooldown(ref SideScreen.Money, CooldownDecrement, bomb.CooldownAndCostAndLvl.Item2/2))
+                            if (!bomb.UpgradeCooldown(ref SideScreen.Money, CooldownDecrement, bomb.CooldownAndCostAndLvl.Item2 / 2))
                             {
                                 if (bomb.CooldownAndCostAndLvl.Item3 == bomb.MaxUpgradeLvl)
                                 {
@@ -358,7 +367,7 @@ namespace ActualGame
                             SideScreen.Money += SideScreen.OneClicked.RemoveCost;
                             allMonkeys.Monkeys.Remove(SideScreen.OneClicked);
                             SideScreen.OneClicked = null;
-                            ShouldUpgrade = false; 
+                            ShouldUpgrade = false;
                             SideScreen.BombRangeButton.CanClick = false;
                             SideScreen.AddBombButton.CanClick = false;
                             SideScreen.Home.CanClick = false;
@@ -455,7 +464,7 @@ namespace ActualGame
                             SideScreen.Money += SideScreen.OneClicked.RemoveCost;
                             allMonkeys.Monkeys.Remove(SideScreen.OneClicked);
                             SideScreen.OneClicked = null;
-                            ShouldUpgrade = false; 
+                            ShouldUpgrade = false;
                             SideScreen.UpIce.CanClick = false;
                             SideScreen.Home.CanClick = false;
                             SideScreen.Remove.CanClick = false;
@@ -491,7 +500,7 @@ namespace ActualGame
                             MousePressed = true;
                             break;
                         case 1:
-                            OneToAdd = new Spike(MousePosition, Content, new Vector2(15, 15), screen, 3, 5, 75, 1500, 75, 75, 3);
+                            OneToAdd = new Spike(MousePosition, Content, new Vector2(15, 15), screen, 3, 0, 75, 1500, 75, 75, 3);
                             MousePressed = true;
                             break;
                         case 2:
@@ -559,7 +568,7 @@ namespace ActualGame
             }
             if (SideScreen.HasStarted)
             {
-                allMonkeys.UpdateAllMonkeys();
+                allMonkeys.UpdateAllMonkeys(SideScreen.SpeedUp);
                 if (Enemies.UpdateAllZombies(SizeOfSquare, OffSet, screen, SideScreen))
                 {
                     LevelSwitchTimer.Start();
@@ -567,7 +576,7 @@ namespace ActualGame
             }
             return true;
         }
-        public void DrawLvlScreen(SpriteBatch spriteBatch, ContentManager Content,GameTime gameTime, Screen screen)
+        public void DrawLvlScreen(SpriteBatch spriteBatch, ContentManager Content, GameTime gameTime, Screen screen)
         {
             if (DisplayTimer.ElapsedMilliseconds < 2000)
             {

@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ActualGame.ScreenAndGraph;
+using ActualGame.Sprites;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using System;
@@ -7,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ActualGame
+namespace ActualGame.TypesOfMonkeys
 {
     internal class ActualBomb : AnimatedSpriteClass
     {
@@ -38,7 +40,7 @@ namespace ActualGame
         public void AddRange(Screen screen)
         {
             if (GridPosition.X == -1 && GridPosition.Y == -1) return;
-            
+
             Position CurrentPos = new Position(GridPosition.X, GridPosition.Y);
             //Gets Top Left
             int indexX = 0;
