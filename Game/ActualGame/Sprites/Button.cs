@@ -26,7 +26,7 @@ namespace ActualGame.Sprites
         public void DrawButton(SpriteBatch spriteBatch, ContentManager Content, Vector2 Position)
         {
             BaseImage.Draw(spriteBatch);
-            spriteBatch.DrawString(Content.Load<SpriteFont>("File"), Text, Position, Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(Content.Load<SpriteFont>("File"), Text, Position, Color.Black, 0, Vector2.Zero, (float)(0.5 * BaseImage.Scale.X), SpriteEffects.None, 0);
         }
     }
 }

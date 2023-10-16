@@ -40,329 +40,467 @@ namespace ActualGame.LevelClasses
         int MaxLevel = 20;
         Levels LevelIndex;
         Level ActualLevelCode;
+        void Level2(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value, Content, false);
+        }
+        void Level3(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value, Content, false);
+        }
+        void Level4(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+        }
+        void Level5(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+        }
+        void Level6(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+        }
+        void Level7(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+
+        }
+        void Level8(Screen screen, ContentManager Content)
+        {
+
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+        }
+        void Level9(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+        }
+        void Level10(Screen screen, ContentManager Content)
+        {
+
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true); 
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true); 
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+        }
+        void Level11(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
+        }
+        void Level12(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
+        }
+        void Level13(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+        }
+        void Level14(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+        }
+
+
+        void Level15(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+        }
+        void Level16(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+        }
+        void Level17(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+        }
+        void Level18(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, true);
+        }
+        void Level19(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(6, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(6, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(6, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(6, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+            ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
+        }
+        void Level20(Screen screen, ContentManager Content)
+        {
+            ActualLevelCode.Enemies.AddANormalZombie(7, screen.Start.Value, Content, true);
+            ActualLevelCode.Enemies.AddANormalZombie(7, screen.Start.Value, Content, true);
+        }
         public RunGame(Screen screen, ContentManager Content, int BaseCash, int BaseLives, int offSet)
         {
             LevelIndex = Levels.Level1;
             ActualLevelCode = new Level(offSet, Content, BaseCash, BaseLives);
             ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value, Content, false);
         }
-        public bool SwitchLevel(Screen screen, ContentManager Content, ref AllMonkeys allMonkeys)
+        public int SwitchLevel(Screen screen, ContentManager Content)
         {
-            if ((int)LevelIndex >= MaxLevel || ActualLevelCode.SideScreen.Lives <= 0) return false;
+            if ((int)LevelIndex >= MaxLevel) return 1; // YOU WIN
+            if (ActualLevelCode.SideScreen.Lives <= 0) return 2;//YOU LOSE
             LevelIndex++;
             switch (LevelIndex)
             {
                 case Levels.Level2:
-                    ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value, Content, false);
+                    Level2(screen,Content);
                     break;
                 case Levels.Level3:
-                    ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(0, screen.Start.Value,  Content, false);
+                    Level3(screen, Content);
                     break;
                 case Levels.Level4:
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
+                    Level4(screen,Content);
                     break;
                 case Levels.Level5:
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
+                    Level5(screen, Content);
                     break;
                 case Levels.Level6:
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
+                    Level6(screen,Content);
                     break;
                 case Levels.Level7:
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
+                    Level7(screen,Content);
                     break;
                 case Levels.Level8:
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
+                    Level8(screen,Content);
                     break;
                 case Levels.Level9:
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
+                    Level9(screen,Content);
                     break;
                 case Levels.Level10:
                     //Add Zomibes that Move Faster
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
+                    Level10(screen, Content);
                     break;
                 case Levels.Level11:
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value,  Content, true);
+                    Level11(screen, Content);
                     break;
                 case Levels.Level12:
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value,  Content, true);
+                    Level12(screen,Content);
                     break;
                 case Levels.Level13:
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
+                    Level13(screen,Content);
                     break;
                 case Levels.Level14:
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value,  Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, true);
+                    Level14(screen,Content);
                     break;
                 case Levels.Level15:
                     //Add Path Makers
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content,screen.Start.Value,ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value,  Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
+                    Level15(screen,Content);
                     break;
                 case Levels.Level16:
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true); 
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys); 
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
+                    Level16(screen,Content);
                     break;
                 case Levels.Level17:
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-                    ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref allMonkeys);
-
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(4, screen.Start.Value, Content, false);
+                    Level17(screen,Content);
                     break;
                 case Levels.Level18:
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+                    Level18(screen,Content);
                     break;
                 case Levels.Level19:
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(5, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(6, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(6, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(6, screen.Start.Value, Content, false);
-                    ActualLevelCode.Enemies.AddANormalZombie(6, screen.Start.Value, Content, false);
+                    Level19(screen,Content);
                     break;
                 case Levels.Level20:
-                    ActualLevelCode.Enemies.AddANormalZombie(7, screen.Start.Value, Content, true);
-                    ActualLevelCode.Enemies.AddANormalZombie(7, screen.Start.Value, Content, true);
                     //First Boss
+                    Level20(screen, Content);
                     break;
             }
-            if (ActualLevelCode.Enemies.Zombies.Count == 0) return false;
+            if (ActualLevelCode.Enemies.Zombies.Count == 0) return 1; //YOU WIN
             if (ActualLevelCode.SideScreen.SpeedUp)
             {
                 ActualLevelCode.Enemies.IncreaseSpeedOfAllZombies();
             }
-            return true;
+            return 0;
         }
-        public bool RunLevel(ContentManager Content, Screen screen, int sizeOfSquare, int offset)
+        public int RunLevel(ContentManager Content, Screen screen, int sizeOfSquare, int offset)
         {
-            bool MoveOn = true;
+            int MoveOn = 0;
             if (!ActualLevelCode.UpdateLvlScreen(sizeOfSquare, screen, Content))
             {
                 ActualLevelCode.SideScreen.Level++;
                 ActualLevelCode.Enemies.Zombies.Clear();
                 ActualLevelCode.LevelSwitchTimer.Reset();
-                MoveOn = SwitchLevel(screen, Content, offset);
-            }
-            if(!MoveOn)
-            {
-
+                MoveOn = SwitchLevel(screen, Content);
             }
             return MoveOn;
         }
