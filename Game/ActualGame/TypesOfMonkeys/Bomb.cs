@@ -97,7 +97,7 @@ namespace ActualGame.TypesOfMonkeys
         
             sprite.Draw(spriteB);
         }
-        public bool IncreaseRangeOfBomb(ref int Money, int CostIncrement, Screen screen,ContentManager Content)
+        public bool IncreaseRangeOfBomb(ref int Money, int CostIncrement, Screen screen,ContentManager Content,bool isTwoTimesSpeed)
         {
             if (UpgradeCostandLevel.Item1 >= Money || UpgradeCostandLevel.Item2 == MaxUpgradeLvl) return false;
             RemoveCost += CostIncrement / 3;
@@ -112,6 +112,10 @@ namespace ActualGame.TypesOfMonkeys
                     break;
                 case 1:// increase bomb count by 1
                     TheBomb2 = new ActualBomb(Color.White, sprite.Position, Content.Load<Texture2D>("Bomb"), 0, Vector2.Zero, Vector2.One);
+                    if(isTwoTimesSpeed)
+                    {
+                        TheBomb2.compare /= 2;
+                    }
                     break;
                 case 2:// increase bomb2 size by 1
                     TheBomb2.RangeSize = 2;

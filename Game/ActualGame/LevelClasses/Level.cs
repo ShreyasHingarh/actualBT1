@@ -294,7 +294,7 @@ namespace ActualGame.LevelClasses
                         }
                         if (!hasClicked && SideScreen.UpRange.HasPressed(MousePosition))
                         {
-                            if (!bomb.IncreaseRangeOfBomb(ref SideScreen.Money, bomb.UpgradeCostandLevel.Item1 / 2, screen, Content))
+                            if (!bomb.IncreaseRangeOfBomb(ref SideScreen.Money, bomb.UpgradeCostandLevel.Item1 / 2, screen, Content,SideScreen.SpeedUp))
                             {
                                 if (bomb.UpgradeCostandLevel.Item2 == bomb.MaxUpgradeLvl)
                                 {
@@ -522,7 +522,7 @@ namespace ActualGame.LevelClasses
                         Position Grid = new Position((sbyte)(MousePosition.X / SizeOfSquare), (sbyte)(MousePosition.Y / SizeOfSquare));
                         if (Grid.X < screen.Map.GetLength(1) && Grid.Y < screen.Map.GetLength(0))
                         {
-                            if (screen.Map[Grid.Y, Grid.X].Value.Type != TypeOfImage.Path)
+                            if (screen.Map[Grid.Y, Grid.X].Value.Type != TypeOfImage.Path && screen.Map[Grid.Y, Grid.X] != screen.Start)
                             {
                                 OneToAdd.GridPosition = Grid;
                                 OneToAdd.sprite.Position = new Vector2(Grid.X * SizeOfSquare + 15, Grid.Y * SizeOfSquare + 15);

@@ -92,6 +92,17 @@ namespace ActualGame.LevelClasses
             ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
             ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
             ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
+            ActualLevelCode.Enemies.AddANormalZombie(1, screen.Start.Value, Content, false);
 
         }
         void Level8(Screen screen, ContentManager Content)
@@ -279,8 +290,6 @@ namespace ActualGame.LevelClasses
             ActualLevelCode.Enemies.AddANormalZombie(2, screen.Start.Value, Content, true);
             ActualLevelCode.Enemies.AddANormalZombie(3, screen.Start.Value, Content, true);
         }
-
-
         void Level15(Screen screen, ContentManager Content)
         {
             ActualLevelCode.Enemies.AddaMinerZombie(Content, screen.Start.Value, ref screen, ref ActualLevelCode.allMonkeys);
@@ -492,6 +501,7 @@ namespace ActualGame.LevelClasses
             }
             return 0;
         }
+
         public int RunLevel(ContentManager Content, Screen screen, int sizeOfSquare, int offset)
         {
             int MoveOn = 0;

@@ -71,7 +71,10 @@ namespace ActualGame
                         bomb.LerpIncrement *= 2;
                         bomb.Bomb2CoolDown /= 2;
                         bomb.TheBomb1.compare /= 2;
-                        bomb.TheBomb2.compare /= 2;
+                        if(bomb.TheBomb2 != null)
+                        {
+                            bomb.TheBomb2.compare /= 2;
+                        }
 
                         break;
                     case TypeOfMonkey.IceMonk:
@@ -104,7 +107,10 @@ namespace ActualGame
                         bomb.LerpIncrement /= 2;
                         bomb.Bomb2CoolDown *= 2;
                         bomb.TheBomb1.compare *= 2;
-                        bomb.TheBomb2.compare *= 2;
+                        if(bomb.TheBomb2 != null)
+                        {
+                            bomb.TheBomb2.compare *= 2;
+                        }
 
                         break;
                     case TypeOfMonkey.IceMonk:

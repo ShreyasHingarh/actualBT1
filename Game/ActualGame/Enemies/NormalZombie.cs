@@ -34,8 +34,8 @@ namespace ActualGame.Enemies
             {3, 10},
             {4, 15},
             {5, 20},
-            {6, 50},
-            {7, 400}
+            {6, 60},
+            {7, 120}
         };
         public Dictionary<int, int> LevelToReward = new Dictionary<int, int>()
         {
@@ -66,6 +66,7 @@ namespace ActualGame.Enemies
             if (Level == 7)
             {
                 Scale = new Vector2(2.5f, 2.5f);
+                LerpIncrement /= 2;
             }
             else if (Level == 6)
             {
@@ -81,6 +82,7 @@ namespace ActualGame.Enemies
             {
                 case 6:
                     Scale = new Vector2(1.5f, 1.5f);
+                    LerpIncrement *= 2;
                     break;
                 case 5:
                     Scale = Vector2.One;

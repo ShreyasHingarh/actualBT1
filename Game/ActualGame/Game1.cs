@@ -34,7 +34,7 @@ namespace ActualGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            gameScreen = new GameScreen(GraphicsDevice.Viewport.Height, Content, 4000, 100,graphics.PreferredBackBufferWidth);
+            gameScreen = new GameScreen(GraphicsDevice.Viewport.Height, Content, 800, 50,graphics.PreferredBackBufferWidth,GraphicsDevice);
             // TODO: use this.Content to load your game content here
         }
 
@@ -42,7 +42,10 @@ namespace ActualGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            gameScreen.Run(Content,graphics.PreferredBackBufferWidth);
+            if(!gameScreen.Run(Content,graphics.PreferredBackBufferWidth,800,50))
+            {
+                Exit();
+            }
             // TODO: Add your update logic here
             base.Update(gameTime);
         }
